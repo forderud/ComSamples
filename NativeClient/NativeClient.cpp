@@ -13,7 +13,7 @@ int main() {
     }
 
     CComPtr<IServer> server;
-    hr = ::CoCreateInstance(CLSID_Server, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IServer), (void **)&server);
+    hr = ::CoCreateInstance(CLSID_IoTAgent, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IServer), (void **)&server);
     if (FAILED(hr)) {
         std::cout << "CoCreateInstance failure: " << std::hex << std::showbase << hr << std::endl;
         return 1;

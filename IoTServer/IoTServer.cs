@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace ComSeverExample
 {
     [ComVisible(true)]
-    [Guid(Contract.Constants.ServerClass)]
+    [Guid(Contract.Constants.IoTAgentClass)]
     [ComDefaultInterface(typeof(IServer))]
     public sealed class IoTServer : IServer
     {

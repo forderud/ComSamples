@@ -25,19 +25,19 @@ namespace ComSeverExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    COMRegistration.LocalServer.Register(Contract.Constants.ServerClassGuid, exePath, tlbPath);
+                    COMRegistration.LocalServer.Register(Contract.Constants.IoTAgentClassGuid, exePath, tlbPath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    COMRegistration.LocalServer.Unregister(Contract.Constants.ServerClassGuid, tlbPath);
+                    COMRegistration.LocalServer.Unregister(Contract.Constants.IoTAgentClassGuid, tlbPath);
                     return;
                 }
             }
 
             using var server = new COMRegistration.LocalServer();
-            server.RegisterClass<IoTServer>(Contract.Constants.ServerClassGuid);
+            server.RegisterClass<IoTServer>(Contract.Constants.IoTAgentClassGuid);
 
             server.Run();
         }

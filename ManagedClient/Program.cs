@@ -11,13 +11,13 @@ namespace ManagedClient
             // a DLL surrogate), activation through the Activator will only use the out-of-proc
             // server if the client and the registered COM server are not the same bitness.
             //
-            // Type t = Type.GetTypeFromCLSID(Contract.Constants.ServerClassGuid);
+            // Type t = Type.GetTypeFromCLSID(Contract.Constants.IoTAgentClassGuid);
             // var server = (IServer)Activator.CreateInstance(t);
             //
             // This demo explicitly calls CoCreateInstance with CLSCTX_LOCAL_SERVER to force
             // usage of the out-of-proc server.
             object obj;
-            int hr = Ole32.CoCreateInstance(Contract.Constants.ServerClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IServer).GUID, out obj);
+            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IServer).GUID, out obj);
             if (hr < 0) {
                 Marshal.ThrowExceptionForHR(hr);
             }
