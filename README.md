@@ -14,8 +14,7 @@ The sample is currently focused on Windows.
     * Executable server: `dotnet msbuild -target:ServerUsage IoTServer`
 1. Follow the instructions for registering the server.
 1. Run the client:
-    * Native: run the `NativeClient.exe` binary
-        * Example: `x64\Debug\NativeClient.exe`
+    * Native: run the `IoTClientCpp.exe` binary
     * Managed: run the `IoTClientCs.exe` binary
 
 The client program should output an estimated value of &#960;:
