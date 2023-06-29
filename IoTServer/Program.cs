@@ -6,7 +6,7 @@ namespace ComSeverExample
 {
     class Program
     {
-        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "ExeServer.exe");
+        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "IoTServer.exe");
 
 #if EMBEDDED_TYPE_LIBRARY
         private static readonly string tlbPath = exePath;
@@ -37,7 +37,7 @@ namespace ComSeverExample
             }
 
             using var server = new COMRegistration.LocalServer();
-            server.RegisterClass<ExeServer>(Contract.Constants.ServerClassGuid);
+            server.RegisterClass<IoTServer>(Contract.Constants.ServerClassGuid);
 
             server.Run();
         }

@@ -7,11 +7,11 @@ namespace ComSeverExample
     [ComVisible(true)]
     [Guid(Contract.Constants.ServerClass)]
     [ComDefaultInterface(typeof(IServer))]
-    public sealed class ExeServer : IServer
+    public sealed class IoTServer : IServer
     {
         double IServer.ComputePi()
         {
-            Trace.WriteLine($"Running {nameof(ExeServer)}.{nameof(IServer.ComputePi)}");
+            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(IServer.ComputePi)}");
             double sum = 0.0;
             int sign = 1;
             for (int i = 0; i < 1024; ++i)

@@ -11,7 +11,7 @@ The sample is currently focused on Windows.
 1. Navigate to the root directory and build the solution:
     * `msbuild ComSeverExample.sln -restore`.
 1. Show the instructions for COM server registration:
-    * Executable server: `dotnet msbuild -target:ServerUsage ExeServer`
+    * Executable server: `dotnet msbuild -target:ServerUsage IoTServer`
 1. Follow the instructions for registering the server.
 1. Run the client:
     * Native: run the `NativeClient.exe` binary
