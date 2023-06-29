@@ -2,8 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
-#include <Contract_h.h>
-#include <Contract_i.c>
+#include <IoTAgent_h.h>
+#include <IoTAgent_i.c>
 
 int main() {
     HRESULT hr  = ::CoInitializeEx(0, COINITBASE_MULTITHREADED);

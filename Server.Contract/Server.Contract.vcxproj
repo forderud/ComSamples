@@ -30,7 +30,7 @@
   </ImportGroup>
   <Import Project="..\Contract\Server.Contract.props" />
   <ItemGroup>
-    <Midl Include="Contract.idl">
+    <Midl Include="IoTAgent.idl">
       <OutputDirectory>$(ContractOutputDirectory)</OutputDirectory>
       <TypeLibraryName>$(TypeLibraryPath)</TypeLibraryName>
     </Midl>
