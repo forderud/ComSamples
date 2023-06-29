@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <ContractOutputDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)</ContractOutputDirectory>
-    <TypeLibraryName>Server.Contract.tlb</TypeLibraryName>
+    <TypeLibraryName>IoTServer.Contract.tlb</TypeLibraryName>
     <TypeLibraryPath>$(ContractOutputDirectory)\$(TypeLibraryName)</TypeLibraryPath>
     <TypeLibraryCompiledResourcePath>$(ContractOutputDirectory)\Server.TypeLib.res</TypeLibraryCompiledResourcePath>
   </PropertyGroup>
