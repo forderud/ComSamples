@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ManagedClient
+namespace IoTClientCs
 {
     class Program
     {
