@@ -5,37 +5,30 @@
 #include <Contract_h.h>
 #include <Contract_i.c>
 
-int main()
-{
-    ::SetConsoleOutputCP(CP_UTF8);
-
-    HRESULT hr;
-    hr = ::CoInitializeEx(0, COINITBASE_MULTITHREADED);
-    if (FAILED(hr))
-    {
+int main() {
+    HRESULT hr  = ::CoInitializeEx(0, COINITBASE_MULTITHREADED);
+    if (FAILED(hr)) {
         std::cout << "CoInitializeEx failure: " << std::hex << std::showbase << hr << std::endl;
-        return EXIT_FAILURE;
+        return 1;
     }
 
     CComPtr<IServer> server;
     hr = ::CoCreateInstance(CLSID_Server, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IServer), (void **)&server);
-    if (FAILED(hr))
-    {
+    if (FAILED(hr)) {
         std::cout << "CoCreateInstance failure: " << std::hex << std::showbase << hr << std::endl;
-        return EXIT_FAILURE;
+        return 1;
     }
 
-    double pi;
+    double pi = 0;
     hr = server->ComputePi(&pi);
-    if (FAILED(hr))
-    {
+    if (FAILED(hr)) {
         std::cout << "Failure: " << std::hex << std::showbase << hr << std::endl;
-        return EXIT_FAILURE;
+        return 1;
     }
 
-    std::cout << u8"\u03C0 = " << std::setprecision(16) << pi << std::endl;
+    std::cout << "pi = " << std::setprecision(16) << pi << std::endl;
 
     ::CoUninitialize();
 
-    return EXIT_SUCCESS;
+    return 0;
 }
