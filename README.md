@@ -17,7 +17,7 @@ The sample is currently focused on Windows.
     * Native: run the `NativeClient.exe` binary
         * Example: `x64\Debug\NativeClient.exe`
     * Managed: run the `ManagedClient.exe` binary
-        * Example: `ManagedClient\bin\Debug\netcoreapp3.1\ManagedClient.exe`
+        * Example: `IoTClientCs\bin\Debug\netcoreapp3.1\ManagedClient.exe`
 
 The client program should output an estimated value of &#960;:
 ```
