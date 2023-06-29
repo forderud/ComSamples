@@ -9,7 +9,7 @@ The sample is currently focused on Windows.
 ## Build and Run
 1. Open a [Developer Command Prompt for Visual Studio](https://docs.microsoft.com/cpp/build/building-on-the-command-line#developer_command_prompt_shortcuts).
 1. Navigate to the root directory and build the solution:
-    * `msbuild ComSeverExample.sln -restore`.
+    * `msbuild ComServerExample.sln -restore`.
 1. Show the instructions for COM server registration:
     * Executable server: `dotnet msbuild -target:ServerUsage IoTServer`
 1. Follow the instructions for registering the server.

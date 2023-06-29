@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace ComSeverExample
+namespace ComServerExample
 {
     [ComVisible(true)]
     [Guid(Contract.Constants.IoTAgentClass)]
