@@ -5,7 +5,7 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
-  <Import Project="..\Contract\IoTServer.Contract.props" />
+  <Import Project="..\IoTServer.Contract\IoTServer.Contract.props" />
 
   <ItemGroup>
     <ProjectReference Include="..\COMRegistration\COMRegistration.csproj" />

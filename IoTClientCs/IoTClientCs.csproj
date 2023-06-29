@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <!-- Used in lieu of a Primary Interop Assembly (PIA) -->
-    <Compile Include="../Contract/*.cs" />
+    <Compile Include="../IoTServer.Contract/*.cs" />
   </ItemGroup>
 
 </Project>
