@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace OutOfProcCOM
+namespace ComSeverExample
 {
     [ComVisible(true)]
     [Guid(Contract.Constants.ServerClass)]

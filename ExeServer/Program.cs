@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace OutOfProcCOM
+namespace ComSeverExample
 {
     class Program
     {
