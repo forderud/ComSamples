@@ -51,5 +51,8 @@
       <ResourceOutputFileName>$(TypeLibraryCompiledResourcePath)</ResourceOutputFileName>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Server.TypeLib.rc" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
