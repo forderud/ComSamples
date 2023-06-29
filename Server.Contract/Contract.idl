@@ -4,7 +4,7 @@ import "ocidl.idl";
 [object,
  oleautomation,
  uuid(F586D6F4-AF37-441E-80A6-3D33D977882D)]
-interface IServer : IDispatch {
+interface IIoTAgent : IDispatch {
     [helpstring("")]
     HRESULT ComputePi([out, retval] double *ret);
 };
@@ -15,6 +15,6 @@ library IoTAgent {
 
     [uuid(AF080472-F173-4D9D-8BE7-435776617347)]
     coclass IoTAgent {
-        [default] interface IServer;
+        [default] interface IIoTAgent;
     }
 }

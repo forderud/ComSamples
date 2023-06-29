@@ -6,12 +6,12 @@ namespace ComSeverExample
 {
     [ComVisible(true)]
     [Guid(Contract.Constants.IoTAgentClass)]
-    [ComDefaultInterface(typeof(IServer))]
-    public sealed class IoTServer : IServer
+    [ComDefaultInterface(typeof(IIoTAgent))]
+    public sealed class IoTServer : IIoTAgent
     {
-        double IServer.ComputePi()
+        double IIoTAgent.ComputePi()
         {
-            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(IServer.ComputePi)}");
+            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(IIoTAgent.ComputePi)}");
             double sum = 0.0;
             int sign = 1;
             for (int i = 0; i < 1024; ++i)

@@ -12,17 +12,17 @@ namespace ManagedClient
             // server if the client and the registered COM server are not the same bitness.
             //
             // Type t = Type.GetTypeFromCLSID(Contract.Constants.IoTAgentClassGuid);
-            // var server = (IServer)Activator.CreateInstance(t);
+            // var server = (IIoTAgent)Activator.CreateInstance(t);
             //
             // This demo explicitly calls CoCreateInstance with CLSCTX_LOCAL_SERVER to force
             // usage of the out-of-proc server.
             object obj;
-            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IServer).GUID, out obj);
+            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IIoTAgent).GUID, out obj);
             if (hr < 0) {
                 Marshal.ThrowExceptionForHR(hr);
             }
 
-            var server = (IServer)obj;
+            var server = (IIoTAgent)obj;
             double pi = server.ComputePi();
             Console.WriteLine($"pi = {pi}");
         }
