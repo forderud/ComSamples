@@ -17,7 +17,7 @@
 
   <!-- Explicitly embed the resource for executables -->
   <PropertyGroup>
-    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</Win32Resource>
+    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.Contract.res</Win32Resource>
   </PropertyGroup>
 
   <ItemGroup>

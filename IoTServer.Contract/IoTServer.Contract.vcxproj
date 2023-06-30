@@ -42,10 +42,10 @@
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Server.TypeLib.rc">
+    <ResourceCompile Include="IoTAgent.Contract.rc">
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <LinkCompiled>false</LinkCompiled>
-      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</ResourceOutputFileName>
+      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.Contract.res</ResourceOutputFileName>
     </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
