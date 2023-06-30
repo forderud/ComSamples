@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <!-- Explicitly embed the resource for executables -->
-  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true' and '$(OutputType)' == 'Exe'">
+  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</Win32Resource>
   </PropertyGroup>
 
@@ -30,7 +30,7 @@
     <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+  <ItemGroup>
     <Content Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" Condition="'$(EmbedTypeLibrary)' != 'true'">
       <Visible>false</Visible>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
