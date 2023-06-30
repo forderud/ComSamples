@@ -1,4 +1,3 @@
-# COM Server Example
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
 ## Prerequisites
