@@ -1,5 +1,4 @@
 <Project>
   <PropertyGroup>
-    <TypeLibraryName>IoTServer.Contract.tlb</TypeLibraryName>
   </PropertyGroup>
 </Project>

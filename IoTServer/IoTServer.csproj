@@ -24,13 +24,13 @@
 
   <!-- Use the SDK support for embedding a type library into comhost -->
   <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
-    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)" />
+    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <!-- Used in lieu of a Primary Interop Assembly (PIA) -->
     <Compile Include="../IoTServer.Contract/*.cs" />
-    <Content Include="$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)" Condition="'$(EmbedTypeLibrary)' != 'true'">
+    <Content Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" Condition="'$(EmbedTypeLibrary)' != 'true'">
       <Visible>false</Visible>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
