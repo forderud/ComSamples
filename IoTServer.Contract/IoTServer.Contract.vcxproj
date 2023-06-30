@@ -26,6 +26,16 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PostBuildEvent>
+      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEvent>
+      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <Midl Include="IoTAgent.idl">
       <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</OutputDirectory>
