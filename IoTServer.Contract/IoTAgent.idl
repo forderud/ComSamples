@@ -3,9 +3,10 @@ import "ocidl.idl";
 
 [object,
  oleautomation,
- uuid(F586D6F4-AF37-441E-80A6-3D33D977882D)]
+ uuid(F586D6F4-AF37-441E-80A6-3D33D977882D),
+ helpstring("IoT agent server interface")]
 interface IIoTAgent : IUnknown {
-    [helpstring("")]
+    [helpstring("Test method")]
     HRESULT ComputePi([out, retval] double *ret);
 };
 
