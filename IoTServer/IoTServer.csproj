@@ -15,11 +15,6 @@
     </Reference>
   </ItemGroup>
 
-  <!-- Embed the type library as a resource -->
-  <PropertyGroup>
-    <DefineConstants>$(DefineConstants);EMBEDDED_TYPE_LIBRARY</DefineConstants>
-  </PropertyGroup>
-
   <!-- Explicitly embed the resource for executables -->
   <PropertyGroup>
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</Win32Resource>

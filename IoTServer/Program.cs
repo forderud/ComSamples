@@ -8,12 +8,6 @@ namespace ComServerExample
     {
         private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "IoTServer.exe");
 
-#if EMBEDDED_TYPE_LIBRARY
-        private static readonly string tlbPath = exePath;
-#else
-        private static readonly string tlbPath = Path.Combine(AppContext.BaseDirectory, "IoTServer.Contract.tlb");
-#endif
-
         static void Main(string[] args)
         {
             using var consoleTrace = new ConsoleTraceListener();
@@ -25,13 +19,13 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    ComSupport.LocalServer.Register(Constants.IoTAgentClassGuid, exePath, tlbPath);
+                    ComSupport.LocalServer.Register(Constants.IoTAgentClassGuid, exePath, exePath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    ComSupport.LocalServer.Unregister(Constants.IoTAgentClassGuid, tlbPath);
+                    ComSupport.LocalServer.Unregister(Constants.IoTAgentClassGuid, exePath);
                     return;
                 }
             }
