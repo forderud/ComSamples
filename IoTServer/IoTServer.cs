@@ -20,5 +20,15 @@ namespace ComServerExample
             Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(ComputePi)}");
             return Math.PI;
         }
+
+        public void Subscribe(IIoTClient client)
+        {
+            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(Subscribe)}");
+        }
+
+        public void Unsubscribe(IIoTClient client)
+        {
+            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(Unsubscribe)}");
+        }
     }
 }
