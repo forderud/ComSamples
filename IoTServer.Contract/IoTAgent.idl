@@ -4,7 +4,7 @@ import "ocidl.idl";
 [object,
  oleautomation,
  uuid(F586D6F4-AF37-441E-80A6-3D33D977882D)]
-interface IIoTAgent : IDispatch {
+interface IIoTAgent : IUnknown {
     [helpstring("")]
     HRESULT ComputePi([out, retval] double *ret);
 };
