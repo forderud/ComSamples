@@ -25,7 +25,7 @@ namespace ComServerExample
         {
             m_active = true;
 
-            _ = ComTask.Run<object>(System.Threading.ApartmentState.MTA, () => {
+            _ = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, () => {
                 while (m_active)
                 {
                     // broadcast message to all clients
