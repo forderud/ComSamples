@@ -17,8 +17,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="Configuration">
-    <ConfigurationType Condition="'$(EmbedTypeLibrary)' == 'true'">DynamicLibrary</ConfigurationType>
-    <ConfigurationType Condition="'$(EmbedTypeLibrary)' != 'true'">Utility</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -42,15 +41,12 @@
       <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb</TypeLibraryName>
     </Midl>
   </ItemGroup>
-  <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
+  <ItemGroup>
     <ResourceCompile Include="Server.TypeLib.rc">
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <LinkCompiled>false</LinkCompiled>
       <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</ResourceOutputFileName>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Server.TypeLib.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

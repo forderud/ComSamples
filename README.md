@@ -18,7 +18,3 @@ The sample is currently focused on Windows.
     * Run `<path>\IoTServer.exe" /unregserver`  or `UNREGISTER.bat` with admin privileges.
 
 The client program should output the value: `pi = 3.140616091322624`
-
-### Embedded Type Library
-
-The [.NET 6.0 SDK](https://dotnet.microsoft.com/download) (Preview 5 or later) supports [embedding type libraries into the COM DLL](https://docs.microsoft.com/dotnet/core/native-interop/expose-components-to-com#embedding-type-libraries-in-the-com-host). To use this functionality for the DLL surrogate (`DllServer`) in this sample, build with `-p:EmbedTypeLibrary=true`.
