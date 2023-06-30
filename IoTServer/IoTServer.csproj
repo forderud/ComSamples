@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\COMRegistration\COMRegistration.csproj" />
+
+    <Reference Include="IoTServer.Contract">
+      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
   </ItemGroup>
 
   <!-- Embed the type library as a resource -->

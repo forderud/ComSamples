@@ -37,7 +37,7 @@ namespace ComServerExample
             }
 
             using var server = new COMRegistration.LocalServer();
-            server.RegisterClass<IoTServer>(Contract.Constants.IoTAgentClassGuid);
+            server.RegisterClass<IoTServerImpl>(Contract.Constants.IoTAgentClassGuid);
 
             server.Run();
         }
