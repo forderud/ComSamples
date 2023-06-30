@@ -19,7 +19,7 @@
 
   <!-- Explicitly embed the resource for executables -->
   <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true' and '$(OutputType)' == 'Exe'">
-    <Win32Resource>$(TypeLibraryCompiledResourcePath)</Win32Resource>
+    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</Win32Resource>
   </PropertyGroup>
 
   <!-- Use the SDK support for embedding a type library into comhost -->

@@ -38,7 +38,7 @@
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);SERVER_CONTRACT_TLB_NAME=$(TypeLibraryName)</PreprocessorDefinitions>
       <LinkCompiled>false</LinkCompiled>
-      <ResourceOutputFileName>$(TypeLibraryCompiledResourcePath)</ResourceOutputFileName>
+      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</ResourceOutputFileName>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>

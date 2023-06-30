@@ -2,6 +2,5 @@
   <PropertyGroup>
     <TypeLibraryName>IoTServer.Contract.tlb</TypeLibraryName>
     <TypeLibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)</TypeLibraryPath>
-    <TypeLibraryCompiledResourcePath>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</TypeLibraryCompiledResourcePath>
   </PropertyGroup>
 </Project>
