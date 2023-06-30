@@ -1,4 +1,4 @@
-﻿namespace COMRegistration
+﻿namespace ComSupport
 {
     internal static class KeyFormat
     {

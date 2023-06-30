@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 using ComTypes = System.Runtime.InteropServices.ComTypes;
 
-namespace COMRegistration
+namespace ComSupport
 {
     internal static class TypeLib
     {
