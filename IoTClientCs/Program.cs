@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace IoTClientCs
 {
@@ -11,6 +12,9 @@ namespace IoTClientCs
         static void Main(string[] _)
         {
             new Program();
+
+            // wait 5 seconds before exiting to give the server time to send messages
+            Thread.Sleep(5000);
         }
 
         Program ()
