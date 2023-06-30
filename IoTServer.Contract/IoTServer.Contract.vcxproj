@@ -30,7 +30,7 @@
   <ItemGroup>
     <Midl Include="IoTAgent.idl">
       <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</OutputDirectory>
-      <TypeLibraryName>$(TypeLibraryPath)</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)</TypeLibraryName>
     </Midl>
   </ItemGroup>
   <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">

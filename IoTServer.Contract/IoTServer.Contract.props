@@ -1,6 +1,5 @@
 <Project>
   <PropertyGroup>
     <TypeLibraryName>IoTServer.Contract.tlb</TypeLibraryName>
-    <TypeLibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)</TypeLibraryPath>
   </PropertyGroup>
 </Project>
