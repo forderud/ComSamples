@@ -31,8 +31,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
-    <!-- Used in lieu of a Primary Interop Assembly (PIA) -->
-    <Compile Include="../IoTServer.Contract/*.cs" />
     <Content Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" Condition="'$(EmbedTypeLibrary)' != 'true'">
       <Visible>false</Visible>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

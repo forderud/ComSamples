@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Used in lieu of a Primary Interop Assembly (PIA) -->
-    <Compile Include="../IoTServer.Contract/*.cs" />
-
     <Reference Include="IoTServer.Contract">
       <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>

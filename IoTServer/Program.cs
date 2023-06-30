@@ -11,7 +11,7 @@ namespace ComServerExample
 #if EMBEDDED_TYPE_LIBRARY
         private static readonly string tlbPath = exePath;
 #else
-        private static readonly string tlbPath = Path.Combine(AppContext.BaseDirectory, Contract.Constants.TypeLibraryName);
+        private static readonly string tlbPath = Path.Combine(AppContext.BaseDirectory, "IoTServer.Contract.tlb");
 #endif
 
         static void Main(string[] args)
@@ -25,19 +25,19 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    COMRegistration.LocalServer.Register(Contract.Constants.IoTAgentClassGuid, exePath, tlbPath);
+                    COMRegistration.LocalServer.Register(Constants.IoTAgentClassGuid, exePath, tlbPath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    COMRegistration.LocalServer.Unregister(Contract.Constants.IoTAgentClassGuid, tlbPath);
+                    COMRegistration.LocalServer.Unregister(Constants.IoTAgentClassGuid, tlbPath);
                     return;
                 }
             }
 
             using var server = new COMRegistration.LocalServer();
-            server.RegisterClass<IoTServerImpl>(Contract.Constants.IoTAgentClassGuid);
+            server.RegisterClass<IoTServerImpl>(Constants.IoTAgentClassGuid);
 
             server.Run();
         }

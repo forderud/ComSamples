@@ -5,6 +5,9 @@ namespace IoTClientCs
 {
     class Program
     {
+        public const string IoTAgentClass = "AF080472-F173-4D9D-8BE7-435776617347";
+        public static readonly Guid IoTAgentClassGuid = Guid.Parse(IoTAgentClass);
+
         static void Main(string[] _)
         {
             // If the COM server is registered as an in-proc server (as is the case when using
@@ -17,7 +20,7 @@ namespace IoTClientCs
             // This demo explicitly calls CoCreateInstance with CLSCTX_LOCAL_SERVER to force
             // usage of the out-of-proc server.
             object obj;
-            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IoTServer.Contract.IIoTAgent).GUID, out obj);
+            int hr = Ole32.CoCreateInstance(IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IoTServer.Contract.IIoTAgent).GUID, out obj);
             if (hr < 0) {
                 Marshal.ThrowExceptionForHR(hr);
             }
