@@ -12,6 +12,30 @@
     <ProjectReference Include="..\COMRegistration\COMRegistration.csproj" />
   </ItemGroup>
 
+  <!-- Embed the type library as a resource -->
+  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
+    <DefineConstants>$(DefineConstants);EMBEDDED_TYPE_LIBRARY</DefineConstants>
+  </PropertyGroup>
+
+  <!-- Explicitly embed the resource for executables -->
+  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true' and '$(OutputType)' == 'Exe'">
+    <Win32Resource>$(TypeLibraryCompiledResourcePath)</Win32Resource>
+  </PropertyGroup>
+
+  <!-- Use the SDK support for embedding a type library into comhost -->
+  <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
+    <ComHostTypeLibrary Include="$(TypeLibraryPath)" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+    <!-- Used in lieu of a Primary Interop Assembly (PIA) -->
+    <Compile Include="../IoTServer.Contract/*.cs" />
+    <Content Include="$(TypeLibraryPath)" Condition="'$(EmbedTypeLibrary)' != 'true'">
+      <Visible>false</Visible>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">
     <Message Importance="High" Text="%0a************************************%0a*** $(MSBuildProjectName) usage instructions ***%0a************************************" />
     <Message Importance="High" Text="The server must be COM registered in order to activate.%0aThe following commands must be executed from an elevated command prompt." />
