@@ -4,4 +4,4 @@
 //
 #include "winres.h"
 
-1 TYPELIB SERVER_CONTRACT_TLB_NAME
+1 TYPELIB IoTServer.Contract.tlb

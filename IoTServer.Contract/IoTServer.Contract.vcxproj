@@ -45,7 +45,6 @@
   <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
     <ResourceCompile Include="Server.TypeLib.rc">
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);SERVER_CONTRACT_TLB_NAME=IoTServer.Contract.tlb</PreprocessorDefinitions>
       <LinkCompiled>false</LinkCompiled>
       <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</ResourceOutputFileName>
     </ResourceCompile>
