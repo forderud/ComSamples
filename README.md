@@ -17,10 +17,7 @@ The sample is currently focused on Windows.
     * Native: run the `IoTClientCpp.exe` binary
     * Managed: run the `IoTClientCs.exe` binary
 
-The client program should output an estimated value of &#960;:
-```
-π = 3.140616091322624
-```
+The client program should output the value: `pi = 3.140616091322624`
 
 ### Embedded Type Library
 
