@@ -11,8 +11,9 @@ The sample is currently focused on Windows.
 1. Build all projects.
 1. Follow the instructions for registering the server.
 1. Run the client:
-    * C++: run the `IoTClientCpp.exe` binary
-    * C#: run the `IoTClientCs.exe` binary
+    * C++: run `IoTClientCpp.exe`
+    * C#: run `IoTClientCs.exe`
+1. Follow the instructions for **un**registering the server.
 
 The client program should output the value: `pi = 3.140616091322624`
 
