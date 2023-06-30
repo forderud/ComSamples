@@ -5,8 +5,9 @@ echo NOTICE: Script MUST be run as Administrator.
 :: Script for cleaning up registry entries.
 :: Useful for local development and after an improper uninstallation.
 
-:: Delete IIoTAgent interface
+:: Delete IIoTClient and IIoTAgent interfaces
 for %%P in (32 64) do (
+  reg delete "HKCR\Interface\{BE3FF6C1-94F5-4974-913C-237C9AB29679}" /f /reg:%%P 2> NUL
   reg delete "HKCR\Interface\{F586D6F4-AF37-441E-80A6-3D33D977882D}" /f /reg:%%P 2> NUL
 )
 

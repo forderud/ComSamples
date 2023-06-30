@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace IoTClientCs
 {
-    class Program
+    class Program : IoTServer.Contract.IIoTClient
     {
         public const string IoTAgentClass = "AF080472-F173-4D9D-8BE7-435776617347";
         public static readonly Guid IoTAgentClassGuid = Guid.Parse(IoTAgentClass);
 
         static void Main(string[] _)
+        {
+            new Program();
+
+            // wait 5 seconds before exiting to give the server time to send messages
+            Thread.Sleep(5000);
+        }
+
+        Program ()
         {
             // If the COM server is registered as an in-proc server (as is the case when using
             // a DLL surrogate), activation through the Activator will only use the out-of-proc
@@ -26,8 +35,15 @@ namespace IoTClientCs
             }
 
             var server = (IoTServer.Contract.IIoTAgent)obj;
+            server.Subscribe(this);
+
             double pi = server.ComputePi();
             Console.WriteLine($"pi = {pi}");
+        }
+
+        public void PushMessage(string message)
+        {
+            Console.WriteLine("Received message: " + message);
         }
 
         private class Ole32
