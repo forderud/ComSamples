@@ -25,18 +25,18 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    COMRegistration.LocalServer.Register(Constants.IoTAgentClassGuid, exePath, tlbPath);
+                    ComSupport.LocalServer.Register(Constants.IoTAgentClassGuid, exePath, tlbPath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    COMRegistration.LocalServer.Unregister(Constants.IoTAgentClassGuid, tlbPath);
+                    ComSupport.LocalServer.Unregister(Constants.IoTAgentClassGuid, tlbPath);
                     return;
                 }
             }
 
-            using var server = new COMRegistration.LocalServer();
+            using var server = new ComSupport.LocalServer();
             server.RegisterClass<IoTServerImpl>(Constants.IoTAgentClassGuid);
 
             server.Run();

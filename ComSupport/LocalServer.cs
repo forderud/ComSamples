@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 using Microsoft.Win32;
 
-namespace COMRegistration
+namespace ComSupport
 {
     public sealed class LocalServer : IDisposable
     {
