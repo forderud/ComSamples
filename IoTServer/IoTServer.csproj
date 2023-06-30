@@ -15,26 +15,14 @@
     </Reference>
   </ItemGroup>
 
-  <!-- Embed the type library as a resource -->
-  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
-    <DefineConstants>$(DefineConstants);EMBEDDED_TYPE_LIBRARY</DefineConstants>
-  </PropertyGroup>
-
   <!-- Explicitly embed the resource for executables -->
-  <PropertyGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
+  <PropertyGroup>
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</Win32Resource>
   </PropertyGroup>
 
-  <!-- Use the SDK support for embedding a type library into comhost -->
-  <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
-    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" />
-  </ItemGroup>
-
   <ItemGroup>
-    <Content Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" Condition="'$(EmbedTypeLibrary)' != 'true'">
-      <Visible>false</Visible>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <!-- Use the SDK support for embedding a type library into comhost -->
+    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" />
   </ItemGroup>
 
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">
