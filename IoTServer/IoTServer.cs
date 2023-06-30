@@ -35,13 +35,13 @@ namespace ComServerExample
                     for (int i = 0; i < m_clients.Count;) {
                         IIoTClient client = m_clients[i];
                         try {
+                            // throws COMException if client is disconnected
                             client.PushMessage(message);
 
-                            // advance to next index if call _doens't_ fail
+                            // advance to next index if call doesn't throw
                             i++;
-                        } catch (Exception ex) {
-                            // remove client from list if xmit fails
-                            Console.WriteLine("Removing client from list after call failure " +ex);
+                        } catch (COMException ex) {
+                            Console.WriteLine("Disconnecting client after call failure (err: " + ex.ErrorCode.ToString("X2") + ")");
                             m_clients.RemoveAt(i);
                         }
                     }
