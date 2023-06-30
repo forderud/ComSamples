@@ -17,12 +17,12 @@ namespace IoTClientCs
             // This demo explicitly calls CoCreateInstance with CLSCTX_LOCAL_SERVER to force
             // usage of the out-of-proc server.
             object obj;
-            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IIoTAgent).GUID, out obj);
+            int hr = Ole32.CoCreateInstance(Contract.Constants.IoTAgentClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IoTServer.Contract.IIoTAgent).GUID, out obj);
             if (hr < 0) {
                 Marshal.ThrowExceptionForHR(hr);
             }
 
-            var server = (IIoTAgent)obj;
+            var server = (IoTServer.Contract.IIoTAgent)obj;
             double pi = server.ComputePi();
             Console.WriteLine($"pi = {pi}");
         }
