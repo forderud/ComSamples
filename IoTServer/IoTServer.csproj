@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0-windows</TargetFramework>
     <OutputType>Exe</OutputType>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
   <Import Project="..\IoTServer.Contract\IoTServer.Contract.props" />
