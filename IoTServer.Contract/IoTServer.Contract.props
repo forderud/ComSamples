@@ -1,9 +1,8 @@
 <Project>
   <PropertyGroup>
-    <ContractOutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</ContractOutputDirectory>
     <TypeLibraryName>IoTServer.Contract.tlb</TypeLibraryName>
-    <TypeLibraryPath>$(ContractOutputDirectory)\$(TypeLibraryName)</TypeLibraryPath>
-    <TypeLibraryCompiledResourcePath>$(ContractOutputDirectory)\Server.TypeLib.res</TypeLibraryCompiledResourcePath>
+    <TypeLibraryPath>$(SolutionDir)$(Platform)\$(Configuration)\$(TypeLibraryName)</TypeLibraryPath>
+    <TypeLibraryCompiledResourcePath>$(SolutionDir)$(Platform)\$(Configuration)\Server.TypeLib.res</TypeLibraryCompiledResourcePath>
   </PropertyGroup>
 
   <!-- Embed the type library as a resource -->

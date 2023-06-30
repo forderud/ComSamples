@@ -29,13 +29,13 @@
   <Import Project="IoTServer.Contract.props" />
   <ItemGroup>
     <Midl Include="IoTAgent.idl">
-      <OutputDirectory>$(ContractOutputDirectory)</OutputDirectory>
+      <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</OutputDirectory>
       <TypeLibraryName>$(TypeLibraryPath)</TypeLibraryName>
     </Midl>
   </ItemGroup>
   <ItemGroup Condition="'$(EmbedTypeLibrary)' == 'true'">
     <ResourceCompile Include="Server.TypeLib.rc">
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(ContractOutputDirectory)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);SERVER_CONTRACT_TLB_NAME=$(TypeLibraryName)</PreprocessorDefinitions>
       <LinkCompiled>false</LinkCompiled>
       <ResourceOutputFileName>$(TypeLibraryCompiledResourcePath)</ResourceOutputFileName>
