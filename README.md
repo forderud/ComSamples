@@ -7,15 +7,12 @@ The sample is currently focused on Windows.
 
 
 ## Build and Run
-1. Open a [Developer Command Prompt for Visual Studio](https://docs.microsoft.com/cpp/build/building-on-the-command-line#developer_command_prompt_shortcuts).
-1. Navigate to the root directory and build the solution:
-    * `msbuild ComServerExample.sln -restore`.
-1. Show the instructions for COM server registration:
-    * Executable server: `dotnet msbuild -target:ServerUsage IoTServer`
+1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
+1. Build all projects.
 1. Follow the instructions for registering the server.
 1. Run the client:
-    * Native: run the `IoTClientCpp.exe` binary
-    * Managed: run the `IoTClientCs.exe` binary
+    * C++: run the `IoTClientCpp.exe` binary
+    * C#: run the `IoTClientCs.exe` binary
 
 The client program should output the value: `pi = 3.140616091322624`
 
