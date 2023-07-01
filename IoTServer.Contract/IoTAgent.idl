@@ -17,7 +17,10 @@ struct Message {
     Severity sev;
 
     [helpstring("message creation time")]
-    double time;     ///< [s]
+    DATE time;
+
+    [helpstring("some value")]
+    double value;
 
     [helpstring("description")]
     BSTR desc;

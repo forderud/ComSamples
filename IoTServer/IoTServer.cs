@@ -34,7 +34,8 @@ namespace ComServerExample
                         Console.WriteLine("Broadcasting message to all clients.");
                         Message msg = default;
                         msg.sev = Severity.SeverityInfo;
-                        msg.time = 1.23;
+                        msg.time =  DateTime.Now;
+                        msg.value = 1.23;
                         msg.desc = "Hello there!";
                         msg.color = new byte[3] { 255, 0, 0 };
 

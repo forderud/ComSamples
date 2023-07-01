@@ -46,6 +46,7 @@ namespace IoTClientCs
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);
             Console.WriteLine("  time=" + msg.time);
+            Console.WriteLine("  value=" + msg.value);
             Console.WriteLine("  desc=" + msg.desc);
             Console.WriteLine("  color=(" + msg.color[0] + ", "+ msg.color[1]+", "+ msg.color[2]+")");
             Console.WriteLine("  data=" + msg.data);
