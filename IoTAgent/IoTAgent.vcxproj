@@ -27,12 +27,21 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"</Command>
+      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+
+powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
+copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"</Command>
+      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+
+powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
+copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -47,6 +56,9 @@
       <LinkCompiled>false</LinkCompiled>
       <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</ResourceOutputFileName>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WrapperGen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
