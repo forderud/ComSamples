@@ -30,13 +30,17 @@ namespace ComServerExample
                 {
                     // broadcast message to all clients
                     Console.WriteLine("Broadcasting message to all clients.");
-                    string message = "Hello there!";
+                    Message msg = default;
+                    msg.sev = Severity.SeverityInfo;
+                    msg.time = 1.23;
+                    msg.desc = "Hello there!";
+                    msg.color = new byte[3] { 255, 0, 0 };
 
                     for (int i = 0; i < m_clients.Count;) {
                         IIoTClient client = m_clients[i];
                         try {
                             // throws COMException if client is disconnected
-                            client.PushMessage(message);
+                            client.PushMessage(msg);
 
                             // advance to next index if call doesn't throw
                             i++;
