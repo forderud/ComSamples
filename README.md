@@ -1,10 +1,5 @@
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
-## Prerequisites
-The sample is currently focused on Windows.
-* [Visual Studio](https://visualstudio.microsoft.com/)
-
-
 ## Build and Run
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
