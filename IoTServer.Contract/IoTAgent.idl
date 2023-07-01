@@ -1,5 +1,4 @@
 import "oaidl.idl";
-import "ocidl.idl";
 
 typedef [
  v1_enum, // 32bit enum size
