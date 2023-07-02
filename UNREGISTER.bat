@@ -14,7 +14,7 @@ for %%P in (32 64) do (
 :: Delete IoTAgent TypeLib
 reg delete "HKCR\TypeLib\{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}" /f 2> NUL
 
-:: Delete IoTAgent COM class
+:: Delete IoTSever COM class
 reg delete "HKCR\CLSID\{AF080472-F173-4D9D-8BE7-435776617347}" /f 2> NUL
 
 

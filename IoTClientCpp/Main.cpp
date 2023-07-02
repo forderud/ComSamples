@@ -8,7 +8,7 @@ int main() {
     CoInitializeEx(0, COINITBASE_MULTITHREADED);
 
     CComPtr<IIoTAgent> server;
-    HRESULT hr = ::CoCreateInstance(CLSID_IoTAgent, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IIoTAgent), (void **)&server);
+    HRESULT hr = ::CoCreateInstance(CLSID_IoTServer, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IIoTAgent), (void **)&server);
     if (FAILED(hr)) {
         std::wcout << L"CoCreateInstance failure: " << hr << std::endl;
         return 1;
