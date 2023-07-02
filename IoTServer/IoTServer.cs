@@ -8,13 +8,8 @@ using System.Threading;
 
 namespace ComServerExample
 {
-    class Constants {
-        public const string IoTServerClass = "AF080472-F173-4D9D-8BE7-435776617347";
-        public static readonly Guid IoTServerClassGuid = Guid.Parse(IoTServerClass);
-    }
-
     [ComVisible(true)]
-    [Guid(Constants.IoTServerClass)]
+    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // IoTAgent.IoTServerClass
     [ComDefaultInterface(typeof(IoTAgent.IIoTAgent))]
     public sealed class IoTServerImpl : IDisposable, IoTAgent.IIoTAgent
     {

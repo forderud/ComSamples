@@ -9,7 +9,6 @@
   <ItemGroup>
     <Reference Include="IoTAgent">
       <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.dll</HintPath>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
 

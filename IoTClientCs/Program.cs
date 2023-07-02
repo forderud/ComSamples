@@ -5,9 +5,6 @@ namespace IoTClientCs
 {
     class Program : IoTAgent.IIoTClient
     {
-        public const string IoTServerClass = "AF080472-F173-4D9D-8BE7-435776617347";
-        public static readonly Guid IoTServerClassGuid = Guid.Parse(IoTServerClass);
-
         static void Main(string[] _)
         {
             new Program();
@@ -18,7 +15,7 @@ namespace IoTClientCs
 
         Program ()
         {
-            Type t = Type.GetTypeFromCLSID(IoTServerClassGuid);
+            Type t = Type.GetTypeFromCLSID(typeof(IoTAgent.IoTServerClass).GUID);
             var server = (IoTAgent.IIoTAgent)Activator.CreateInstance(t);
 
             server.Subscribe(this);
