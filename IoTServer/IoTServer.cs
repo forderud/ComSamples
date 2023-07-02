@@ -1,4 +1,4 @@
-﻿using IoTServer.Contract;
+﻿using IoTAgent;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,8 +15,8 @@ namespace ComServerExample
 
     [ComVisible(true)]
     [Guid(Constants.IoTServerClass)]
-    [ComDefaultInterface(typeof(IoTServer.Contract.IIoTAgent))]
-    public sealed class IoTServerImpl : IDisposable, IoTServer.Contract.IIoTAgent
+    [ComDefaultInterface(typeof(IoTAgent.IIoTAgent))]
+    public sealed class IoTServerImpl : IDisposable, IoTAgent.IIoTAgent
     {
         private List<IIoTClient> m_clients = new List<IIoTClient>();
         private bool m_active = false;

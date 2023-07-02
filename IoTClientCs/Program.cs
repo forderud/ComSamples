@@ -4,7 +4,7 @@ using System.Threading;
 
 namespace IoTClientCs
 {
-    class Program : IoTServer.Contract.IIoTClient
+    class Program : IoTAgent.IIoTClient
     {
         public const string IoTServerClass = "AF080472-F173-4D9D-8BE7-435776617347";
         public static readonly Guid IoTServerClassGuid = Guid.Parse(IoTServerClass);
@@ -23,25 +23,25 @@ namespace IoTClientCs
             // a DLL surrogate), activation through the Activator will only use the out-of-proc
             // server if the client and the registered COM server are not the same bitness.
             //
-            // Type t = Type.GetTypeFromCLSID(Contract.Constants.IoTAgentClassGuid);
+            // Type t = Type.GetTypeFromCLSID(IoTServerClassGuid);
             // var server = (IIoTAgent)Activator.CreateInstance(t);
             //
             // This demo explicitly calls CoCreateInstance with CLSCTX_LOCAL_SERVER to force
             // usage of the out-of-proc server.
             object obj;
-            int hr = Ole32.CoCreateInstance(IoTServerClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IoTServer.Contract.IIoTAgent).GUID, out obj);
+            int hr = Ole32.CoCreateInstance(IoTServerClassGuid, IntPtr.Zero, Ole32.CLSCTX_LOCAL_SERVER, typeof(IoTAgent.IIoTAgent).GUID, out obj);
             if (hr < 0) {
                 Marshal.ThrowExceptionForHR(hr);
             }
 
-            var server = (IoTServer.Contract.IIoTAgent)obj;
+            var server = (IoTAgent.IIoTAgent)obj;
             server.Subscribe(this);
 
             double pi = server.ComputePi();
             Console.WriteLine($"pi = {pi}");
         }
 
-        public void PushMessage(IoTServer.Contract.Message msg)
+        public void PushMessage(IoTAgent.Message msg)
         {
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);

@@ -9,20 +9,20 @@
   <ItemGroup>
     <ProjectReference Include="..\ComSupport\ComSupport.csproj" />
 
-    <Reference Include="IoTServer.Contract">
-      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.dll</HintPath>
+    <Reference Include="IoTAgent">
+      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
 
   <!-- Explicitly embed the resource for executables -->
   <PropertyGroup>
-    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.Contract.res</Win32Resource>
+    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</Win32Resource>
   </PropertyGroup>
 
   <ItemGroup>
     <!-- Use the SDK support for embedding a type library into comhost -->
-    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb" />
+    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.tlb" />
   </ItemGroup>
 
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">

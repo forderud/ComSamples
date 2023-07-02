@@ -4,6 +4,6 @@
     <Midl Include="IoTAgent.idl" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="IoTAgent.Contract.rc" />
+    <ResourceCompile Include="IoTAgent.rc" />
   </ItemGroup>
 </Project>

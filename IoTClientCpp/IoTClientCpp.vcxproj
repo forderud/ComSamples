@@ -67,7 +67,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IoTServer.Contract\IoTServer.Contract.vcxproj">
+    <ProjectReference Include="..\IoTAgent\IoTAgent.vcxproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
