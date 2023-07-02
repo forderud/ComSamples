@@ -38,14 +38,14 @@
   <ItemGroup>
     <Midl Include="IoTAgent.idl">
       <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</OutputDirectory>
-      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.tlb</TypeLibraryName>
+      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.tlb</TypeLibraryName>
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="IoTAgent.Contract.rc">
+    <ResourceCompile Include="IoTAgent.rc">
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <LinkCompiled>false</LinkCompiled>
-      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.Contract.res</ResourceOutputFileName>
+      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</ResourceOutputFileName>
     </ResourceCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

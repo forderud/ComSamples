@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="IoTServer.Contract">
-      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTServer.Contract.dll</HintPath>
+    <Reference Include="IoTAgent">
+      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
