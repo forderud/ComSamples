@@ -1,27 +1,25 @@
 #include <atlbase.h>
 #include <iostream>
 
-#include <IoTAgent_h.h>
-#include <IoTAgent_i.c>
+#include <IoTAgent.tlh>
 
 int main() {
     CoInitializeEx(0, COINITBASE_MULTITHREADED);
 
-    CComPtr<IIoTAgent> server;
-    HRESULT hr = ::CoCreateInstance(CLSID_IoTServer, nullptr, CLSCTX_LOCAL_SERVER, __uuidof(IIoTAgent), (void **)&server);
+    IoTAgent::IIoTAgentPtr server;
+    HRESULT hr = server.CreateInstance(__uuidof(IoTAgent::IoTServer), nullptr, CLSCTX_LOCAL_SERVER);
     if (FAILED(hr)) {
         std::wcout << L"CoCreateInstance failure: " << hr << std::endl;
         return 1;
     }
 
-    double pi = 0;
-    hr = server->ComputePi(&pi);
-    if (FAILED(hr)) {
-        std::wcout << L"Failure: " << hr << std::endl;
+    try {
+        double pi = server->ComputePi();
+        std::wcout << L"pi = " << pi << std::endl;
+    } catch (const _com_error& e) {
+        std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
         return 1;
     }
-
-    std::wcout << L"pi = " << pi << std::endl;
 
     CoUninitialize();
 

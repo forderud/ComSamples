@@ -6,4 +6,7 @@
   <ItemGroup>
     <ResourceCompile Include="IoTAgent.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="WrapperGen.cpp" />
+  </ItemGroup>
 </Project>
