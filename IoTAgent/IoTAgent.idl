@@ -4,11 +4,11 @@ typedef [
  v1_enum, // 32bit enum size
  helpstring("")]
 enum Severity {
-    SeverityUnknown,
-    SeverityInfo,
-    SeverityWarning,
-    SeverityError,
-    SeverityFatal,
+    Unknown,
+    Info,
+    Warning,
+    Error,
+    Fatal,
 } Severity;
 
 typedef [

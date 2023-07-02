@@ -28,7 +28,7 @@ namespace ComServerExample
                         // broadcast message to all clients
                         Console.WriteLine("Broadcasting message to all clients.");
                         Message msg = default;
-                        msg.sev = Severity.SeverityInfo;
+                        msg.sev = Severity.Info;
                         msg.time =  DateTime.Now;
                         msg.value = 1.23;
                         msg.desc = "Hello there!";
