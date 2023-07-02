@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTClientCs", "IoTClientCs\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComSupport", "ComSupport\ComSupport.csproj", "{48BA0B1A-18EC-4B45-8AF3-2A16DD3993F0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IoTServer.Contract", "IoTAgent\IoTServer.Contract.vcxproj", "{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IoTAgent", "IoTAgent\IoTAgent.vcxproj", "{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTServer", "IoTServer\IoTServer.csproj", "{230F076F-915D-4578-A9AA-275AA83E35C7}"
 	ProjectSection(ProjectDependencies) = postProject
