@@ -27,7 +27,7 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+      <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
 powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
@@ -38,7 +38,7 @@ copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Config
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+      <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
 powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
@@ -46,13 +46,11 @@ copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Config
   </ItemDefinitionGroup>
   <ItemGroup>
     <Midl Include="IoTAgent.idl">
-      <OutputDirectory>$(SolutionDir)$(Platform)\$(Configuration)</OutputDirectory>
-      <TypeLibraryName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.tlb</TypeLibraryName>
     </Midl>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="IoTAgent.rc">
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <LinkCompiled>false</LinkCompiled>
       <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</ResourceOutputFileName>
     </ResourceCompile>
