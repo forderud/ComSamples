@@ -7,6 +7,13 @@ using Microsoft.Win32;
 
 namespace ComSupport
 {
+    internal static class KeyFormat
+    {
+        public const string CLSID = @"SOFTWARE\Classes\CLSID\{0:B}";
+
+        public static readonly string LocalServer32 = @$"{CLSID}\LocalServer32";
+    }
+
     public sealed class LocalServer : IDisposable
     {
         public static void Register(Guid clsid, string exePath, string tlbPath)
