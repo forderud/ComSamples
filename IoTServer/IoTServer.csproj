@@ -19,11 +19,6 @@
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</Win32Resource>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Use the SDK support for embedding a type library into comhost -->
-    <ComHostTypeLibrary Include="$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.tlb" />
-  </ItemGroup>
-
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">
     <Message Importance="High" Text="%0a************************************%0a*** $(MSBuildProjectName) usage instructions ***%0a************************************" />
     <Message Importance="High" Text="The server must be COM registered in order to activate.%0aThe following commands must be executed from an elevated command prompt." />
