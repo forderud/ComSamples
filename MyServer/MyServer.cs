@@ -8,7 +8,7 @@ using System.Threading;
 namespace ComServerExample
 {
     [ComVisible(true)]
-    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // IoTAgent.IoTServerClass
+    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // IoTAgent.MyServerClass
     [ComDefaultInterface(typeof(IoTAgent.IIoTAgent))]
     public sealed class MyServerImpl : IDisposable, IoTAgent.IIoTAgent
     {
@@ -75,19 +75,19 @@ namespace ComServerExample
 
         public double ComputePi()
         {
-            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(ComputePi)}");
+            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(ComputePi)}");
             return Math.PI;
         }
 
         public void Subscribe(IIoTClient client)
         {
-            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(Subscribe)}");
+            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Subscribe)}");
             m_clients.Add(client);
         }
 
         public void Unsubscribe(IIoTClient client)
         {
-            Trace.WriteLine($"Running {nameof(IoTServer)}.{nameof(Unsubscribe)}");
+            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Unsubscribe)}");
             m_clients.Remove(client);
         }
     }
