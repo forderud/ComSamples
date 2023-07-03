@@ -1,6 +1,16 @@
+Repo content:
+
+| Module | Description |
+|--------|-------------|
+| ComSupport   | .Net support functions for COM registration
+| MyInterfaces | Language-neutral COM interface definitions for IPC |
+| MyClientCpp  | Sample C++ client |
+| MyClientCs   | Sample C# client |
+| MyServer     | Server implementation |
+
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
-## Build and Run
+## How to test
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Follow the instructions for registering the server.
