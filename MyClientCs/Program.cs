@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace MyClientCs
 {
-    class Program : IoTAgent.IIoTClient
+    class Program : IoTAgent.IMyClient
     {
         static void Main(string[] _)
         {

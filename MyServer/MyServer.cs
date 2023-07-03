@@ -12,7 +12,7 @@ namespace ComServerExample
     [ComDefaultInterface(typeof(IoTAgent.IIoTAgent))]
     public sealed class MyServerImpl : IDisposable, IoTAgent.IIoTAgent
     {
-        private List<IIoTClient> m_clients = new List<IIoTClient>();
+        private List<IMyClient> m_clients = new List<IMyClient>();
         private bool m_active = false;
 
         public MyServerImpl()
@@ -56,7 +56,7 @@ namespace ComServerExample
         {
             for (int i = 0; i < m_clients.Count;)
             {
-                IIoTClient client = m_clients[i];
+                IMyClient client = m_clients[i];
                 try
                 {
                     // throws COMException if client is disconnected
@@ -79,13 +79,13 @@ namespace ComServerExample
             return Math.PI;
         }
 
-        public void Subscribe(IIoTClient client)
+        public void Subscribe(IMyClient client)
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Subscribe)}");
             m_clients.Add(client);
         }
 
-        public void Unsubscribe(IIoTClient client)
+        public void Unsubscribe(IMyClient client)
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Unsubscribe)}");
             m_clients.Remove(client);
