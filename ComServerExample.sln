@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33801.306
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IoTClientCpp", "IoTClientCpp\IoTClientCpp.vcxproj", "{8D4C2F17-A4BC-4349-9485-7DB6741EBDAC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyClientCpp", "MyClientCpp\MyClientCpp.vcxproj", "{8D4C2F17-A4BC-4349-9485-7DB6741EBDAC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74} = {197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}
 	EndProjectSection
