@@ -1,12 +1,12 @@
 Repo content:
 
-| Module | Description |
-|--------|-------------|
-| ComSupport   | .Net support functions for COM registration
+| Module       | Description                                 |
+|--------------|---------------------------------------------|
+| ComSupport   | .Net support functions for COM registration |
 | MyInterfaces | Language-neutral COM interface definitions for IPC |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
-| MyServer     | Server implementation |
+| MyServer     | Server implementation. Implemented as a on-demand loaded COM EXE server, but can easily be converted into a background service. |
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
