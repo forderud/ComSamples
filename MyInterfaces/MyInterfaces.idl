@@ -1,3 +1,4 @@
+/* Overview of available data types: https://learn.microsoft.com/en-us/windows/win32/midl/midl-data-types */
 import "oaidl.idl";
 
 typedef [
