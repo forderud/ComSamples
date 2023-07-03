@@ -6,7 +6,7 @@ namespace ComServerExample
 {
     class Program
     {
-        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "IoTServer.exe");
+        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServer.exe");
 
         static void Main(string[] args)
         {
@@ -31,7 +31,7 @@ namespace ComServerExample
             }
 
             using var server = new ComSupport.LocalServer();
-            server.RegisterClass<IoTServerImpl>(typeof(IoTAgent.IoTServerClass).GUID);
+            server.RegisterClass<MyServerImpl>(typeof(IoTAgent.IoTServerClass).GUID);
 
             server.Run();
         }

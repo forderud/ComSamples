@@ -10,12 +10,12 @@ namespace ComServerExample
     [ComVisible(true)]
     [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // IoTAgent.IoTServerClass
     [ComDefaultInterface(typeof(IoTAgent.IIoTAgent))]
-    public sealed class IoTServerImpl : IDisposable, IoTAgent.IIoTAgent
+    public sealed class MyServerImpl : IDisposable, IoTAgent.IIoTAgent
     {
         private List<IIoTClient> m_clients = new List<IIoTClient>();
         private bool m_active = false;
 
-        public IoTServerImpl()
+        public MyServerImpl()
         {
             m_active = true;
 
