@@ -15,8 +15,8 @@ namespace IoTClientCs
 
         Program ()
         {
-            // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(IoTAgent.IoTServerClass).GUID))
-            var server = new IoTAgent.IoTServerClass();
+            // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(IoTAgent.MyServerClass).GUID))
+            var server = new IoTAgent.MyServerClass();
 
             server.Subscribe(this);
 

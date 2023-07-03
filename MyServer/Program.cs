@@ -6,7 +6,7 @@ namespace ComServerExample
 {
     class Program
     {
-        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "IoTServer.exe");
+        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServer.exe");
 
         static void Main(string[] args)
         {
@@ -19,19 +19,19 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    ComSupport.LocalServer.Register(typeof(IoTAgent.IoTServerClass).GUID, exePath, exePath);
+                    ComSupport.LocalServer.Register(typeof(IoTAgent.MyServerClass).GUID, exePath, exePath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    ComSupport.LocalServer.Unregister(typeof(IoTAgent.IoTServerClass).GUID, exePath);
+                    ComSupport.LocalServer.Unregister(typeof(IoTAgent.MyServerClass).GUID, exePath);
                     return;
                 }
             }
 
             using var server = new ComSupport.LocalServer();
-            server.RegisterClass<IoTServerImpl>(typeof(IoTAgent.IoTServerClass).GUID);
+            server.RegisterClass<MyServerImpl>(typeof(IoTAgent.MyServerClass).GUID);
 
             server.Run();
         }
