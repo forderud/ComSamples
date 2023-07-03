@@ -28,7 +28,7 @@ struct Message {
     [helpstring("color (r,g,b)")]
     BYTE color[3];
 
-    [helpstring("vertex indices for each triangle (read 3 at a time)")]
+    [helpstring("data payload)")]
     SAFEARRAY(BYTE) data;
 } Message;
 
