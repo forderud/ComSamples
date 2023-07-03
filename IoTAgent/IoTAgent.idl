@@ -12,7 +12,7 @@ enum Severity {
 } Severity;
 
 typedef [
- helpstring("IoT message")]
+ helpstring("Dummy message")]
 struct Message {
     Severity sev;
 
