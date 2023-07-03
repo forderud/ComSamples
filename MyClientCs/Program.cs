@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace IoTClientCs
+namespace MyClientCs
 {
     class Program : IoTAgent.IIoTClient
     {
