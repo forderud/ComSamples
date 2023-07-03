@@ -66,11 +66,5 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IoTAgent\IoTAgent.vcxproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <LinkLibraryDependencies>false</LinkLibraryDependencies>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
