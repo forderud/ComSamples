@@ -45,7 +45,7 @@ interface IMyClient : IUnknown {
  oleautomation,
  uuid(F586D6F4-AF37-441E-80A6-3D33D977882D),
  helpstring("IoT agent server interface")]
-interface IIoTAgent : IUnknown {
+interface IMyServer : IUnknown {
     [helpstring("Test method")]
     HRESULT ComputePi([out, retval] double *ret);
 
@@ -60,6 +60,6 @@ interface IIoTAgent : IUnknown {
 library IoTAgent {
     [uuid(AF080472-F173-4D9D-8BE7-435776617347)]
     coclass MyServer {
-        [default] interface IIoTAgent;
+        [default] interface IMyServer;
     }
 }
