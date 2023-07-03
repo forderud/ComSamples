@@ -3,7 +3,7 @@ Repo content:
 | Module       | Description                                 |
 |--------------|---------------------------------------------|
 | ComSupport   | .Net support functions for COM registration |
-| MyInterfaces | Language-neutral COM interface definitions for IPC |
+| MyInterfaces | Language-neutral COM interface definitions for IPC: [MyInterfaces.idl](MyInterfaces/MyInterfaces.idl) |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
 | MyServer     | Server implementation. Implemented as a on-demand loaded COM EXE server, but can easily be converted into a background service. |
