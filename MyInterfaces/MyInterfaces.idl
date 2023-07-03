@@ -42,12 +42,21 @@ interface IMyClient : IUnknown {
 };
 
 [object,
+oleautomation,
+uuid(B5506675-17E0-4709-A31A-305E36D0E2FA),
+helpstring("Number crunching interface")]
+interface INumberCruncher : IUnknown {
+    [helpstring("Test method")]
+    HRESULT ComputePi([out, retval] double *ret);
+};
+
+[object,
  oleautomation,
  uuid(F586D6F4-AF37-441E-80A6-3D33D977882D),
  helpstring("Server interface")]
 interface IMyServer : IUnknown {
     [helpstring("Test method")]
-    HRESULT ComputePi([out, retval] double *ret);
+    HRESULT GetNumberCruncher([out,retval] INumberCruncher** obj);
 
     [helpstring("Subscribe to callbacks")]
     HRESULT Subscribe([in] IMyClient* client);

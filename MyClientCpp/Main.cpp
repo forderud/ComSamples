@@ -14,7 +14,8 @@ int main() {
     }
 
     try {
-        double pi = server->ComputePi();
+        auto cruncher = server->GetNumberCruncher();
+        double pi = cruncher->ComputePi();
         std::wcout << L"pi = " << pi << std::endl;
     } catch (const _com_error& e) {
         std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;

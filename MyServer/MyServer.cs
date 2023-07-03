@@ -73,10 +73,10 @@ namespace ComServerExample
             }
         }
 
-        public double ComputePi()
+        public MyInterfaces.INumberCruncher GetNumberCruncher()
         {
-            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(ComputePi)}");
-            return Math.PI;
+            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(GetNumberCruncher)}");
+            return new NumberCruncher();
         }
 
         public void Subscribe(IMyClient client)
@@ -89,6 +89,14 @@ namespace ComServerExample
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Unsubscribe)}");
             m_clients.Remove(client);
+        }
+    }
+
+    public sealed class NumberCruncher : MyInterfaces.INumberCruncher
+    {
+        public double ComputePi ()
+        {
+            return Math.PI;
         }
     }
 }

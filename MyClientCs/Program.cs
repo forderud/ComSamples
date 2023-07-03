@@ -20,7 +20,8 @@ namespace MyClientCs
 
             server.Subscribe(this);
 
-            double pi = server.ComputePi();
+            var cruncher = server.GetNumberCruncher();
+            double pi = cruncher.ComputePi();
             Console.WriteLine($"pi = {pi}");
         }
 
