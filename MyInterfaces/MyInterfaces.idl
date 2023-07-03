@@ -26,10 +26,10 @@ struct Message {
     BSTR desc;
 
     [helpstring("color (r,g,b)")]
-    BYTE color[3];
+    byte color[3];
 
     [helpstring("data payload)")]
-    SAFEARRAY(BYTE) data;
+    SAFEARRAY(byte) data;
 } Message;
 
 [object,
