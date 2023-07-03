@@ -4,4 +4,4 @@
 //
 #include "winres.h"
 
-1 TYPELIB IoTAgent.tlb
+1 TYPELIB MyInterfaces.tlb

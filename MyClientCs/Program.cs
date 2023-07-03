@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace MyClientCs
 {
-    class Program : IoTAgent.IMyClient
+    class Program : MyInterfaces.IMyClient
     {
         static void Main(string[] _)
         {
@@ -15,8 +15,8 @@ namespace MyClientCs
 
         Program ()
         {
-            // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(IoTAgent.MyServerClass).GUID))
-            var server = new IoTAgent.MyServerClass();
+            // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
+            var server = new MyInterfaces.MyServerClass();
 
             server.Subscribe(this);
 
@@ -24,7 +24,7 @@ namespace MyClientCs
             Console.WriteLine($"pi = {pi}");
         }
 
-        public void PushMessage(IoTAgent.Message msg)
+        public void PushMessage(MyInterfaces.Message msg)
         {
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);

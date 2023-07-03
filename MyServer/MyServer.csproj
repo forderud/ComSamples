@@ -9,14 +9,14 @@
   <ItemGroup>
     <ProjectReference Include="..\ComSupport\ComSupport.csproj" />
 
-    <Reference Include="IoTAgent">
-      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.dll</HintPath>
+    <Reference Include="MyInterfaces">
+      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.dll</HintPath>
     </Reference>
   </ItemGroup>
 
   <!-- Explicitly embed the resource for executables -->
   <PropertyGroup>
-    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</Win32Resource>
+    <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.res</Win32Resource>
   </PropertyGroup>
 
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">

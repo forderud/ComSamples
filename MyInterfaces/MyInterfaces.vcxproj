@@ -29,7 +29,7 @@
     <PostBuildEvent>
       <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
-powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
+powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\MyInterfaces.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\MyInterfaces.tlh" MyInterfaces.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
     <ClCompile>
@@ -40,19 +40,19 @@ copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Config
     <PostBuildEvent>
       <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
-powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\iotagent.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\iotagent.tlh" iotagent.tli
+powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\MyInterfaces.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\MyInterfaces.tlh" MyInterfaces.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Midl Include="IoTAgent.idl">
+    <Midl Include="MyInterfaces.idl">
     </Midl>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="IoTAgent.rc">
+    <ResourceCompile Include="MyInterfaces.rc">
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <LinkCompiled>false</LinkCompiled>
-      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.res</ResourceOutputFileName>
+      <ResourceOutputFileName>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.res</ResourceOutputFileName>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>

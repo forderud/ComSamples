@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="IoTAgent">
-      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\IoTAgent.dll</HintPath>
+    <Reference Include="MyInterfaces">
+      <HintPath>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.dll</HintPath>
     </Reference>
   </ItemGroup>
 
