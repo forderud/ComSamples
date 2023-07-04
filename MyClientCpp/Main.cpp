@@ -27,12 +27,7 @@ class MyClient :
     public CComCoClass<MyClient>, // no registry entries
     public MyInterfaces::IMyClient {
 public:
-    MyClient() {
-    }
-
-    ~MyClient() {
-    }
-
+    /** SendMessage impl. */
     HRESULT raw_SendMessage(MyInterfaces::Message msg) override {
         std::wcout << L"Received message:\n";
         std::wcout << L"  sev=" << msg.sev << L"\n";
@@ -51,6 +46,7 @@ public:
         return S_OK;
     }
 
+    /** Factory function. */
     static CComPtr<MyClient> Create() {
         // create an object (with ref. count zero)
         CComObject<MyClient> * tmp = nullptr;
