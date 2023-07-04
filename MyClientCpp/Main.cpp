@@ -45,8 +45,9 @@ public:
 int main() {
     CoInitializeEx(0, COINITBASE_MULTITHREADED);
 
+    // create MyServer object in a separate process
     MyInterfaces::IMyServerPtr server;
-    HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, CLSCTX_LOCAL_SERVER);
+    HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
     if (FAILED(hr)) {
         std::wcout << L"CoCreateInstance failure: " << hr << std::endl;
         return 1;
