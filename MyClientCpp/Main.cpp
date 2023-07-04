@@ -36,10 +36,8 @@ public:
         std::wcout << L"  desc=" << msg.desc << L"\n";
         std::wcout << L"  color=(" << msg.color[0] << L", " << msg.color[1] << L", " << msg.color[2] << L")\n";
         {
-            auto arr = ToStdVector<BYTE>(msg.data);
-
             std::wcout << L"  data=[";
-            for (BYTE elm : arr)
+            for (BYTE elm : ToStdVector<BYTE>(msg.data))
                 std::wcout << elm << L",";
             std::wcout << L"]\n";
         }
