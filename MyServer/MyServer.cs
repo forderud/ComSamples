@@ -60,7 +60,7 @@ namespace ComServerExample
                 try
                 {
                     // throws COMException if client is disconnected
-                    client.PushMessage(msg);
+                    client.SendMessage(msg);
 
                     // advance to next index if call doesn't throw
                     i++;

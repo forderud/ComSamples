@@ -21,7 +21,7 @@ namespace MyClientCs
             Thread.Sleep(5000);
         }
 
-        public void PushMessage(MyInterfaces.Message msg)
+        public void SendMessage(MyInterfaces.Message msg)
         {
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);

@@ -16,7 +16,7 @@ public:
     ~MyClient() {
     }
 
-    HRESULT raw_PushMessage(MyInterfaces::Message msg) override {
+    HRESULT raw_SendMessage(MyInterfaces::Message msg) override {
         std::wcout << L"Received message:\n";
         std::wcout << L"  sev=" << msg.sev << L"\n";
         std::wcout << L"  time=" << msg.time << L"\n";
