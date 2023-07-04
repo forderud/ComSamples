@@ -17,7 +17,7 @@ namespace ComSupport
 
             if (!IsAdmin())
             {
-                throw new AccessViolationException("Admin privileges needed for type library registration");
+                throw new UnauthorizedAccessException("Admin privileges needed for type library registration");
                 // ... or switch to RegisterTypeLibForUser for registration
             }
 
