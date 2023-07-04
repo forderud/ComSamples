@@ -13,13 +13,15 @@ Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCO
 ## How to test
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
-1. Follow the instructions for registering the server.
+1. Register the server:
     * Run `<path>\MyServer.exe" /regserver`  with admin privileges.
 1. Run the client:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
-1. Follow the instructions for **un**registering the server.
+1. **Un**register the server to clean up:
     * Run `<path>\MyServer.exe" /unregserver`  or `UNREGISTER.bat` with admin privileges.
+
+Server registration is only needed for on-demand loaded COM EXE servers, and can be skipped if instead running the server in a background service that is auto-started.
 
 The client programs should output something resembling this:
 ```
