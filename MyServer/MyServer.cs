@@ -68,12 +68,14 @@ namespace ComServerExample
                 }
                 catch (InvalidCastException ex)
                 {
-                    Console.WriteLine("Disconnecting client after call failure (err: " + ex.ToString() + ")");
+                    // expect E_NOINTERFACE (0x80004002) when client disconnect
+                    Console.WriteLine("Disconnecting client after call failure (err: 0x" + ex.HResult.ToString("X2") + ")");
                     m_clients.RemoveAt(i);
                 }
                 catch (COMException ex)
                 {
-                    Console.WriteLine("Disconnecting client after call failure (err: " + ex.ErrorCode.ToString("X2") + ")");
+                    // expect RPC_S_SERVER_UNAVAILABLE (0x800706BA) when client disconnect
+                    Console.WriteLine("Disconnecting client after call failure (err: 0x" + ex.ErrorCode.ToString("X2") + ")");
                     m_clients.RemoveAt(i);
                 }
             }
