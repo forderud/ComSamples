@@ -1,2 +1,6 @@
 /x64
 /*.vcxproj.user
+/*_h.h
+/*_i.c
+/*_p.c
+/dlldata.c
