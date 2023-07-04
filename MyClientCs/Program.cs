@@ -3,11 +3,17 @@ using System.Threading;
 
 namespace MyClientCs
 {
-    class Program : MyInterfaces.IMyClient
+    class Program : IDisposable, MyInterfaces.IMyClient
     {
+        MyInterfaces.MyServerClass m_server = null;
+
         static void Main(string[] _)
         {
-            new Program();
+            var p = new Program();
+
+            var cruncher = p.m_server.GetNumberCruncher();
+            double pi = cruncher.ComputePi();
+            Console.WriteLine($"pi = {pi}");
 
             // wait 5 seconds before exiting to give the server time to send messages
             Thread.Sleep(5000);
@@ -16,13 +22,14 @@ namespace MyClientCs
         Program ()
         {
             // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
-            var server = new MyInterfaces.MyServerClass();
+            m_server = new MyInterfaces.MyServerClass();
 
-            server.Subscribe(this);
+            m_server.Subscribe(this);
+        }
 
-            var cruncher = server.GetNumberCruncher();
-            double pi = cruncher.ComputePi();
-            Console.WriteLine($"pi = {pi}");
+        public void Dispose()
+        {
+            m_server = null;
         }
 
         public void PushMessage(MyInterfaces.Message msg)
