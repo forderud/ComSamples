@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-
+using System.Security.Principal;
 using ComTypes = System.Runtime.InteropServices.ComTypes;
 
 namespace ComSupport
@@ -14,6 +14,12 @@ namespace ComSupport
             Trace.Indent();
             Trace.WriteLine(tlbPath);
             Trace.Unindent();
+
+            if (!IsAdmin())
+            {
+                throw new AccessViolationException("Admin privileges needed for type library registration");
+                // ... or switch to RegisterTypeLibForUser for registration
+            }
 
             int hr = OleAut32.LoadTypeLibEx(tlbPath, OleAut32.REGKIND.REGKIND_REGISTER, out ComTypes.ITypeLib _);
             if (hr < 0)
@@ -58,6 +64,11 @@ namespace ComSupport
                     typeLib.ReleaseTLibAttr(attrPtr);
                 }
             }
+        }
+
+        private static bool IsAdmin ()
+        {
+            return new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);
         }
 
         private class OleAut32
