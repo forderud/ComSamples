@@ -19,7 +19,7 @@ namespace ComServerExample
         {
             m_active = true;
 
-            _ = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, () => {
+            _ = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
                 while (m_active)
                 {
                     if (m_clients.Count > 0)

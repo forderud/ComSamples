@@ -8,7 +8,7 @@ namespace ComSupport
     {
         /** Task with the thread initialized in a specified COM apartment.
          *   Enables communication over AppAPI and other COM interfaces. */
-        public static Task<T> Run<T>(ApartmentState apartment, Func<T> func)
+        public static Task<T> Run<T>(ApartmentState apartment, string name, Func<T> func)
         {
             var tcs = new TaskCompletionSource<T>();
             Thread thread = new Thread(() => {
@@ -21,6 +21,7 @@ namespace ComSupport
                     tcs.SetException(e);
                 }
             });
+            thread.Name = name;
             thread.SetApartmentState(apartment);
             thread.Start();
             return tcs.Task;
