@@ -62,7 +62,7 @@ interface IMyServer : IUnknown {
     [helpstring("Subscribe to callbacks")]
     HRESULT Subscribe([in] IMyClient* client);
 
-    [helpstring("Unsubscribe to callbacks")]
+    [helpstring("Unsubscribe to callbacks. Optional to call, since disconnected clients are automatically unsubscribed.")]
     HRESULT Unsubscribe([in] IMyClient* client);
 };
 
