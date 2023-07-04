@@ -21,4 +21,15 @@ Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCO
 1. Follow the instructions for **un**registering the server.
     * Run `<path>\MyServer.exe" /unregserver`  or `UNREGISTER.bat` with admin privileges.
 
-The client program should output the value: `pi = 3.140616091322624`
+The client programs should output something resembling this:
+```
+pi = 3.141592653589793
+Received message:
+  sev=Info
+  time=7/4/2023 10:27:57 AM
+  value=1.23
+  desc=Hello there!
+  color=(255, 0, 0)
+  data=
+...
+```
