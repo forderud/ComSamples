@@ -13,6 +13,21 @@ Repo content:
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
+
+## Motivation
+Some benefits of using COM:
+* **Language neutral** interfaces.
+* COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers.
+* Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
+* Support for bidirectional **object-oriented** communication.
+* **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
+* Languages like C++, C# and Python natively support COM, which avoids the need for any manually maintained language bindings.
+* **Rock solid** technology that have been available since 1993.
+
+Limitations:
+* Not as easily available on non-Windows platforms.
+
+
 ## How to test
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
