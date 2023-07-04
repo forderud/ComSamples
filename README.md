@@ -50,6 +50,6 @@ Received message:
   value=1.23
   desc=Hello there!
   color=(255, 0, 0)
-  data=
+  data=[0,1,2,3]
 ...
 ```

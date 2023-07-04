@@ -29,8 +29,8 @@ namespace MyClientCs
             Console.WriteLine("  time=" + msg.time);
             Console.WriteLine("  value=" + msg.value);
             Console.WriteLine("  desc=" + msg.desc);
-            Console.WriteLine("  color=(" + msg.color[0] + ", "+ msg.color[1]+", "+ msg.color[2]+")");
-            Console.WriteLine("  data=" + msg.data);
+            Console.WriteLine("  color=(" + string.Join(", ", msg.color)+")");
+            Console.WriteLine("  data=[" + string.Join(",", msg.data)+"]");
         }
     }
 }

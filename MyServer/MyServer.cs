@@ -32,6 +32,7 @@ namespace ComServerExample
                         msg.value = 1.23;
                         msg.desc = "Hello there!";
                         msg.color = new byte[3] { 255, 0, 0 };
+                        msg.data = new byte[4] { 0, 1, 2, 3 };
 
                         BroadcastMessage(msg);
                     } else
