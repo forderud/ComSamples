@@ -59,11 +59,16 @@ namespace ComServerExample
                 IMyClient client = m_clients[i];
                 try
                 {
-                    // throws COMException if client is disconnected
+                    // throws InvalidCastException or COMException if client is disconnected
                     client.SendMessage(msg);
 
                     // advance to next index if call doesn't throw
                     i++;
+                }
+                catch (InvalidCastException ex)
+                {
+                    Console.WriteLine("Disconnecting client after call failure (err: " + ex.ToString() + ")");
+                    m_clients.RemoveAt(i);
                 }
                 catch (COMException ex)
                 {
