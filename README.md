@@ -6,7 +6,7 @@ Repo content:
 | MyInterfaces | Language-neutral COM interface definitions for IPC ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
-| MyServer     | Server implementation. Implemented as a on-demand loaded COM EXE server, but can easily be converted into a background service. |
+| MyServer     | Server implementation. Implemented as a on-demand loaded COM EXE server, but can easily be converted into a background service. The console window can also be hidden by either changing the _subsystem_ from `Console` to `Windows`or moving the process to session 0.|
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
