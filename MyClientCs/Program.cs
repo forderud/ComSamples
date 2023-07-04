@@ -10,7 +10,8 @@ namespace MyClientCs
             // same as Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
             var server = new MyInterfaces.MyServerClass();
 
-            server.Subscribe(new Program());
+            var callback = new Program();
+            server.Subscribe(callback);
 
             var cruncher = server.GetNumberCruncher();
             double pi = cruncher.ComputePi();
