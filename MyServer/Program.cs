@@ -19,13 +19,15 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    ComSupport.LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, exePath);
+                    ComSupport.LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+                    ComSupport.TypeLib.Register(exePath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    ComSupport.LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+                    ComSupport.LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+                    ComSupport.TypeLib.Unregister(exePath);
                     return;
                 }
             }

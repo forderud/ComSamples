@@ -6,7 +6,7 @@ using ComTypes = System.Runtime.InteropServices.ComTypes;
 
 namespace ComSupport
 {
-    internal static class TypeLib
+    public static class TypeLib
     {
         public static void Register(string tlbPath)
         {

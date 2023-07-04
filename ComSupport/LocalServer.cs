@@ -16,7 +16,7 @@ namespace ComSupport
 
     public sealed class LocalServer : IDisposable
     {
-        public static void Register(Guid clsid, string exePath, string tlbPath)
+        public static void Register(Guid clsid, string exePath)
         {
             // Register local server
             Trace.WriteLine($"Registering server:");
@@ -28,12 +28,9 @@ namespace ComSupport
             string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
             using RegistryKey regKey = Registry.LocalMachine.CreateSubKey(serverKey);
             regKey.SetValue(null, exePath);
-
-            // Register type library
-            TypeLib.Register(tlbPath);
         }
 
-        public static void Unregister(Guid clsid, string tlbPath)
+        public static void Unregister(Guid clsid)
         {
             Trace.WriteLine($"Unregistering server:");
             Trace.Indent();
@@ -43,9 +40,6 @@ namespace ComSupport
             // Unregister local server
             string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
             Registry.LocalMachine.DeleteSubKey(serverKey, throwOnMissingSubKey: false);
-
-            // Unregister type library
-            TypeLib.Unregister(tlbPath);
         }
 
         private readonly List<int> registrationCookies = new List<int>();
