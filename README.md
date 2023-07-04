@@ -16,7 +16,7 @@ Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCO
 
 ## Motivation
 Some benefits of using COM:
-* **Language neutral** interfaces.
+* **Language neutral** interface definitions.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers".
 * Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
 * Support for bidirectional **object-oriented** communication.
