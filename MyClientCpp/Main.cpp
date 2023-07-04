@@ -23,7 +23,7 @@ public:
         std::wcout << L"  value=" << msg.value << L"\n";
         std::wcout << L"  desc=" << msg.desc << L"\n";
         std::wcout << L"  color=(" << msg.color[0] << L", " << msg.color[1] << L", " << msg.color[2] << L")\n";
-        std::wcout << L"  data=" << msg.data << L"\n";;
+        std::wcout << L"  data=" << msg.data << L"\n";
 
         return S_OK;
     }
