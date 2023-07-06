@@ -66,7 +66,8 @@ int main() {
     MyInterfaces::IMyServerPtr server;
     HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
     if (FAILED(hr)) {
-        std::wcout << L"CoCreateInstance failure: 0x" << std::hex << hr << std::endl;
+        _com_error err(hr);
+        std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
         return 1;
     }
 
