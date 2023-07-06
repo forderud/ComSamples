@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComSupport;
+using System;
 using System.Diagnostics;
 using System.IO;
 
@@ -19,20 +20,20 @@ namespace ComServerExample
                 if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    ComSupport.LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
-                    ComSupport.TypeLib.Register(exePath);
+                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+                    TypeLib.Register(exePath);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    ComSupport.LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
-                    ComSupport.TypeLib.Unregister(exePath);
+                    LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+                    TypeLib.Unregister(exePath);
                     return;
                 }
             }
 
-            using var server = new ComSupport.LocalServer();
+            using var server = new LocalServer();
             server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
 
             server.Run();
