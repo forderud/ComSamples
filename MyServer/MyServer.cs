@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace ComServerExample
+namespace MyServer
 {
     [ComVisible(true)]
     [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass

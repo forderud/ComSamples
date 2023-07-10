@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace ComServerExample
+namespace MyServer
 {
     class Program
     {
