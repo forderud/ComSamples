@@ -71,7 +71,7 @@ namespace ComSupport
         {
             // For details around ref counting and locking of out-of-proc COM servers, see
             // https://docs.microsoft.com/windows/win32/com/out-of-process-server-implementation-helpers
-            while (!m_active || (ComClass.m_obj_cnt != 0))
+            while (!m_active || (ComClass.GetObjCount() != 0))
             {
                 Thread.Sleep(1000);
                 GC.Collect();

@@ -10,7 +10,7 @@ namespace ComSupport
     /** Base-class for all COM classes. Handles object ref-counting automatically. */
     public class ComClass
     {
-        public static int m_obj_cnt = 0;
+        private static int m_obj_cnt = 0;
 
         public ComClass()
         {
@@ -20,6 +20,11 @@ namespace ComSupport
         ~ComClass()
         {
             Interlocked.Decrement(ref m_obj_cnt);
+        }
+
+        public static int GetObjCount()
+        {
+            return m_obj_cnt;
         }
     }
 }
