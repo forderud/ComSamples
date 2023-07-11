@@ -18,6 +18,7 @@ namespace MyServer
 
         public MyServerImpl()
         {
+            Console.WriteLine("New MyServerImpl instance.");
             m_active = true;
 
             m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
