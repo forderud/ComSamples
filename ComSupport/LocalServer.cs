@@ -54,9 +54,7 @@ namespace ComSupport
             int cookie;
             int hr = Ole32.CoRegisterClassObject(ref clsid, new BasicClassFactory<T>(), Ole32.CLSCTX_LOCAL_SERVER, Ole32.REGCLS_MULTIPLEUSE | Ole32.REGCLS_SUSPENDED, out cookie);
             if (hr < 0)
-            {
                 Marshal.ThrowExceptionForHR(hr);
-            }
 
             registrationCookies.Add(cookie);
             Trace.WriteLine($"Cookie: {cookie}");
@@ -64,9 +62,7 @@ namespace ComSupport
 
             hr = Ole32.CoResumeClassObjects();
             if (hr < 0)
-            {
                 Marshal.ThrowExceptionForHR(hr);
-            }
         }
 
         public void Run()

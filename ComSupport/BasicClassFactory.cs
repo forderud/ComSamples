@@ -30,9 +30,7 @@ namespace ComSupport
 
             object obj = new T();
             if (pUnkOuter != null)
-            {
                 obj = CreateAggregatedObject(pUnkOuter, obj);
-            }
 
             ppvObject = GetObjectAsInterface(obj, interfaceType);
         }
@@ -44,9 +42,7 @@ namespace ComSupport
         private static Type GetValidatedInterfaceType(Type classType, ref Guid riid, object outer)
         {
             if (riid == IID_IUnknown)
-            {
                 return typeof(object);
-            }
 
             // Aggregation can only be done when requesting IUnknown.
             if (outer != null)
@@ -59,9 +55,7 @@ namespace ComSupport
             foreach (Type i in classType.GetInterfaces())
             {
                 if (i.GUID == riid)
-                {
                     return i;
-                }
             }
 
             // E_NOINTERFACE
@@ -72,16 +66,11 @@ namespace ComSupport
         {
             // If the requested "interface type" is type object then return as IUnknown
             if (interfaceType == typeof(object))
-            {
                 return Marshal.GetIUnknownForObject(obj);
-            }
 
             IntPtr interfaceMaybe = Marshal.GetComInterfaceForObject(obj, interfaceType, CustomQueryInterfaceMode.Ignore);
             if (interfaceMaybe == IntPtr.Zero)
-            {
-                // E_NOINTERFACE
-                throw new InvalidCastException();
-            }
+                throw new InvalidCastException(); // E_NOINTERFACE
 
             return interfaceMaybe;
         }
