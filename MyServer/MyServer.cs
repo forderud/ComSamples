@@ -18,7 +18,7 @@ namespace MyServer
 
         public MyServerImpl()
         {
-            Console.WriteLine("New MyServerImpl instance.");
+            Console.WriteLine("MyServerImpl ctor.");
             m_active = true;
 
             m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
@@ -51,7 +51,7 @@ namespace MyServer
 
         ~MyServerImpl()
         {
-            Console.WriteLine("MyServerImpl destructor.");
+            Console.WriteLine("MyServerImpl dtor.");
             m_active = false;
             m_task.Wait();
         }
@@ -106,6 +106,16 @@ namespace MyServer
 
     public sealed class NumberCruncher : MyInterfaces.INumberCruncher
     {
+        public NumberCruncher()
+        {
+            Trace.WriteLine("NumberCruncher ctor.");
+
+        }
+        ~NumberCruncher()
+        {
+            Trace.WriteLine("NumberCruncher dtor.");
+        }
+
         public double ComputePi ()
         {
             return Math.PI;
