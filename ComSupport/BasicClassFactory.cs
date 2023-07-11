@@ -36,6 +36,8 @@ namespace ComSupport
                 obj = CreateAggregatedObject(pUnkOuter, obj);
 
             ppvObject = GetObjectAsInterface(obj, interfaceType);
+
+            LocalServer.m_active = true; // first object created
         }
 
         public void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock) {

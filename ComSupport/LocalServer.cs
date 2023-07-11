@@ -16,6 +16,9 @@ namespace ComSupport
 
     public sealed class LocalServer : IDisposable
     {
+        public static int m_obj_cnt = 0;
+        public static bool m_active = false; // first object have been created
+
         public static void Register(Guid clsid, string exePath)
         {
             // Register local server
@@ -67,10 +70,9 @@ namespace ComSupport
 
         public void Run()
         {
-            // This sample does not handle lifetime management of the server.
             // For details around ref counting and locking of out-of-proc COM servers, see
             // https://docs.microsoft.com/windows/win32/com/out-of-process-server-implementation-helpers
-            for (;;)
+            while (!m_active || (m_obj_cnt != 0))
             {
                 Thread.Sleep(1000);
                 GC.Collect();

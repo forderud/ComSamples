@@ -18,7 +18,9 @@ namespace MyServer
 
         public MyServerImpl()
         {
+            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // increment ref-count first in ctor.
             Console.WriteLine("MyServerImpl ctor.");
+
             m_active = true;
 
             m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
@@ -54,6 +56,8 @@ namespace MyServer
             Console.WriteLine("MyServerImpl dtor.");
             m_active = false;
             m_task.Wait();
+
+            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
@@ -108,12 +112,13 @@ namespace MyServer
     {
         public NumberCruncher()
         {
+            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // increment ref-count first in ctor.
             Trace.WriteLine("NumberCruncher ctor.");
-
         }
         ~NumberCruncher()
         {
             Trace.WriteLine("NumberCruncher dtor.");
+            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         public double ComputePi ()
