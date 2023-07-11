@@ -57,7 +57,7 @@ namespace MyServer
             m_active = false;
             m_task.Wait();
 
-            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
+            Interlocked.Decrement(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
@@ -118,7 +118,7 @@ namespace MyServer
         ~NumberCruncher()
         {
             Trace.WriteLine("NumberCruncher dtor.");
-            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
+            Interlocked.Decrement(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         public double ComputePi ()
