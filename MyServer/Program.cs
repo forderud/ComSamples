@@ -46,7 +46,8 @@ namespace MyServer
                     server.WaitForRefCountsToReachZero();
                     return;
                 }
-            } else
+            }
+            else if(args.Length == 0)
             {
                 // process manually started
                 using var server = new LocalServer();
