@@ -14,12 +14,13 @@ namespace MyServer
     {
         private List<IMyClient> m_clients = new List<IMyClient>();
         private bool m_active = false;
+        private System.Threading.Tasks.Task<object> m_task;
 
         public MyServerImpl()
         {
             m_active = true;
 
-            _ = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
+            m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
                 while (m_active)
                 {
                     if (m_clients.Count > 0)
@@ -50,6 +51,7 @@ namespace MyServer
         public void Dispose()
         {
             m_active = false;
+            m_task.Wait();
         }
 
         /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
