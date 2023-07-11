@@ -35,12 +35,17 @@ namespace MyServer
                     TypeLib.Unregister(exePath);
                     return;
                 }
+                else if (regCommandMaybe.Equals("/Embedding", StringComparison.OrdinalIgnoreCase) ||
+                    regCommandMaybe.Equals("-Embedding", StringComparison.OrdinalIgnoreCase))
+                {
+                    // auto-started by COM runtime
+                    using var server = new LocalServer();
+                    server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+
+                    server.WaitForRefCountsToReachZero();
+                    return;
+                }
             }
-
-            using var server = new LocalServer();
-            server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
-
-            server.WaitForRefCountsToReachZero();
         }
     }
 }
