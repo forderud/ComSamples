@@ -10,7 +10,7 @@ namespace MyServer
     [ComVisible(true)]
     [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass
     [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
-    public sealed class MyServerImpl : MyInterfaces.IMyServer
+    public sealed class MyServerImpl : ComSupport.ComClass, MyInterfaces.IMyServer
     {
         private List<IMyClient> m_clients = new List<IMyClient>(); // subscribed clients
         private bool m_active = false;
@@ -18,7 +18,6 @@ namespace MyServer
 
         public MyServerImpl()
         {
-            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // increment ref-count first in ctor.
             Console.WriteLine("MyServerImpl ctor.");
 
             m_active = true;
@@ -56,8 +55,6 @@ namespace MyServer
             Console.WriteLine("MyServerImpl dtor.");
             m_active = false;
             m_task.Wait();
-
-            Interlocked.Decrement(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
@@ -108,17 +105,15 @@ namespace MyServer
         }
     }
 
-    public sealed class NumberCruncher : MyInterfaces.INumberCruncher
+    public sealed class NumberCruncher : ComSupport.ComClass, MyInterfaces.INumberCruncher
     {
         public NumberCruncher()
         {
-            Interlocked.Increment(ref ComSupport.LocalServer.m_obj_cnt); // increment ref-count first in ctor.
             Trace.WriteLine("NumberCruncher ctor.");
         }
         ~NumberCruncher()
         {
             Trace.WriteLine("NumberCruncher dtor.");
-            Interlocked.Decrement(ref ComSupport.LocalServer.m_obj_cnt); // decrement ref-count last in dtor.
         }
 
         public double ComputePi ()
