@@ -42,7 +42,7 @@ namespace MyServer
                     // auto-started by COM runtime
                     using var server = new LocalServer();
                     server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
-
+                    // terminate process after last client disconnect
                     server.WaitForRefCountsToReachZero();
                     return;
                 }
@@ -52,6 +52,7 @@ namespace MyServer
                 // process manually started
                 using var server = new LocalServer();
                 server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                // run until terminated
                 Thread.Sleep(Timeout.Infinite);
             }
         }
