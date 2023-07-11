@@ -7,19 +7,16 @@ using System.Threading;
 
 namespace MyServer
 {
-    [ComVisible(true)]
-    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass
-    [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
-    public sealed class MyServerImpl : ComSupport.ComClass, MyInterfaces.IMyServer
+    /** Client callback handler. Kept in a separate class to avoid introducing
+     *  a reference to MyServerImpl when creating a lambda for m_task. */
+    class ClientHandler
     {
         private List<IMyClient> m_clients = new List<IMyClient>(); // subscribed clients
         private bool m_active = false;
         private System.Threading.Tasks.Task<object> m_task;
 
-        public MyServerImpl()
+        public ClientHandler()
         {
-            Console.WriteLine("MyServerImpl ctor.");
-
             m_active = true;
 
             m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
@@ -48,13 +45,6 @@ namespace MyServer
                 }
                 return null;
             });
-        }
-
-        ~MyServerImpl()
-        {
-            Console.WriteLine("MyServerImpl dtor.");
-            m_active = false;
-            m_task.Wait();
         }
 
         /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
@@ -86,6 +76,36 @@ namespace MyServer
             }
         }
 
+        public void Close ()
+        {
+            m_active = false;
+            m_task.Wait();
+        }
+
+        public List<IMyClient> Clients () {
+            return m_clients;
+        }
+    }
+
+    [ComVisible(true)]
+    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass
+    [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
+    public sealed class MyServerImpl : ComSupport.ComClass, MyInterfaces.IMyServer
+    {
+        ClientHandler m_clients = null;
+
+        public MyServerImpl()
+        {
+            Console.WriteLine("MyServerImpl ctor.");
+            m_clients = new ClientHandler();
+        }
+
+        ~MyServerImpl()
+        {
+            Console.WriteLine("MyServerImpl dtor.");
+            m_clients.Close();
+        }
+
         public MyInterfaces.INumberCruncher GetNumberCruncher()
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(GetNumberCruncher)}");
@@ -95,13 +115,13 @@ namespace MyServer
         public void Subscribe(IMyClient client)
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Subscribe)}");
-            m_clients.Add(client);
+            m_clients.Clients().Add(client);
         }
 
         public void Unsubscribe(IMyClient client)
         {
             Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Unsubscribe)}");
-            m_clients.Remove(client);
+            m_clients.Clients().Remove(client);
         }
     }
 
