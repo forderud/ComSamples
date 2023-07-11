@@ -12,7 +12,7 @@ namespace MyServer
     [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
     public sealed class MyServerImpl : IDisposable, MyInterfaces.IMyServer
     {
-        private List<IMyClient> m_clients = new List<IMyClient>();
+        private List<IMyClient> m_clients = new List<IMyClient>(); // subscribed clients
         private bool m_active = false;
         private System.Threading.Tasks.Task<object> m_task;
 
@@ -27,7 +27,7 @@ namespace MyServer
                     if (m_clients.Count > 0)
                     {
                         // broadcast message to all clients
-                        Console.WriteLine("Broadcasting message to all clients.");
+                        Console.WriteLine("Broadcasting message to all subscribed clients.");
                         Message msg = default;
                         msg.sev = Severity.Info;
                         msg.time =  DateTime.Now;
@@ -39,7 +39,7 @@ namespace MyServer
                         BroadcastMessage(msg);
                     } else
                     {
-                        Console.WriteLine("No connected clients.");
+                        Console.WriteLine("No clients subscribed.");
 
                     }
 
