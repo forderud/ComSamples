@@ -10,7 +10,7 @@ namespace MyServer
     [ComVisible(true)]
     [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass
     [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
-    public sealed class MyServerImpl : IDisposable, MyInterfaces.IMyServer
+    public sealed class MyServerImpl : MyInterfaces.IMyServer
     {
         private List<IMyClient> m_clients = new List<IMyClient>(); // subscribed clients
         private bool m_active = false;
@@ -49,8 +49,9 @@ namespace MyServer
             });
         }
 
-        public void Dispose()
+        ~MyServerImpl()
         {
+            Console.WriteLine("MyServerImpl destructor.");
             m_active = false;
             m_task.Wait();
         }
