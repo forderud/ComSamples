@@ -36,7 +36,7 @@ namespace MyServer
             using var server = new LocalServer();
             server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
 
-            server.Run();
+            server.WaitForRefCountsToReachZero();
         }
     }
 }

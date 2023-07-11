@@ -67,7 +67,7 @@ namespace ComSupport
                 Marshal.ThrowExceptionForHR(hr);
         }
 
-        public void Run()
+        public void WaitForRefCountsToReachZero()
         {
             // For details around ref counting and locking of out-of-proc COM servers, see
             // https://docs.microsoft.com/windows/win32/com/out-of-process-server-implementation-helpers
