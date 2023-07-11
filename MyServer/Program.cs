@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 namespace MyServer
 {
@@ -45,6 +46,12 @@ namespace MyServer
                     server.WaitForRefCountsToReachZero();
                     return;
                 }
+            } else
+            {
+                // process manually started
+                using var server = new LocalServer();
+                server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                Thread.Sleep(Timeout.Infinite);
             }
         }
     }
