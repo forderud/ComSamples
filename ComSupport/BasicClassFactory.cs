@@ -19,11 +19,19 @@ namespace ComSupport
         void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock);
     }
 
-    [ComVisible(true)]
-    internal class BasicClassFactory<T> : IClassFactory where T : new()
+    internal class BasicClassFactoryBase
     {
-        int m_lock_cnt = 0; // not yet used
+        internal static int m_lock_cnt = 0;
 
+        public static int GetLockCount()
+        {
+            return m_lock_cnt;
+        }
+    }
+
+    [ComVisible(true)]
+    internal class BasicClassFactory<T> : BasicClassFactoryBase, IClassFactory where T : new()
+    {
         public void CreateInstance(
             [MarshalAs(UnmanagedType.Interface)] object pUnkOuter,
             ref Guid riid,
