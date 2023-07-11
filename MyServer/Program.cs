@@ -17,7 +17,8 @@ namespace MyServer
             if (args.Length == 1)
             {
                 string regCommandMaybe = args[0];
-                if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
+                if (regCommandMaybe.Equals("/regserver", StringComparison.OrdinalIgnoreCase) ||
+                    regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
@@ -25,7 +26,8 @@ namespace MyServer
                     TypeLib.Register(exePath);
                     return;
                 }
-                else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) || regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
+                else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
+                    regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
                     LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
