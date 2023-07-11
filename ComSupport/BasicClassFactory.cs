@@ -22,7 +22,7 @@ namespace ComSupport
     [ComVisible(true)]
     internal class BasicClassFactory<T> : IClassFactory where T : new()
     {
-        int m_ref_cnt = 0; // not yet used
+        int m_lock_cnt = 0; // not yet used
 
         public void CreateInstance(
             [MarshalAs(UnmanagedType.Interface)] object pUnkOuter,
@@ -40,9 +40,9 @@ namespace ComSupport
 
         public void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock) {
             if (fLock)
-                Interlocked.Increment(ref m_ref_cnt);
+                Interlocked.Increment(ref m_lock_cnt);
             else
-                Interlocked.Decrement(ref m_ref_cnt);
+                Interlocked.Decrement(ref m_lock_cnt);
         }
 
         private static readonly Guid IID_IUnknown = Guid.Parse("00000000-0000-0000-C000-000000000046");
