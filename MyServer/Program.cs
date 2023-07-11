@@ -21,6 +21,7 @@ namespace MyServer
                 {
                     // Register local server and type library
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
                     TypeLib.Register(exePath);
                     return;
                 }
@@ -28,6 +29,7 @@ namespace MyServer
                 {
                     // Unregister local server and type library
                     LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+                    AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
                     TypeLib.Unregister(exePath);
                     return;
                 }
