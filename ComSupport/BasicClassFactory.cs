@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace ComSupport
 {
@@ -21,6 +22,8 @@ namespace ComSupport
     [ComVisible(true)]
     internal class BasicClassFactory<T> : IClassFactory where T : new()
     {
+        int m_ref_cnt = 0; // not yet used
+
         public void CreateInstance(
             [MarshalAs(UnmanagedType.Interface)] object pUnkOuter,
             ref Guid riid,
@@ -35,7 +38,12 @@ namespace ComSupport
             ppvObject = GetObjectAsInterface(obj, interfaceType);
         }
 
-        public void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock) { }
+        public void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock) {
+            if (fLock)
+                Interlocked.Increment(ref m_ref_cnt);
+            else
+                Interlocked.Decrement(ref m_ref_cnt);
+        }
 
         private static readonly Guid IID_IUnknown = Guid.Parse("00000000-0000-0000-C000-000000000046");
 
