@@ -127,6 +127,16 @@ namespace MyServer
 
     public sealed class NumberCruncher : ComSupport.ComClass, MyInterfaces.INumberCruncher
     {
+        public NumberCruncher()
+        {
+            Console.WriteLine("NumberCruncher ctor.");
+        }
+
+        ~NumberCruncher()
+        {
+            Console.WriteLine("NumberCruncher dtor.");
+        }
+
         public double ComputePi ()
         {
             return Math.PI;
