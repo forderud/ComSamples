@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace MyClientCs
 {
-    class Program : MyInterfaces.IMyClient
+    class Program
     {
         static void Main(string[] _)
         {
@@ -11,7 +11,7 @@ namespace MyClientCs
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
             var server = new MyInterfaces.MyServerClass();
 
-            var callback = new Program();
+            var callback = new ClientCallback();
             server.Subscribe(callback);
 
             var cruncher = server.GetNumberCruncher();
@@ -21,7 +21,10 @@ namespace MyClientCs
             // wait 5 seconds before exiting to give the server time to send messages
             Thread.Sleep(5000);
         }
+    }
 
+    class ClientCallback : MyInterfaces.IMyClient
+    {
         public void SendMessage(MyInterfaces.Message msg)
         {
             Console.WriteLine("Received message:");
