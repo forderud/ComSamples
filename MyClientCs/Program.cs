@@ -14,9 +14,11 @@ namespace MyClientCs
             var callback = new ClientCallback();
             server.Subscribe(callback);
 
-            var cruncher = server.GetNumberCruncher();
-            double pi = cruncher.ComputePi();
-            Console.WriteLine($"pi = {pi}");
+            {
+                var cruncher = server.GetNumberCruncher();
+                double pi = cruncher.ComputePi();
+                Console.WriteLine($"pi = {pi}");
+            }
 
             // wait 5 seconds before exiting to give the server time to send messages
             Thread.Sleep(5000);
