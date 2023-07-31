@@ -1,4 +1,4 @@
-Examples of language-neutral [Component Object Model (COM](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) interfaces for IPC.
+Examples of language-neutral [Component Object Model (COM)](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) interfaces for IPC.
 
 Repo content:
 
