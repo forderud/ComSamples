@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace MyServer
+namespace MyServerCs
 {
     class Program
     {
-        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServer.exe");
+        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServerCs.exe");
 
         static void Main(string[] args)
         {
@@ -22,8 +22,8 @@ namespace MyServer
                     regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register local server and type library
-                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
+                    LocalServer.Register(typeof(MyInterfaces.MyServerCsClass).GUID, exePath);
+                    AppID.Register(typeof(MyInterfaces.MyServerCsClass).GUID, "Interactive User");
                     TypeLib.Register(exePath);
                     return;
                 }
@@ -31,8 +31,8 @@ namespace MyServer
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister local server and type library
-                    LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
-                    AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+                    LocalServer.Unregister(typeof(MyInterfaces.MyServerCsClass).GUID);
+                    AppID.Unregister(typeof(MyInterfaces.MyServerCsClass).GUID);
                     TypeLib.Unregister(exePath);
                     return;
                 }
@@ -41,7 +41,7 @@ namespace MyServer
                 {
                     // auto-started by COM runtime
                     using var server = new LocalServer();
-                    server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                    server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerCsClass).GUID);
                     // terminate process after last client disconnect
                     server.WaitForRefCountsToReachZero();
                     return;
@@ -51,7 +51,7 @@ namespace MyServer
             {
                 // process manually started
                 using var server = new LocalServer();
-                server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerCsClass).GUID);
                 // run until terminated
                 Thread.Sleep(Timeout.Infinite);
             }

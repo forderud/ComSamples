@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 
-namespace MyServer
+namespace MyServerCs
 {
     /** Client callback handler. Kept in a separate class to avoid introducing
      *  a reference to MyServerImpl when creating a lambda for m_task. */
@@ -88,7 +88,7 @@ namespace MyServer
     }
 
     [ComVisible(true)]
-    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerClass
+    [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerCsClass
     [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
     public sealed class MyServerImpl : ComSupport.ComClass, MyInterfaces.IMyServer
     {
@@ -108,19 +108,19 @@ namespace MyServer
 
         public MyInterfaces.INumberCruncher GetNumberCruncher()
         {
-            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(GetNumberCruncher)}");
+            Trace.WriteLine($"Running {nameof(MyServerCs)}.{nameof(GetNumberCruncher)}");
             return new NumberCruncher();
         }
 
         public void Subscribe(IMyClient client)
         {
-            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Subscribe)}");
+            Trace.WriteLine($"Running {nameof(MyServerCs)}.{nameof(Subscribe)}");
             m_clients.Clients().Add(client);
         }
 
         public void Unsubscribe(IMyClient client)
         {
-            Trace.WriteLine($"Running {nameof(MyServer)}.{nameof(Unsubscribe)}");
+            Trace.WriteLine($"Running {nameof(MyServerCs)}.{nameof(Unsubscribe)}");
             m_clients.Clients().Remove(client);
         }
     }

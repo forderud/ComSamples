@@ -8,7 +8,7 @@ Repo content:
 | MyInterfaces | Language-neutral COM interface definitions for IPC ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
-| MyServer     | Server implementation. Implemented as a on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyServerCs   | C# server implementation. Implemented as a on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
@@ -31,12 +31,12 @@ Limitations:
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
-    * Run `<path>\MyServer.exe" /regserver`  with admin privileges.
+    * Run `<path>\MyServerCs.exe" /regserver`  with admin privileges.
 1. Run the client:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
 1. **Un**register the server to clean up:
-    * Run `<path>\MyServer.exe" /unregserver`  or `UNREGISTER.bat` with admin privileges.
+    * Run `<path>\MyServerCs.exe" /unregserver`  or `UNREGISTER.bat` with admin privileges.
 
 Server registration is only needed for on-demand loaded COM EXE servers, and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registred at server startup.
 
