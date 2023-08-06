@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComSupport", "ComSupport\Co
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyInterfaces", "MyInterfaces\MyInterfaces.vcxproj", "{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServer", "MyServerCs\MyServer.csproj", "{230F076F-915D-4578-A9AA-275AA83E35C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyServerCs", "MyServerCs\MyServerCs.csproj", "{230F076F-915D-4578-A9AA-275AA83E35C7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74} = {197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}
 	EndProjectSection
