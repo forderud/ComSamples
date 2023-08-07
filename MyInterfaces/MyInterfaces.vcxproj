@@ -27,7 +27,9 @@
   </ImportGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+      <Command>copy /y "$(Platform)\$(Configuration)\$(ProjectName).tlb" "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb"
+
+TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
 powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\MyInterfaces.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\MyInterfaces.tlh" MyInterfaces.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
@@ -38,7 +40,9 @@ copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Config
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PostBuildEvent>
-      <Command>TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
+      <Command>copy /y "$(Platform)\$(Configuration)\$(ProjectName).tlb" "$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).tlb"
+
+TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb" /out:"$(SolutionDir)$(Platform)\$(Configuration)\$(ProjectName).dll"
 
 powershell -File ConvertAbsoluteIncludeToRelative.ps1 "$(Platform)\\$(Configuration)\\MyInterfaces.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\MyInterfaces.tlh" MyInterfaces.tli
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
