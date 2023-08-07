@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove CLSID
+	{
+		ForceRemove {77C7147A-8305-4B1E-B77E-E02B559F28B7} = s 'MyServerCpp Object'
+		{
+			LocalServer32 = s '%MODULE%'
+			TypeLib = s '{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}'
+		}
+	}
+}

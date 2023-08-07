@@ -72,4 +72,9 @@ library MyInterfaces {
     coclass MyServerCs {
         [default] interface IMyServer;
     }
+
+    [uuid(77C7147A-8305-4B1E-B77E-E02B559F28B7)]
+    coclass MyServerCpp {
+        [default] interface IMyServer;
+    }
 }
