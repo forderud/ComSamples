@@ -10,7 +10,8 @@ namespace MyClientCs
         {
             // create server object in a separate process
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerCsClass).GUID))
-            var server = new MyInterfaces.MyServerCsClass();
+            //var server = new MyInterfaces.MyServerCsClass();
+            var server = new MyInterfaces.MyServerCppClass();
 
             var callback = new ClientCallback();
             server.Subscribe(callback);
