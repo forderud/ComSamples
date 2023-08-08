@@ -94,7 +94,7 @@ public:
         return E_FAIL;
     }
 
-    DECLARE_REGISTRY_RESOURCEID(IDR_MyServerImpl)
+    DECLARE_REGISTRY_RESOURCEID(IDR_MyServerImpl) // RGS file reference
 
     BEGIN_COM_MAP(MyServerImpl)
         COM_INTERFACE_ENTRY(IMyServer)
