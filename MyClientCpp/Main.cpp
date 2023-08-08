@@ -29,17 +29,19 @@ class MyClient :
 public:
     /** SendMessage impl. */
     HRESULT raw_SendMessage(MyInterfaces::Message msg) override {
-        std::wcout << L"Received message:\n";
-        std::wcout << L"  sev=" << msg.sev << L"\n";
-        std::wcout << L"  time=" << msg.time << L"\n";
-        std::wcout << L"  value=" << msg.value << L"\n";
-        std::wcout << L"  desc=" << msg.desc << L"\n";
-        std::wcout << L"  color=(" << msg.color[0] << L", " << msg.color[1] << L", " << msg.color[2] << L")\n";
+        using namespace std;
+
+        wcout << L"Received message:\n";
+        wcout << L"  sev=" << msg.sev << L"\n";
+        wcout << L"  time=" << msg.time << L"\n";
+        wcout << L"  value=" << msg.value << L"\n";
+        wcout << L"  desc=" << msg.desc << L"\n";
+        wcout << L"  color=(" << msg.color[0] << L", " << msg.color[1] << L", " << msg.color[2] << L")\n";
         {
-            std::wcout << L"  data=[";
+            wcout << L"  data=[";
             for (BYTE elm : ToStdVector<BYTE>(msg.data))
-                std::wcout << elm << L",";
-            std::wcout << L"]\n";
+                wcout << elm << L",";
+            wcout << L"]\n";
         }
         return S_OK;
     }
