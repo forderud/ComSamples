@@ -1,5 +1,5 @@
 #include <atlbase.h>
-#include <atlcom.h>
+#include <atlcom.h> // for CComObject
 #include <atlsafe.h>
 #include <iostream>
 #include <vector>
