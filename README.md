@@ -25,7 +25,7 @@ Some benefits of using COM:
 * **Rock solid** technology that have been available since 1993.
 
 Limitations:
-* Not as easily available on non-Windows platforms.
+* Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
 
 
 ## How to test
