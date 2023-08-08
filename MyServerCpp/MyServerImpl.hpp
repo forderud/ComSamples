@@ -51,7 +51,7 @@ public:
 
 class ATL_NO_VTABLE MyServerImpl :
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with single-threaded apartment
-    public CComCoClass<MyServerImpl, &__uuidof(MyServerCpp)>,
+    public CComCoClass<MyServerImpl, &__uuidof(MyServer)>,
     public IMyServer
 {
 public:
@@ -104,4 +104,4 @@ private:
     std::vector<IMyClientPtr> m_clients;
 };
 
-OBJECT_ENTRY_AUTO(__uuidof(MyServerCpp), MyServerImpl)
+OBJECT_ENTRY_AUTO(__uuidof(MyServer), MyServerImpl)

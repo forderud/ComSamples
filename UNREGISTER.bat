@@ -15,11 +15,8 @@ for %%P in (32 64) do (
 :: Delete MyInterfaces TypeLib
 reg delete "HKCR\TypeLib\{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}" /f 2> NUL
 
-:: Delete MyServerCs COM class & AppID
+:: Delete MyServer COM class & AppID
 reg delete "HKCR\CLSID\{AF080472-F173-4D9D-8BE7-435776617347}" /f 2> NUL
 reg delete "HKCR\AppID\{AF080472-F173-4D9D-8BE7-435776617347}" /f 2> NUL
-
-:: Delete MyServerCpp COM class
-reg delete "HKCR\CLSID\{77C7147A-8305-4B1E-B77E-E02B559F28B7}" /f 2> NUL
 
 ::pause

@@ -69,12 +69,7 @@ interface IMyServer : IUnknown {
 [uuid(46F3FEB2-121D-4830-AA22-0CDA9EA90DC3)]
 library MyInterfaces {
     [uuid(AF080472-F173-4D9D-8BE7-435776617347)]
-    coclass MyServerCs {
-        [default] interface IMyServer;
-    }
-
-    [uuid(77C7147A-8305-4B1E-B77E-E02B559F28B7)]
-    coclass MyServerCpp {
+    coclass MyServer {
         [default] interface IMyServer;
     }
 }

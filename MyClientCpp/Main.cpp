@@ -66,8 +66,7 @@ int main() {
 
     // create server object in a separate process
     MyInterfaces::IMyServerPtr server;
-    //HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServerCs));
-    HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServerCpp));
+    HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
     if (FAILED(hr)) {
         _com_error err(hr);
         std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
