@@ -1,6 +1,17 @@
 /* Overview of available data types: https://learn.microsoft.com/en-us/windows/win32/midl/midl-data-types */
 import "oaidl.idl";
 
+cpp_quote("")
+cpp_quote("#ifdef __cplusplus")
+cpp_quote("} // extern \"C\"")
+cpp_quote("")
+cpp_quote("#include <atlbase.h> // for CComBSTR")
+cpp_quote("#include <atlsafe.h> // for CComSafeArray")
+cpp_quote("")
+cpp_quote("extern \"C\"{")
+cpp_quote("#endif")
+cpp_quote("")
+
 typedef [
  v1_enum, // 32bit enum size
  helpstring("")]
@@ -11,6 +22,9 @@ enum Severity {
     Error,
     Fatal,
 } Severity;
+
+cpp_quote("")
+cpp_quote("#ifndef __cplusplus")
 
 typedef [
  helpstring("Dummy message")]
@@ -32,6 +46,31 @@ struct Message {
     [helpstring("data payload)")]
     SAFEARRAY(byte) data;
 } Message;
+
+cpp_quote("")
+cpp_quote("#else // __cplusplus")
+cpp_quote("} // extern \"C\"")
+cpp_quote("")
+cpp_quote("struct Message {")
+cpp_quote("    Severity sev{};")
+cpp_quote("    DATE time{};")
+cpp_quote("    double value{};")
+cpp_quote("    CComBSTR desc; ///< BSTR wrapper")
+cpp_quote("    byte color[3]{};")
+cpp_quote("    SAFEARRAY * data = nullptr;")
+cpp_quote("")
+cpp_quote("    ~Message() {")
+cpp_quote("        if (data) {")
+cpp_quote("            CComSafeArray<BYTE> tmp;")
+cpp_quote("            tmp.Attach(data);")
+cpp_quote("            data = nullptr;")
+cpp_quote("        }")
+cpp_quote("    }")
+cpp_quote("};")
+cpp_quote("")
+cpp_quote("extern \"C\"{")
+cpp_quote("#endif")
+
 
 [object,
  oleautomation,
