@@ -21,13 +21,13 @@ namespace ComSupport
 
         public static void Register(Guid clsid, string exePath)
         {
-            // Register local server
             Trace.WriteLine($"Registering server:");
             Trace.Indent();
             Trace.WriteLine($"CLSID: {clsid:B}");
             Trace.WriteLine($"Executable: {exePath}");
             Trace.Unindent();
 
+            // write HKCR\CLSID\{clsid}\LocalServer32 = {exePath}
             string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
             using RegistryKey regKey = Registry.LocalMachine.CreateSubKey(serverKey);
             regKey.SetValue(null, exePath);
@@ -40,7 +40,7 @@ namespace ComSupport
             Trace.WriteLine($"CLSID: {clsid:B}");
             Trace.Unindent();
 
-            // Unregister local server
+            // delete HKCR\CLSID\{clsid}\LocalServer32
             string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
             Registry.LocalMachine.DeleteSubKey(serverKey, throwOnMissingSubKey: false);
         }
