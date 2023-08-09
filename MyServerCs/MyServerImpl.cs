@@ -24,7 +24,6 @@ namespace MyServerCs
                 {
                     if (m_clients.Count > 0)
                     {
-                        // broadcast message to all clients
                         Console.WriteLine("Broadcasting message to all subscribed clients.");
                         Message msg = default;
                         msg.sev = Severity.Info;

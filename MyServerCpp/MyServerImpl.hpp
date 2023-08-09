@@ -104,7 +104,6 @@ public:
     void ThreadStart() {
         while (m_active) {
             if (m_clients.size() > 0) {
-                // broadcast message to all clients
                 printf("Broadcasting message to all subscribed clients.\n");
                 Message msg;
                 msg.sev = Severity::Info;
@@ -121,9 +120,7 @@ public:
                 msg.data = data.Detach();
 
                 BroadcastMessage(msg);
-            }
-            else
-            {
+            } else {
                 printf("No clients subscribed.\n");
 
             }
