@@ -24,14 +24,18 @@ namespace MyServerCs
                     // Register server and type library
                     TypeLib.Register(exePath);
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+#if ENABLE_CONNECT_TO_ELEVATED
                     AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
+#endif
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister server and type library
+#if ENABLE_CONNECT_TO_ELEVATED
                     AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+#endif
                     LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
                     TypeLib.Unregister(exePath);
                     return;
