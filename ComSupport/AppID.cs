@@ -6,6 +6,7 @@ namespace ComSupport
 {
     public static class AppID
     {
+        /** Uses the CLSID also as AppID for convenience */
         public static void Register(Guid clsid, string runAsUser)
         {
             Trace.WriteLine($"Registering server with system-supplied DLL surrogate:");
@@ -13,17 +14,15 @@ namespace ComSupport
             Trace.WriteLine($"CLSID: {clsid:B}");
             Trace.Unindent();
 
-            string serverKey = string.Format(KeyFormat.CLSID, clsid);
+            // write HKCR\CLSID\{clsid}\AppID = {appid}
+            using RegistryKey clsidKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.CLSID, clsid));
+            clsidKey.SetValue("AppID", clsid.ToString("B"));
 
-            // Register App ID - use the CLSID as the App ID
-            using RegistryKey regKey = Registry.LocalMachine.CreateSubKey(serverKey);
-            regKey.SetValue("AppID", clsid.ToString("B"));
-            string appIdKey = string.Format(KeyFormat.AppID, clsid);
-            using RegistryKey appIdRegKey = Registry.LocalMachine.CreateSubKey(appIdKey);
-
+            // write HKCR\AppID\{clsid}\RunAs = {user}
+            using RegistryKey appIdKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.AppID, clsid));
             // Register RunAs to allow an non-elevated client to connect to an already running elevated server
             if (runAsUser.Length > 0)
-                appIdRegKey.SetValue("RunAs", runAsUser);
+                appIdKey.SetValue("RunAs", runAsUser);
         }
 
         public static void Unregister(Guid clsid)
@@ -33,15 +32,13 @@ namespace ComSupport
             Trace.WriteLine($"CLSID: {clsid:B}");
             Trace.Unindent();
 
-            // Remove the App ID value
-            string serverKey = string.Format(KeyFormat.CLSID, clsid);
-            using RegistryKey regKey = Registry.LocalMachine.OpenSubKey(serverKey, writable: true);
-            if (regKey != null)
-                regKey.DeleteValue("AppID");
+            // delete HKCR\CLSID\{clsid}\AppID
+            using RegistryKey clsidKey = Registry.LocalMachine.OpenSubKey(string.Format(KeyFormat.CLSID, clsid), writable: true);
+            if (clsidKey != null)
+                clsidKey.DeleteValue("AppID");
 
-            // Remove the App ID key
-            string appIdKey = string.Format(KeyFormat.AppID, clsid);
-            Registry.LocalMachine.DeleteSubKey(appIdKey, throwOnMissingSubKey: false);
+            // delete HKCR\AppID\{clsid}
+            Registry.LocalMachine.DeleteSubKey(string.Format(KeyFormat.AppID, clsid), throwOnMissingSubKey: false);
         }
     }
 }
