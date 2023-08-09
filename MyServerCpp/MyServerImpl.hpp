@@ -1,10 +1,12 @@
 #pragma once
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <thread>
 #include <vector>
 
 #include <atlbase.h>
 #include <atlcom.h>  // for CComObject
+#include <ATLComTime.h> // for COleDateTime
 #include "MyInterfaces.tlh"
 #include "Resource.h"
 
@@ -57,10 +59,15 @@ class ATL_NO_VTABLE MyServerImpl :
 public:
     MyServerImpl() {
         printf("MyServerImpl ctor\n");
+
+        m_thread = std::thread(&MyServerImpl::ThreadStart, this);
     }
 
     /*NOT virtual*/ ~MyServerImpl() {
         printf("MyServerImpl dtor\n");
+
+        m_active = false;
+        m_thread.join();
     }
 
     HRESULT STDMETHODCALLTYPE raw_GetNumberCruncher(/*out*/INumberCruncher** obj) override {
@@ -94,6 +101,57 @@ public:
         return E_FAIL;
     }
 
+    void ThreadStart() {
+        while (m_active) {
+            if (m_clients.size() > 0) {
+                // broadcast message to all clients
+                printf("Broadcasting message to all subscribed clients.\n");
+                Message msg;
+                msg.sev = Severity::Info;
+                msg.time = COleDateTime::GetCurrentTime();
+                msg.value = 1.23;
+                msg.desc = "Hello there!";
+                msg.color[0] = 255;
+                msg.color[1] = 0;
+                msg.color[2] = 0;
+
+                CComSafeArray<byte> data(4);
+                for (int i = 0; i < (int)data.GetCount(); ++i)
+                    data[i] = (byte)i;
+                msg.data = data.Detach();
+
+                BroadcastMessage(msg);
+            }
+            else
+            {
+                printf("No clients subscribed.\n");
+
+            }
+
+            Sleep(2000); // wait 2 seconds
+        }
+
+    }
+
+    /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
+    void BroadcastMessage(Message& msg)
+    {
+        for (auto it = m_clients.begin(); it != m_clients.end();) {
+            HRESULT hr = (*it)->raw_SendMessage(msg);
+            
+            if ((hr & 0xFFFF) == RPC_S_SERVER_UNAVAILABLE) {
+                // expect RPC_S_SERVER_UNAVAILABLE (0x800706BA) when client disconnect
+                printf("Disconnecting client after call failure (RPC_S_SERVER_UNAVAILABLE)\n");
+
+                it = m_clients.erase(it);
+                continue;
+            }
+
+            // advance to next element on success
+            it++;
+        }
+    }
+
     DECLARE_REGISTRY_RESOURCEID(IDR_MyServerImpl) // RGS file reference
 
     BEGIN_COM_MAP(MyServerImpl)
@@ -101,6 +159,8 @@ public:
     END_COM_MAP()
 
 private:
+    bool m_active = true;
+    std::thread m_thread;
     std::vector<IMyClientPtr> m_clients;
 };
 
