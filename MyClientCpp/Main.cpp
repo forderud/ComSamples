@@ -28,18 +28,21 @@ class MyClient :
     public MyInterfaces::IMyClient {
 public:
     /** SendMessage impl. */
-    HRESULT raw_SendMessage(MyInterfaces::Message msg) override {
+    HRESULT raw_SendMessage(MyInterfaces::Message * msg) override {
+        if (!msg)
+            return E_INVALIDARG;
+
         using namespace std;
 
         wcout << L"Received message:\n";
-        wcout << L"  sev=" << msg.sev << L"\n";
-        wcout << L"  time=" << msg.time << L"\n";
-        wcout << L"  value=" << msg.value << L"\n";
-        wcout << L"  desc=" << msg.desc << L"\n";
-        wcout << L"  color=(" << msg.color[0] << L", " << msg.color[1] << L", " << msg.color[2] << L")\n";
+        wcout << L"  sev=" << msg->sev << L"\n";
+        wcout << L"  time=" << msg->time << L"\n";
+        wcout << L"  value=" << msg->value << L"\n";
+        wcout << L"  desc=" << msg->desc << L"\n";
+        wcout << L"  color=(" << msg->color[0] << L", " << msg->color[1] << L", " << msg->color[2] << L")\n";
         {
             wcout << L"  data=[";
-            for (BYTE elm : ToStdVector<BYTE>(msg.data))
+            for (BYTE elm : ToStdVector<BYTE>(msg->data))
                 wcout << elm << L",";
             wcout << L"]\n";
         }

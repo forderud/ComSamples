@@ -134,9 +134,9 @@ public:
     }
 
     /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
-    void BroadcastMessage(const Message& msg) {
+    void BroadcastMessage(Message& msg) {
         for (auto it = m_clients.begin(); it != m_clients.end();) {
-            HRESULT hr = (*it)->raw_SendMessage(msg);
+            HRESULT hr = (*it)->raw_SendMessage(&msg);
             
             constexpr HRESULT WIN32_ERR = (0x8000 | FACILITY_WIN32) << 16; // high-order part of Win32 error code
             if (hr == (WIN32_ERR | RPC_S_SERVER_UNAVAILABLE)) {

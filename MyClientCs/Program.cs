@@ -34,7 +34,7 @@ namespace MyClientCs
 
     class ClientCallback : MyInterfaces.IMyClient
     {
-        public void SendMessage(MyInterfaces.Message msg)
+        public void SendMessage(ref MyInterfaces.Message msg)
         {
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);
