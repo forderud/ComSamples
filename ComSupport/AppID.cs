@@ -6,7 +6,7 @@ namespace ComSupport
 {
     public static class AppID
     {
-        /** Uses the CLSID also as AppID for convenience */
+        /** Uses the CLSID also as AppID for convenience (same as on https://github.com/dotnet/samples/blob/main/core/extensions/OutOfProcCOM/COMRegistration/DllSurrogate.cs) */
         public static void Register(Guid clsid, string runAsUser)
         {
             Trace.WriteLine($"Registering server with system-supplied DLL surrogate:");
