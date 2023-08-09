@@ -1,6 +1,6 @@
 #include <atlbase.h>
 #include <atlcom.h> // for CComObject
-#include <atlsafe.h>
+#include <atlsafe.h> // for CComSafeArray
 #include <iostream>
 #include <vector>
 #include <MyInterfaces.tlh>
