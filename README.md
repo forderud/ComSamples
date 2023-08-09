@@ -29,6 +29,7 @@ Limitations:
 
 
 ## How to test
+1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
