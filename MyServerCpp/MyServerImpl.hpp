@@ -138,7 +138,8 @@ public:
         for (auto it = m_clients.begin(); it != m_clients.end();) {
             HRESULT hr = (*it)->raw_SendMessage(msg);
             
-            if (hr == (0x80070000 | RPC_S_SERVER_UNAVAILABLE)) {
+            constexpr HRESULT WIN32_ERR = (0x8000 | FACILITY_WIN32) << 16; // high-order part of Win32 error code
+            if (hr == (WIN32_ERR | RPC_S_SERVER_UNAVAILABLE)) {
                 // expect RPC_S_SERVER_UNAVAILABLE (0x800706BA) when client disconnect
                 printf("Disconnecting client after call failure (RPC_S_SERVER_UNAVAILABLE)\n");
 
