@@ -134,8 +134,7 @@ public:
     }
 
     /** Broadcast message to all connected clients. Will disconnect clients on RPC failure. */
-    void BroadcastMessage(Message& msg)
-    {
+    void BroadcastMessage(const Message& msg) {
         for (auto it = m_clients.begin(); it != m_clients.end();) {
             HRESULT hr = (*it)->raw_SendMessage(msg);
             
