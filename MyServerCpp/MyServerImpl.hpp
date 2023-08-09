@@ -139,7 +139,7 @@ public:
         for (auto it = m_clients.begin(); it != m_clients.end();) {
             HRESULT hr = (*it)->raw_SendMessage(msg);
             
-            if ((hr & 0xFFFF) == RPC_S_SERVER_UNAVAILABLE) {
+            if (hr == (0x80070000 | RPC_S_SERVER_UNAVAILABLE)) {
                 // expect RPC_S_SERVER_UNAVAILABLE (0x800706BA) when client disconnect
                 printf("Disconnecting client after call failure (RPC_S_SERVER_UNAVAILABLE)\n");
 
