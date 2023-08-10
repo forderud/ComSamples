@@ -17,7 +17,7 @@ Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCO
 ## Motivation
 Some benefits of using COM:
 * **Language neutral** interface definitions.
-* COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers".. COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
+* COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
 * Support for bidirectional **object-oriented** communication.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
