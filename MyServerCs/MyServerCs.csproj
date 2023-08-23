@@ -18,6 +18,12 @@
   <PropertyGroup>
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.res</Win32Resource>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DefineConstants>$(DefineConstants);ENABLE_CONNECT_TO_ELEVATED</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DefineConstants>$(DefineConstants);ENABLE_CONNECT_TO_ELEVATED</DefineConstants>
+  </PropertyGroup>
 
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">
     <Message Importance="High" Text="%0a************************************%0a*** $(MSBuildProjectName) usage instructions ***%0a************************************" />
