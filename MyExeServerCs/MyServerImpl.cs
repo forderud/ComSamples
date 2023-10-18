@@ -126,7 +126,7 @@ namespace MyExeServerCs
     }
 
     /** Non-creatable COM class that doesn't need any CLSID. */
-    public sealed class NumberCruncher : ComSupport.ComClass, MyInterfaces.INumberCruncher
+    public sealed class NumberCruncher : ComSupport.ComClass, MyInterfaces.INumberCruncher, MyInterfaces.INumberCruncher2
     {
         public NumberCruncher()
         {
@@ -139,6 +139,11 @@ namespace MyExeServerCs
         }
 
         public double ComputePi ()
+        {
+            return Math.PI + 0.01; // old inaccurate impl.
+        }
+
+        public double ComputePi2()
         {
             return Math.PI;
         }
