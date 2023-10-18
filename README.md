@@ -33,7 +33,7 @@ Limitations:
 Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error codes, so that developers doesn't need to explicitly check each call for failure.
 
 Details:
-* .Net: `HRESULT` error codes are automatically {mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
+* .Net: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
 * C++ with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
 ## How to test
