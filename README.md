@@ -20,6 +20,7 @@ Some benefits of using COM:
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
 * Support for bidirectional **object-oriented** communication.
+* Support for **interface versioning** for controlled API evolution.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
 * Languages like C++, C# and Python natively support COM, which avoids the need for any manually maintained language bindings.
 * **Rock solid** technology that have been available since 1993.
