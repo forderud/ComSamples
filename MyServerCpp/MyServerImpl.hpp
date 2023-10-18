@@ -18,7 +18,8 @@ using namespace MyInterfaces;
 class ATL_NO_VTABLE NumberCruncher :
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<NumberCruncher>, // no CLSID needed
-    public INumberCruncher
+    public INumberCruncher,
+    public INumberCruncher2
 {
 public:
     NumberCruncher() {
@@ -33,12 +34,21 @@ public:
         if (!val)
             return E_INVALIDARG;
 
+        *val = M_PI + 0.01; // old inaccurate impl.
+        return S_OK;
+    }
+
+    HRESULT STDMETHODCALLTYPE raw_ComputePi2(/*out*/double* val) override {
+        if (!val)
+            return E_INVALIDARG;
+
         *val = M_PI;
         return S_OK;
     }
 
     BEGIN_COM_MAP(NumberCruncher)
         COM_INTERFACE_ENTRY(INumberCruncher)
+        COM_INTERFACE_ENTRY(INumberCruncher2)
     END_COM_MAP()
 };
 
