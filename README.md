@@ -29,8 +29,10 @@ Some benefits of using COM:
 Limitations:
 * Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
 
-## .Net bindings
-When accessing COM from .Net, [HRESULT error codes are automatically converted to/from .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
+## Exception mapping
+When accessing COM from .Net, [`HRESULT` error codes are automatically mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
+
+When accessing COM from C++ using generated TLH-wrappers, `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
