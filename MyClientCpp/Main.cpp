@@ -82,7 +82,16 @@ int main() {
 
         try {
             auto cruncher = server->GetNumberCruncher();
-            double pi = cruncher->ComputePi();
+            // try to cast to INumberCruncher2 to check if the new interface is implemented
+            MyInterfaces::INumberCruncher2Ptr cruncher2 = cruncher;
+            double pi = 0;
+            if (cruncher2) {
+                // use new interface
+                pi = cruncher2->ComputePi2();
+            } else {
+                // fallback to old interface
+                pi = cruncher->ComputePi();
+            }
             std::wcout << L"pi = " << pi << std::endl;
 
             auto callback = CreateLocalInstance<MyClient>();
