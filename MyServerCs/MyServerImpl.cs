@@ -19,7 +19,7 @@ namespace MyServerCs
         {
             m_active = true;
 
-            m_task = ComSupport.ComTask.Run<object>(System.Threading.ApartmentState.MTA, "COM MTA", () => {
+            m_task = ComSupport.ComTask.Run<object>(ApartmentState.MTA, "COM MTA", () => {
                 while (m_active)
                 {
                     if (m_clients.Count > 0)
