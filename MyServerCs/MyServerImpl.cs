@@ -86,6 +86,7 @@ namespace MyServerCs
         }
     }
 
+    /** Creatable COM class that needs a CLSID. */
     [ComVisible(true)]
     [Guid("AF080472-F173-4D9D-8BE7-435776617347")] // MyInterfaces.MyServerCsClass
     [ComDefaultInterface(typeof(MyInterfaces.IMyServer))]
@@ -124,6 +125,7 @@ namespace MyServerCs
         }
     }
 
+    /** Non-creatable COM class that doesn't need any CLSID. */
     public sealed class NumberCruncher : ComSupport.ComClass, MyInterfaces.INumberCruncher
     {
         public NumberCruncher()

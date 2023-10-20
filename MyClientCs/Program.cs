@@ -32,6 +32,7 @@ namespace MyClientCs
         }
     }
 
+    /** Non-creatable COM class that doesn't need any CLSID. */
     class ClientCallback : MyInterfaces.IMyClient
     {
         public void SendMessage(ref MyInterfaces.Message msg)

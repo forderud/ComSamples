@@ -22,6 +22,7 @@ std::vector<T> ToStdVector(const SAFEARRAY * sa) {
 }
 
 
+/** Non-creatable COM class that doesn't need any CLSID. */
 class MyClient : 
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<MyClient>, // no CLSID needed
