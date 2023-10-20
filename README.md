@@ -44,7 +44,7 @@ Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error 
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
 ### Threading
-COM clients and servers can decide their threading preference for _incoming_ calls by configuring their thread to run in either:
+COM clients and servers can decide their threading preference for _incoming_ calls by configuring the thread associated with the class(es) receiving callbacks to run in either:
 * **Single-threaded apartment (STA)**: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client might need to use mutexes or similar to protect against race conditions.
 
