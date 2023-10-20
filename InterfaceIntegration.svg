@@ -224,18 +224,18 @@
          style="font-size:20px;line-height:1.25">C# clients</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.846351px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
-       d="M 154.85808,135.04756 H 332.1624"
+       d="M 154.85808,146.29756 H 332.1624"
        id="path4927"
        inkscape:connector-curvature="0" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        x="233.44113"
-       y="125.77455"
+       y="137.02455"
        id="text5209"><tspan
          sodipodi:role="line"
          x="233.44113"
-         y="125.77455"
+         y="137.02455"
          id="tspan5213"
          style="font-size:17.5px;line-height:1.25">Build process</tspan></text>
     <g
@@ -315,7 +315,7 @@
            x="104.56671"
            y="342.7308"
            style="font-size:20px;line-height:1.25"
-           id="tspan3">DLL .Net</tspan><tspan
+           id="tspan3">.Net DLL</tspan><tspan
            sodipodi:role="line"
            x="104.56671"
            y="367.7308"
