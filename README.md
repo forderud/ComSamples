@@ -53,14 +53,14 @@ COM clients and servers can decide their threading preference for _incoming_ cal
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
-    * Either run `<path>\MyServerCs.exe" /regserver`  with admin privileges,
-    * Or run `<path>\MyServerCpp.exe" /regserver`  with admin privileges.
+    * Either run `MyServerCs.exe" /regserver`  with admin privileges,
+    * Or run `MyServerCpp.exe" /regserver`  with admin privileges.
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
 1. **Un**register the server to clean up:
-    * Either run `<path>\MyServerCs.exe" /unregserver` with admin privileges,
-    * Or run `<path>\MyServerCpp.exe" /unregserver`  with admin privileges,
+    * Either run `MyServerCs.exe" /unregserver` with admin privileges,
+    * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 
 Server registration is only needed for on-demand loaded COM EXE servers and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registered at server startup.
