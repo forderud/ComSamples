@@ -68,7 +68,7 @@ public:
 int main() {
     CoInitializeEx(0, COINITBASE_MULTITHREADED);
 
-    // create server object in a separate process
+    // create or connect to server object in a separate process
     MyInterfaces::IMyServerPtr server;
     HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
     if (FAILED(hr)) {

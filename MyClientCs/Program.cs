@@ -8,7 +8,7 @@ namespace MyClientCs
     {
         static void Main(string[] _)
         {
-            // create server object in a separate process
+            // create or connect to server object in a separate process
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
             var server = new MyInterfaces.MyServerClass();
 
