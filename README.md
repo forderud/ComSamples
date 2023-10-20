@@ -30,7 +30,7 @@ Interface definition and C++/C# integration workflow:
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
 * Languages like C++, C# and Python natively support COM, which **avoids** the need for any manually maintained **language bindings**.
 * **Rock solid** technology that have been available since 1993.
-* Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown.
+* Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
 
 #### COM limitations:
 * Best practice is poorly documented.
