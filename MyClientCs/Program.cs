@@ -20,14 +20,14 @@ namespace MyClientCs
                 double pi = cruncher.ComputePi();
                 Console.WriteLine($"pi = {pi}");
 
-                // release server reference
+                // release COM reference (avoid having to wait for GC)
                 Marshal.ReleaseComObject(cruncher);
             }
 
             // wait 5 seconds before exiting to give the server time to send messages
             Thread.Sleep(5000);
 
-            // release server reference
+            // release COM reference (avoid having to wait for GC)
             Marshal.ReleaseComObject(server);
         }
     }
