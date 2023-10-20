@@ -14,8 +14,8 @@
 using namespace MyInterfaces;
 
 class ATL_NO_VTABLE NumberCruncher :
-    public CComObjectRootEx<CComMultiThreadModel>, // also compatible with single-threaded apartment
-    public CComCoClass<NumberCruncher>, // no associated CLSID 
+    public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
+    public CComCoClass<NumberCruncher>, // no CLSID needed
     public INumberCruncher
 {
 public:
@@ -52,8 +52,8 @@ public:
 
 
 class ATL_NO_VTABLE MyServerImpl :
-    public CComObjectRootEx<CComMultiThreadModel>, // also compatible with single-threaded apartment
-    public CComCoClass<MyServerImpl, &__uuidof(MyServer)>,
+    public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
+    public CComCoClass<MyServerImpl, &__uuidof(MyServer)>, // CLSID
     public IMyServer
 {
 public:

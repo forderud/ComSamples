@@ -23,8 +23,8 @@ std::vector<T> ToStdVector(const SAFEARRAY * sa) {
 
 
 class MyClient : 
-    public CComObjectRootEx<CComMultiThreadModel>,
-    public CComCoClass<MyClient>, // no registry entries
+    public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
+    public CComCoClass<MyClient>, // no CLSID needed
     public MyInterfaces::IMyClient {
 public:
     /** SendMessage impl. */
