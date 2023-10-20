@@ -6,6 +6,7 @@ namespace MyClientCs
 {
     class Program
     {
+        [MTAThread] // or [STAThread]
         static void Main(string[] _)
         {
             // create or connect to server object in a separate process

@@ -10,6 +10,7 @@ namespace MyServerCs
     {
         private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServerCs.exe");
 
+        [MTAThread] // or [STAThread]
         static void Main(string[] args)
         {
             using var consoleTrace = new ConsoleTraceListener();
