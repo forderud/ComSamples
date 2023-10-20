@@ -16,10 +16,8 @@ Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCO
 
 ## COM description
 
-Interface definition and C++/C# integration workflow:
-
+Interface definition and C++/C# integration workflow:  
 ![Interface Integration](InterfaceIntegration.svg)
-
 
 #### Benefits of using COM:
 * **Language neutral** interface definitions.
