@@ -43,6 +43,11 @@ Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error 
 * **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
+### Threading
+COM clients and servers can decide their threading preference for _incomming_ calls by configuring their thread to run in either:
+* **Single-threaded apartment (STA)**: Incomming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incomming call is received at a time.
+* **Multi-threaded apartment (MTA)**: Incomming calls are _not_ serialized, and might arrive concurrently. This means that the client might need to use mutexes or similar to protect against race conditions.
+
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
