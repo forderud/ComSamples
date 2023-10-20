@@ -21,7 +21,7 @@ Interface definition and C++/C# integration workflow:
 ![Interface Integration](InterfaceIntegration.svg)
 
 
-Some benefits of using COM:
+#### Some benefits of using COM
 * **Language neutral** interface definitions.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
@@ -32,7 +32,8 @@ Some benefits of using COM:
 * **Rock solid** technology that have been available since 1993.
 * Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown.
 
-Limitations:
+#### COM limitations
+* Best practice is poorly documented.
 * Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
 
 ## Exception mapping
