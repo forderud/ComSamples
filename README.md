@@ -8,8 +8,8 @@ Repo content:
 | MyInterfaces | Language-neutral COM interface definitions for IPC ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
-| MyServerCpp  | C++ server implementation. Implemented as a on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
-| MyServerCs   | C# server implementation. Implemented as a on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyServerCpp  | C++ server implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyServerCs   | C# server implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
@@ -23,13 +23,13 @@ Interface definition and C++/C# integration workflow:
 
 #### Benefits of using COM:
 * **Language neutral** interface definitions.
-* COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
-* Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
+* COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnostics with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
+* Support for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
 * Support for bidirectional **object-oriented** communication.
 * Support for **interface versioning** for controlled API evolution.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
 * Languages like C++, C# and Python natively support COM, which **avoids** the need for any manually maintained **language bindings**.
-* **Rock solid** technology that have been available since 1993.
+* **Rock solid** technology that has been available since 1993.
 * Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
 
 #### COM limitations:
@@ -44,9 +44,9 @@ Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error 
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
 ### Threading
-COM clients and servers can decide their threading preference for _incomming_ calls by configuring their thread to run in either:
-* **Single-threaded apartment (STA)**: Incomming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incomming call is received at a time.
-* **Multi-threaded apartment (MTA)**: Incomming calls are _not_ serialized, and might arrive concurrently. This means that the client might need to use mutexes or similar to protect against race conditions.
+COM clients and servers can decide their threading preference for _incoming_ calls by configuring their thread to run in either:
+* **Single-threaded apartment (STA)**: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
+* **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client might need to use mutexes or similar to protect against race conditions.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
@@ -63,7 +63,7 @@ COM clients and servers can decide their threading preference for _incomming_ ca
     * Or run `<path>\MyServerCpp.exe" /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 
-Server registration is only needed for on-demand loaded COM EXE servers, and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registred at server startup.
+Server registration is only needed for on-demand loaded COM EXE servers and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registered at server startup.
 
 The client programs should output something resembling this:
 ```
