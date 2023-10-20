@@ -14,7 +14,13 @@ Repo content:
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
 
-## Motivation
+## COM description
+
+Interface definition and C++/C# integration workflow:
+
+![Interface Integration](InterfaceIntegration.svg)
+
+
 Some benefits of using COM:
 * **Language neutral** interface definitions.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
