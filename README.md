@@ -21,7 +21,7 @@ Interface definition and C++/C# integration workflow:
 ![Interface Integration](InterfaceIntegration.svg)
 
 
-#### Some benefits of using COM
+#### Benefits of using COM:
 * **Language neutral** interface definitions.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnsotis with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Suport for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
@@ -32,16 +32,16 @@ Interface definition and C++/C# integration workflow:
 * **Rock solid** technology that have been available since 1993.
 * Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown.
 
-#### COM limitations
+#### COM limitations:
 * Best practice is poorly documented.
 * Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
 
-## Exception mapping
-Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error codes, so that developers doesn't need to explicitly check each call for failure.
+### Exception mapping
+Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
 
-Details:
-* .Net: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
-* C++ with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
+#### Details:
+* **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
+* **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
