@@ -37,7 +37,7 @@ Interface definition and C++/C# integration workflow:
 * Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
 
 ### Exception mapping
-Both C++ and .Net provides support for automatic mapping of COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
+Both C++ and .Net can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
 
 #### Details:
 * **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
