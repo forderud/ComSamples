@@ -46,7 +46,7 @@ COM clients and servers can decide their threading preference for _incoming_ cal
 * **Single-threaded apartment (STA)**: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client might need to use mutexes or similar to protect against race conditions.
 
-STA threads need to manually pump messages to process incoming calls - just like GUI application does to process mouse & keyboard events. The implementation then needs to take into account that reentrancy can occur as part of the message pumping.
+STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like GUI application does to process mouse & keyboard events. The implementation then needs to take into account that reentrancy can occur as part of the message pumping.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
