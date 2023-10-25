@@ -147,7 +147,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.03"
-     inkscape:cx="192.36453"
+     inkscape:cx="192.61084"
      inkscape:cy="230.78818"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -210,18 +210,18 @@
          id="tspan4904-3"
          x="356.08978"
          y="148.77789"
-         style="font-size:20px;line-height:1.25">C++ clients</tspan></text>
+         style="font-size:20px;line-height:1.25">C++ code</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="354.61053"
+       x="356.08978"
        y="262.1972"
        id="text4902-2-8"><tspan
          sodipodi:role="line"
          id="tspan4904-3-0"
-         x="354.61053"
+         x="356.08978"
          y="262.1972"
-         style="font-size:20px;line-height:1.25">C# clients</tspan></text>
+         style="font-size:20px;line-height:1.25">C# code</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.846351px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
        d="M 154.85808,146.29756 H 332.1624"
