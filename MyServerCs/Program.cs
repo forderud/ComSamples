@@ -24,7 +24,7 @@ namespace MyServerCs
                 {
                     // Register server and type library
                     TypeLib.Register(exePath);
-                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath);
+                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, new System.Guid("{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}"));
 #if ENABLE_CONNECT_TO_ELEVATED
                     AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
 #endif
