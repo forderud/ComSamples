@@ -62,6 +62,7 @@ Most security settings for a COM server can be configured through [AppID](https:
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
+    * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
     * Either run `MyServerCs.exe" /unregserver` with admin privileges,
     * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
