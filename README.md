@@ -49,6 +49,9 @@ COM clients and servers can decide their [threading model](https://learn.microso
 
 [1] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to take into account that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
+### Security
+Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries.
+
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
