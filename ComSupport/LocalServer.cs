@@ -11,8 +11,6 @@ namespace ComSupport
     {
         public const string CLSID = @"SOFTWARE\Classes\CLSID\{0:B}";
         public const string AppID = @"SOFTWARE\Classes\AppID\{0:B}";
-
-        public static readonly string LocalServer32 = @$"{CLSID}\LocalServer32";
     }
 
     public sealed class LocalServer : IDisposable
@@ -28,7 +26,7 @@ namespace ComSupport
             Trace.Unindent();
 
             // write HKCR\CLSID\{clsid}\LocalServer32 = {exePath}
-            string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
+            string serverKey = string.Format(@$"{KeyFormat.CLSID}\LocalServer32", clsid);
             using RegistryKey regKey = Registry.LocalMachine.CreateSubKey(serverKey);
             regKey.SetValue(null, exePath);
         }
@@ -41,7 +39,7 @@ namespace ComSupport
             Trace.Unindent();
 
             // delete HKCR\CLSID\{clsid}\LocalServer32
-            string serverKey = string.Format(KeyFormat.LocalServer32, clsid);
+            string serverKey = string.Format(@$"{KeyFormat.CLSID}\LocalServer32", clsid);
             Registry.LocalMachine.DeleteSubKey(serverKey, throwOnMissingSubKey: false);
         }
 
