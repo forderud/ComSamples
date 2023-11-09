@@ -5,7 +5,7 @@ Repo content:
 | Module       | Description                                 |
 |--------------|---------------------------------------------|
 | ComSupport   | .Net support functions for COM registration |
-| MyInterfaces | Language-neutral COM interface definitions for IPC ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
+| MyInterfaces | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
 | MyClientCpp  | Sample C++ client |
 | MyClientCs   | Sample C# client |
 | MyClientPy   | Sample Python client |
