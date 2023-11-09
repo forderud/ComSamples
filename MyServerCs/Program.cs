@@ -23,8 +23,8 @@ namespace MyServerCs
                     regCommandMaybe.Equals("-regserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Register server and type library
-                    TypeLib.Register(exePath);
-                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, new System.Guid("{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}"));
+                    Guid typeLib = TypeLib.Register(exePath);
+                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
 #if ENABLE_CONNECT_TO_ELEVATED
                     AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
 #endif

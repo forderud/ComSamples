@@ -8,7 +8,7 @@ namespace ComSupport
 {
     public static class TypeLib
     {
-        public static void Register(string tlbPath)
+        public static Guid Register(string tlbPath)
         {
             Trace.WriteLine($"Registering type library:");
             Trace.Indent();
@@ -21,11 +21,17 @@ namespace ComSupport
                 // ... or switch to RegisterTypeLibForUser for registration
             }
 
-            int hr = OleAut32.LoadTypeLibEx(tlbPath, OleAut32.REGKIND.REGKIND_REGISTER, out ComTypes.ITypeLib _);
+            int hr = OleAut32.LoadTypeLibEx(tlbPath, OleAut32.REGKIND.REGKIND_REGISTER, out ComTypes.ITypeLib tlb);
             if (hr < 0)
             {
                 Marshal.ThrowExceptionForHR(hr);
             }
+
+            // return TypeLib GUID
+            IntPtr ptr;
+            tlb.GetLibAttr(out ptr);
+            var typeAttr = (ComTypes.TYPELIBATTR)Marshal.PtrToStructure(ptr, typeof(ComTypes.TYPELIBATTR));
+            return typeAttr.guid;
         }
 
         public static void Unregister(string tlbPath)
