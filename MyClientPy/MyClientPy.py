@@ -4,7 +4,7 @@ import comtypes.client
 # Folder might need to be deleted if already containing TypeLibs.
 comtypes.client.gen_dir = None
 
-def TypeLibForClass (clsid):
+def TypeLibForClass(clsid):
     import winreg
     with winreg.OpenKey(winreg.HKEY_CLASSES_ROOT, "CLSID\\"+str(clsid)+"\\TypeLib", 0, winreg.KEY_READ) as key:
         typelib = winreg.EnumValue(key, 0)[1]
