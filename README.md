@@ -37,10 +37,10 @@ Interface definition and C++/C#/Python integration workflow:
 
 ### COM server types
 COM servers can be compiled as either:
-* **DLL**: Server that runs in the _same process_ as the client (in-process)[1]. This allows for more efficient direct communication, since IPC isn't needed. However, it does not allow for failure isolation or security sandboxing.
+* **DLL**: Server that runs in the _same process_ as the client (in-process)[1]. This allows for more efficient direct communication since IPC isn't needed. However, it does not allow for failure isolation or security sandboxing.
 * **EXE**: Server that runs in a _separate process_ (out-of-process). This leads to some per-call marshalling overhead due to IPC. However, you also get failure isolation so that a crashing server doesn't bring the client process down. The server can also run with more or fewer security privileges compared to the client.
 
-COM provides transparent marshalling. This means that the client code doesn't need to know if the COM server runs in the same or a different process. The object that exposes COM interfaces looks the same, regardless if it's running in the same or a separate process, or is implemented in a different programming language.
+COM provides transparent marshalling. This means that the client code doesn't need to know if the COM server runs in the same or a different process. The object that exposes COM interfaces looks the same, regardless of if it's running in the same or a separate process or is implemented in a different programming language.
 
 This repo focuses on IPC and does therefore only contain EXE-based servers.
 
@@ -58,9 +58,9 @@ COM clients and servers can decide their [threading model](https://learn.microso
 * **Single-threaded apartment (STA)**[2]: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client need to use mutexes or similar to protect against race conditions.
 
-[1] The threading model only affect _incoming_ calls marshalled by the COM runtime. This typically means COM servers implemented in a different programming language or running in a different process. Direct C++ communication between COM objects in the same proces are not affected by the threading model.
+[1] The threading model only affect _incoming_ calls marshalled by the COM runtime. This typically means COM servers implemented in a different programming language or running in a different process. Direct C++ communication between COM objects in the same process are not affected by the threading model.
 
-[2] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to take into account that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
+[2] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
 ### Security
 Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation in conjunction with COM.
