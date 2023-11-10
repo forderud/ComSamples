@@ -53,7 +53,7 @@ This repo focuses on IPC and does therefore only contain EXE-based servers, sinc
 [1] DLL-based COM servers can also be started in a separate process if configuring AppID [DllSurrogate](https://learn.microsoft.com/en-us/windows/win32/com/dllsurrogate).
 
 ### Exception mapping
-Both C++ and .Net can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
+Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
 
 #### Details:
 * **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
