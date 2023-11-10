@@ -2,6 +2,7 @@ import comtypes.client
 
 # Disable disk caching of TypeLib wrappers. Avoids failures on interface changes.
 # Folder might need to be deleted if already containing TypeLibs.
+# Comment-out if experiencing "list index out of range" exception from comtypes.client.GetModule
 comtypes.client.gen_dir = None
 
 def TypeLibForClass(clsid):
