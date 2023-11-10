@@ -43,11 +43,13 @@ Both C++ and .Net can automatically map COM `HRESULT` error codes to exceptions,
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
 
 ### Threading
-COM clients and servers can decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls by configuring the thread associated with the class(es) receiving callbacks to run in either:
-* **Single-threaded apartment (STA)**[1]: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
+COM clients and servers can decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls[1] by configuring the thread associated with the class(es) receiving callbacks to run in either:
+* **Single-threaded apartment (STA)**[2]: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime is ensuring that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client need to use mutexes or similar to protect against race conditions.
 
-[1] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to take into account that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
+[1] The threading model only affect _incoming_ calls marshalled by the COM runtime. This typically means COM servers implemented in a different programming language or running in a different process. Direct C++ communication between COM objects in the same proces are not affected by the threading model.
+
+[2] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to take into account that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
 ### Security
 Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation in conjunction with COM.
