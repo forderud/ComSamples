@@ -38,7 +38,6 @@
       <WarningLevel>Level3</WarningLevel>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
