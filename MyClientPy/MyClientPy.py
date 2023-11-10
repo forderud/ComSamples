@@ -22,8 +22,10 @@ class MyClientImpl(comtypes.CoClass):
     def SendMessage(self, message):
         msg = message.contents # access Message struct fields
         print("Received message:")
+        print("  sev="+str(msg.sev))
         print("  value="+str(msg.value))
         print("  desc="+msg.desc)
+        print("  color=[{}, {}, {}]".format(str(msg.color[0]), str(msg.color[1]), str(msg.color[2])))
 
 
 if __name__=="__main__":
