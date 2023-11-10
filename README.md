@@ -1,4 +1,4 @@
-Examples of language-neutral [Component Object Model (COM)](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) interfaces for [IPC](https://en.wikipedia.org/wiki/Inter-process_communication).
+Examples of language-neutral [Component Object Model (COM)](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) interfaces for [IPC](https://en.wikipedia.org/wiki/Inter-process_communication) and interoperability between programming languages.
 
 Repo content:
 
@@ -6,11 +6,11 @@ Repo content:
 |--------------|---------------------------------------------|
 | ComSupport   | .Net support functions for COM registration |
 | MyInterfaces | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
-| MyClientCpp  | Sample C++ client |
-| MyClientCs   | Sample C# client |
-| MyClientPy   | Sample Python client |
-| MyServerCpp  | C++ server implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
-| MyServerCs   | C# server implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyClientCpp  | Sample C++ _client_ |
+| MyClientCs   | Sample C# _client_ |
+| MyClientPy   | Sample Python _client_ |
+| MyServerCpp  | C++ _server_ implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyServerCs   | C# _server_ implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
 
 Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
