@@ -10,18 +10,38 @@ def TypeLibForClass (clsid):
         typelib = winreg.EnumValue(key, 0)[1]
     return comtypes.client.GetModule([typelib, 0, 0]) # version 0.0
 
+# MyServer ClassID (CLSID)
+SERVER_CLSID = "{AF080472-F173-4D9D-8BE7-435776617347}"
+MyInterfaces = TypeLibForClass(SERVER_CLSID)
+
+
+class MyClientImpl(comtypes.CoClass):
+    '''COM callback class that implement IMyClient'''
+    _com_interfaces_ = [MyInterfaces.IMyClient]
+
+    def SendMessage(self, message):
+        msg = message.contents # access Message struct fields
+        print("EVENT: description="+msg.desc+" ,value="+str(msg.value))
+
 
 if __name__=="__main__":
-    # MyServer ClassID (CLSID)
-    clsid = "{AF080472-F173-4D9D-8BE7-435776617347}"
-    MyInterfaces = TypeLibForClass(clsid)
-
     # create or connect to server object in a separate process
-    server = comtypes.client.CreateObject(clsid)
+    server = comtypes.client.CreateObject(SERVER_CLSID)
     # cast to IMyServer interface
     server = server.QueryInterface(MyInterfaces.IMyServer)
+
+    # subscribe to events from server
+    obj = MyClientImpl()
+    server.Subscribe(obj)
 
     # invoke COM methods
     nc = server.GetNumberCruncher()
     pi = nc.ComputePi()
     print("pi: "+str(pi))
+
+    # Wait a while to give the server a chance to send events.
+    # Need to pump messages since we're in a STA.
+    comtypes.client.PumpEvents(5)
+
+    # unsubscribe to events
+    server.Unsubscribe(obj)
