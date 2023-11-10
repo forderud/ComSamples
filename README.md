@@ -1,6 +1,6 @@
 Examples of language-neutral [Component Object Model (COM)](https://learn.microsoft.com/en-us/windows/win32/com/the-component-object-model) interfaces for [IPC](https://en.wikipedia.org/wiki/Inter-process_communication) and interoperability between programming languages.
 
-Repo content:
+Project listing:
 
 | Module       | Description                                 |
 |--------------|---------------------------------------------|
@@ -34,6 +34,17 @@ Interface definition and C++/C#/Python integration workflow:
 #### COM limitations:
 * Best practice is poorly documented.
 * Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
+
+### COM server types
+COM servers can be compiled as either:
+* **DLL**: Server that runs in the _same process_ as the client (in-process)[1]. This allows for more efficient direct communication, since IPC isn't needed. However, it does not allow for failure isolation or security sandboxing.
+* **EXE**: Server that runs in a _separate process_ (out-of-process). This leads to some per-call marshalling overhead due to IPC. However, you also get failure isolation so that a crashing server doesn't bring the client process down. The server can also run with more or fewer security privileges compared to the client.
+
+COM provides transparent marshalling. This means that the client code doesn't need to know if the COM server runs in the same or a different process. The object that exposes COM interfaces looks the same, regardless if it's running in the same or a separate process, or is implemented in a different programming language.
+
+This repo focuses on IPC and does therefore only contain EXE-based servers.
+
+[1] DLL-based COM servers can also be started in a separate process if configuring AppID [DllSurrogate](https://learn.microsoft.com/en-us/windows/win32/com/dllsurrogate).
 
 ### Exception mapping
 Both C++ and .Net can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
