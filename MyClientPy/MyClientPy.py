@@ -21,7 +21,9 @@ class MyClientImpl(comtypes.CoClass):
 
     def SendMessage(self, message):
         msg = message.contents # access Message struct fields
-        print("EVENT: description="+msg.desc+" ,value="+str(msg.value))
+        print("Received message:")
+        print("  value="+str(msg.value))
+        print("  desc="+msg.desc)
 
 
 if __name__=="__main__":
@@ -37,7 +39,7 @@ if __name__=="__main__":
     # invoke COM methods
     nc = server.GetNumberCruncher()
     pi = nc.ComputePi()
-    print("pi: "+str(pi))
+    print("pi = "+str(pi))
 
     # Wait a while to give the server a chance to send events.
     # Need to pump messages since we're in a STA.
