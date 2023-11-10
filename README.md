@@ -65,7 +65,7 @@ COM clients and servers can decide their [threading model](https://learn.microso
 [2] STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
 ### Security
-Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation in conjunction with COM.
+Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
