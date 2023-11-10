@@ -16,7 +16,7 @@ MyInterfaces = TypeLibForClass(SERVER_CLSID)
 
 
 class MyClientImpl(comtypes.CoClass):
-    '''COM callback class that implement IMyClient'''
+    '''Non-creatable COM class that doesn't need any CLSID'''
     _com_interfaces_ = [MyInterfaces.IMyClient]
 
     def SendMessage(self, message):
