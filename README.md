@@ -17,6 +17,10 @@ Both servers are implemented as on-demand loaded COM EXE servers. The processes 
 The .Net samples are based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
 
+The server projects implement the `IMyServer` interface wheras the client projects implement the `IMyClient` callback interface:  
+![Overview](Overview.svg)
+
+
 ## COM description
 
 Interface definition and C++/C#/Python integration workflow:  
