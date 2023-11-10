@@ -14,7 +14,7 @@ Project listing:
 
 Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment.
 
-The .Net samples are based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
+The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
 
 The server projects implement the `IMyServer` interface wheras the client projects implement the `IMyClient` callback interface:  
