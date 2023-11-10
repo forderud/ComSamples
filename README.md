@@ -22,12 +22,11 @@ The server projects implement the `IMyServer` interface wheras the client projec
 
 
 ## COM description
-
-Interface definition and C++/C#/Python integration workflow:  
+COM interfaces are first defined in IDL files. The IDL files are afterwards compiled into TLB type libraries, TLH/TLI headers and/or .Net DLL assemblies, depending on the target language(s):  
 ![Interface Integration](InterfaceIntegration.svg)
 
 #### COM strengths:
-* **Language neutral** interface definitions.
+* **Language neutral** interface definitions in IDL files.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnostics with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Support for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
 * Support for bidirectional **object-oriented** communication.
