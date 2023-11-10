@@ -9,10 +9,12 @@ Project listing:
 | MyClientCpp  | Sample C++ _client_ |
 | MyClientCs   | Sample C# _client_ |
 | MyClientPy   | Sample Python _client_ |
-| MyServerCpp  | C++ _server_ implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
-| MyServerCs   | C# _server_ implementation. Implemented as an on-demand loaded COM EXE server. The process can also be started manually to facilitate background service deployment. |
+| MyServerCpp  | C++ _server_ implementation |
+| MyServerCs   | C# _server_ implementation |
 
-Based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
+Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment.
+
+The .Net samples are based on https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM
 
 
 ## COM description
