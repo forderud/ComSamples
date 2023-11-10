@@ -37,7 +37,7 @@ Interface definition and C++/C#/Python integration workflow:
 
 ### COM server types
 COM servers can be compiled as either:
-* **DLL**: Server that runs in the _same process_ as the client (in-process)[1]. This allows for more efficient direct communication since IPC isn't needed. However, it does not allow for failure isolation or security sandboxing.
+* **DLL**: Server that runs in the _same process_ as the client (in-process)[1]. This allows for more efficient direct communication without IPC. However, it does not allow for failure isolation or security sandboxing.
 * **EXE**: Server that runs in a _separate process_ (out-of-process). This leads to some per-call marshalling overhead due to IPC. However, you also get failure isolation so that a crashing server doesn't bring the client process down. The server can also run with more or fewer security privileges compared to the client.
 
 COM provides transparent marshalling. This means that the client code doesn't need to know if the COM server runs in the same or a different process. The object that exposes COM interfaces looks the same, regardless of if it's running in the same or a separate process or is implemented in a different programming language.
