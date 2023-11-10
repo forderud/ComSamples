@@ -33,7 +33,7 @@ Interface definition and C++/C#/Python integration workflow:
 * Support for bidirectional **object-oriented** communication.
 * Support for **interface versioning** for controlled API evolution.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
-* Languages like C++ and C# natively support COM, whereas Python support is achieved through the `comtypes` package. This **avoids** the need for any manually maintained **language bindings**.
+* Languages like C++ and C# natively support COM, whereas Python support is achieved through the [comtypes](https://github.com/enthought/comtypes) package. This **avoids** the need for any manually maintained **language bindings**.
 * **Rock solid** technology that has been available since 1993.
 * Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
 
