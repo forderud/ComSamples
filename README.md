@@ -61,7 +61,7 @@ COM provides transparent marshalling. This means that the client code doesn't ne
 
 This repo focuses on IPC and does therefore only contain EXE-based servers, since there are fewer online resources on that. Microsoft provides [COMServerDemo](https://github.com/dotnet/samples/tree/main/core/extensions/COMServerDemo) sample code for DLL-based servers implemented in C#/.Net and [Create a Classic COM Component Using WRL](https://learn.microsoft.com/en-us/cpp/cppcx/wrl/how-to-create-a-classic-com-component-using-wrl) and [Component Object Model (COM) Sample](https://github.com/microsoft/component-object-model-sample) for servers implemented in C++.
 
-<sup>[1]</sup> DLL-based COM servers can also be started in a separate process if configuring AppID [DllSurrogate](https://learn.microsoft.com/en-us/windows/win32/com/dllsurrogate).
+<sup>[1]</sup> DLL-based COM servers can also be started in a separate process if configuring a [DllSurrogate](https://learn.microsoft.com/en-us/windows/win32/com/dllsurrogate). This can sometimes be useful for testing, since it allows the same COM server to either be loaded in-proc or out-of-proc without having to rebuild it.
 
 ### Exception mapping
 Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
