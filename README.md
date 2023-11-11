@@ -50,7 +50,7 @@ Some common concepts:
 
 <sup>[1]</sup> Globally Unique Identifier (GUID) are 128bit values typically expressed as a `{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}` hexadecimal string. Must be globally unique, so they **cannot be copied between projects**. Typically generated with the `uuidgen.exe` tool from a Developer Command Prompt.
 
-<sup>[2]</sup> Neither COM interfaces nor their associated datastructures or enumerations can be changed after an external release, since that would break compatibility with existing code. Developers instead need to create a new interface with a new GUID when changes are required. It's then common to add a version number suffix to the interface name as versioning scheme.
+<sup>[2]</sup> Neither COM interfaces nor their associated data structures or enumerations can be changed after an external release, since that would break compatibility with existing code. Developers instead need to create a new interface with a new GUID when changes are required. It's then common to add a version number suffix to the interface name as versioning scheme.
 
 ### COM server types
 COM servers can be compiled as either:
