@@ -1,9 +1,8 @@
 import comtypes.client
-
-# Disable disk caching of TypeLib wrappers. Avoids failures on interface changes.
-# Folder might need to be deleted if already containing TypeLibs.
-# Comment-out if experiencing "list index out of range" exception from comtypes.client.GetModule
-comtypes.client.gen_dir = None
+# comtypes will generate TypeLib wrappers that are cached on disk. These are unfortunately not
+# regenerated if a COM interface is changed, which can lead to problems. Therefore, please eiher:
+# * Delete the "comtypes.client.gen_dir" folder when changing a COM interface without updating the GUID, or
+# * Set "comtypes.client.gen_dir = None" during script startup to disable caching (doesn't always work).
 
 def TypeLibForClass(clsid):
     import winreg
