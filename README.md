@@ -43,12 +43,14 @@ COM interfaces are first defined in IDL files. The IDL files are afterwards comp
 ### COM concepts
 Some common concepts:
 * **IDL**: Interface Definition Language source file. Used for defining COM interfaces, classes and type libraries.
-* **Interface**: Collection of callable functions that a class can implement. Expressed in a language-neutral way. Identified by a GUID<sup>[1]</sup>.
+* **Interface**: Collection of callable functions that a class can implement. Expressed in a language-neutral way. Identified by a GUID<sup>[1]</sup>. **Cannot be changed** after an external release<sup>[2]</sup>.
 * **Class**: Concrete implementation of one or more COM interfaces. Can _optionally_ be identified by a ClassID (CLSID) GUID<sup>[1]</sup> if class instances are directly creatable using [CoCreateInstance](https://learn.microsoft.com/en-us/windows/win32/learnwin32/creating-an-object-in-com) or similar.
 * **Type library** (TLB): Binary file format used by the COM runtime to marshal calls between languages and processes. Identified by a GUID<sup>[1]</sup>. Can either be stored in a separate TLB file or embedded into the COM server EXE or DLL.
 * **ProgID**: Optional string-based programmatic identifier for a COM class. Used to map a human-readable string to a ClassID, so that developers doesn't need to work directly with the underlying GUID.
 
 <sup>[1]</sup> Globally Unique Identifier (GUID) are 128bit values typically expressed as a `{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}` hexadecimal string. Must be globally unique, so they **cannot be copied between projects**. Typically generated with the `uuidgen.exe` tool from a Developer Command Prompt.
+
+<sup>[2]</sup> Neither COM interfaces nor their associated datastructures or enumerations can be changed after an external release, since that would break compatibility with existing code. Developers instead need to create a new interface with a new GUID when changes are required. It's then common to add a version number suffix to the interface name as versioning scheme.
 
 ### COM server types
 COM servers can be compiled as either:
