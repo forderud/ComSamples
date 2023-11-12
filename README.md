@@ -44,7 +44,7 @@ COM interfaces are first defined in IDL files. The IDL files are afterwards comp
 Some common concepts:
 * **IDL**: Interface Definition Language source file. Used for defining COM interfaces, classes and type libraries.
 * **Interface**: Collection of callable functions that a class can implement. Expressed in a language-neutral way. Identified by a GUID<sup>[1]</sup>. **Cannot be changed** after an external release<sup>[2]</sup>.
-* **Class**: Concrete implementation of one or more COM interfaces. Can _optionally_ be identified by a ClassID (CLSID) GUID<sup>[1]</sup> if class instances are directly creatable using [CoCreateInstance](https://learn.microsoft.com/en-us/windows/win32/learnwin32/creating-an-object-in-com) or similar.
+* **Class**: Concrete implementation of one or more COM interfaces. Can _optionally_ be identified by a ClassID (CLSID) GUID<sup>[1]</sup> to  make class instances directly [creatable](https://learn.microsoft.com/en-us/windows/win32/learnwin32/creating-an-object-in-com).
 * **Type library** (TLB): Binary file format used by the COM runtime to marshal calls between languages and processes. Identified by a GUID<sup>[1]</sup>. Can either be stored in a separate TLB file or embedded into the COM server EXE or DLL.
 * **ProgID**: Optional string-based programmatic identifier for a COM class. Used to map a human-readable string to a ClassID, so that developers doesn't need to work directly with the underlying GUID.
 
