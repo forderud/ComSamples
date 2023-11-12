@@ -12,10 +12,7 @@ Project listing:
 | MyServerCpp  | C++ _server_ implementation |
 | MyServerCs   | C# _server_ implementation |
 
-Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment.
-
-The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
-
+Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
 The server projects implement the `IMyServer` interface whereas the client projects implement the `IMyClient` callback interface:  
 ![Overview](Overview.svg)
