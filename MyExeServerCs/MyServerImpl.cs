@@ -142,5 +142,14 @@ namespace MyExeServerCs
         {
             return Math.PI;
         }
+
+        public byte[] ComputeValues(uint count)
+        {
+            byte[] values = new byte[count];
+            for (uint i = 0; i < count; i++)
+                values[i] = (byte)i;
+
+            return values;
+        }
     }
 }

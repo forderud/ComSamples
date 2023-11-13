@@ -85,6 +85,13 @@ int main() {
             double pi = cruncher->ComputePi();
             std::wcout << L"pi = " << pi << std::endl;
 
+            CComSafeArray<BYTE> arr;
+            arr.Attach(cruncher->ComputeValues(4));
+            std::wcout << L"array: [";
+            for (unsigned int i = 0; i < arr.GetCount(); ++i)
+                std::wcout << (int)arr[(LONG)i] << L", ";
+            std::wcout << L"]\n";
+
             auto callback = CreateLocalInstance<MyClient>();
             server->Subscribe(callback);
 
