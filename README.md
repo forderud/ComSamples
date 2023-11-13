@@ -110,6 +110,8 @@ COM clients and servers can decide their [threading model](https://learn.microso
 <sup>[2]</sup> STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
 ## Advanced topics
+These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
+
 
 ### Registry entries
 Registry folders associated with a COM server:
