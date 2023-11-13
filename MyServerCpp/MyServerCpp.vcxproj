@@ -93,7 +93,7 @@
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">
     <Message Importance="High" Text="%0a**************************************%0a*** $(MSBuildProjectName) usage instructions ***%0a**************************************" />
     <Message Importance="High" Text="The server must be COM registered in order to activate.%0aThe following commands must be executed from an elevated command prompt." />
-    <Message Importance="High" Text="Register:%0a    &quot;$(ProjectDir)$(OutputPath)$(TargetName)&quot; /regserver" />
-    <Message Importance="High" Text="Unregister:%0a     &quot;$(ProjectDir)$(OutputPath)$(TargetName)&quot; /unregserver" />
+    <Message Importance="High" Text="Register:%0a    &quot;$(OutputPath)$(TargetName)&quot; /regserver" />
+    <Message Importance="High" Text="Unregister:%0a     &quot;$(OutputPath)$(TargetName)&quot; /unregserver" />
   </Target>
 </Project>
