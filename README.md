@@ -129,9 +129,6 @@ COM servers are responsible for registering and unregistering themselves. This i
 * DLL-based server: `regsvr32.exe <server-name>.dll` and `regsvr32.exe /u <server-name>.dll`
 * EXE-based server: `<server-name>.exe /regserver` and `<server-name>.exe /unregserver`
 
-### Security
-Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
-
 ### Memory management rules (for C++)
 Rules:
 * [Rules for Managing Reference Counts](https://learn.microsoft.com/en-us/windows/win32/com/rules-for-managing-reference-counts). Can use smart-pointers like [`CComPtr<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomptr-class) or [`_com_ptr_t<T>`](https://learn.microsoft.com/en-us/cpp/cpp/com-ptr-t-class) to ease access.
@@ -147,6 +144,9 @@ Rules:
   - [`[unique]`](https://learn.microsoft.com/nb-no/windows/win32/midl/unique): Can be NULL, change to/from NULL but not aliased.
   - [`[ptr]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ptr): Can be NULL, change to/from NULL and be aliased.
   - `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-file) unless specified.
+
+### Security
+Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
