@@ -78,19 +78,19 @@ int main() {
     }
 
     try {
-        auto callback = MyClient::Create();
-        server->Subscribe(callback);
-
         auto cruncher = server->GetNumberCruncher();
         double pi = cruncher->ComputePi();
         std::wcout << L"pi = " << pi << std::endl;
+
+        auto callback = MyClient::Create();
+        server->Subscribe(callback);
+
+        // wait 5 seconds before exiting to give the server time to send messages
+        Sleep(5000);
     } catch (const _com_error& e) {
         std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
         return 1;
     }
-
-    // wait 5 seconds before exiting to give the server time to send messages
-    Sleep(5000);
 
     CoUninitialize();
 

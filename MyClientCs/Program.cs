@@ -13,9 +13,6 @@ namespace MyClientCs
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
             var server = new MyInterfaces.MyServerClass();
 
-            var callback = new ClientCallback();
-            server.Subscribe(callback);
-
             {
                 var cruncher = server.GetNumberCruncher();
                 double pi = cruncher.ComputePi();
@@ -24,6 +21,9 @@ namespace MyClientCs
                 // release COM reference (avoid having to wait for GC)
                 Marshal.ReleaseComObject(cruncher);
             }
+
+            var callback = new ClientCallback();
+            server.Subscribe(callback);
 
             // wait 5 seconds before exiting to give the server time to send messages
             Thread.Sleep(5000);

@@ -86,7 +86,7 @@ interface IMyClient : IUnknown {
  uuid(B5506675-17E0-4709-A31A-305E36D0E2FA),
  helpstring("Number crunching interface")]
 interface INumberCruncher : IUnknown {
-    [helpstring("Test method")]
+    [helpstring("Compute the value of pi")]
     HRESULT ComputePi([out, retval] double *ret);
 };
 
