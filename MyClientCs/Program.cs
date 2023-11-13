@@ -21,12 +21,15 @@ namespace MyClientCs
                 // release COM reference (avoid having to wait for GC)
                 Marshal.ReleaseComObject(cruncher);
             }
+            {
+                var callback = new ClientCallback();
+                server.Subscribe(callback);
 
-            var callback = new ClientCallback();
-            server.Subscribe(callback);
+                // wait 5 seconds before exiting to give the server time to send messages
+                Thread.Sleep(5000);
 
-            // wait 5 seconds before exiting to give the server time to send messages
-            Thread.Sleep(5000);
+                server.Unsubscribe(callback);
+            }
 
             // release COM reference (avoid having to wait for GC)
             Marshal.ReleaseComObject(server);
