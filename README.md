@@ -30,8 +30,8 @@ COM interfaces are first defined in IDL files. The IDL files are afterwards comp
 * Support for **interface versioning** for controlled API evolution.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
 * Languages like C++ and C# natively support COM, whereas Python support is achieved through the [comtypes](https://github.com/enthought/comtypes) package. This **avoids** the need for manually maintained **language bindings**.
-* **Rock solid** technology that has been available since 1993.
-* Inherently **secure** with design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
+* **Long-term stable binary API** (ABI) that has been available since 1993. Allows interoperability with COM servers compiled 20 years ago without having to rebuild them.
+* Inherently **secure** with strict default settings and design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
 
 #### COM limitations:
 * Best practice is poorly documented.
