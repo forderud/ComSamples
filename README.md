@@ -17,6 +17,36 @@ Both servers are implemented as on-demand loaded COM EXE servers. The processes 
 The server projects implement the `IMyServer` interface whereas the client projects implement the `IMyClient` callback interface:  
 ![Overview](Overview.svg)
 
+### How to test
+1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
+1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
+1. Build all projects.
+1. Register the server:
+    * Either run `MyServerCs.exe" /regserver`  with admin privileges,
+    * Or run `MyServerCpp.exe" /regserver`  with admin privileges.
+1. Run the test clients:
+    * C++: run `MyClientCpp.exe`
+    * C#: run `MyClientCs.exe`
+    * Python: run `MyClientPy.py`
+1. **Un**register the server to clean up:
+    * Either run `MyServerCs.exe" /unregserver` with admin privileges,
+    * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
+    * Or run `UNREGISTER.bat` with admin privileges.
+
+Server registration is only needed for on-demand loaded COM EXE servers and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registered at server startup.
+
+The client programs should output something resembling this:
+```
+pi = 3.141592653589793
+Received message:
+  sev=Info
+  time=7/4/2023 10:27:57 AM
+  value=1.23
+  desc=Hello there!
+  color=(255, 0, 0)
+  data=[0,1,2,3]
+...
+```
 
 ## COM description
 COM interfaces are first defined in IDL files. The IDL files are afterwards compiled into TLB type libraries, TLH/TLI headers and/or .Net DLL assemblies, depending on the target language(s):  
@@ -102,34 +132,3 @@ Rules:
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
-
-## How to test
-1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
-1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
-1. Build all projects.
-1. Register the server:
-    * Either run `MyServerCs.exe" /regserver`  with admin privileges,
-    * Or run `MyServerCpp.exe" /regserver`  with admin privileges.
-1. Run the test clients:
-    * C++: run `MyClientCpp.exe`
-    * C#: run `MyClientCs.exe`
-    * Python: run `MyClientPy.py`
-1. **Un**register the server to clean up:
-    * Either run `MyServerCs.exe" /unregserver` with admin privileges,
-    * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
-    * Or run `UNREGISTER.bat` with admin privileges.
-
-Server registration is only needed for on-demand loaded COM EXE servers and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registered at server startup.
-
-The client programs should output something resembling this:
-```
-pi = 3.141592653589793
-Received message:
-  sev=Info
-  time=7/4/2023 10:27:57 AM
-  value=1.23
-  desc=Hello there!
-  color=(255, 0, 0)
-  data=[0,1,2,3]
-...
-```
