@@ -31,10 +31,10 @@ public:
     /** Factory function. */
     static CComPtr<NumberCruncher> Create() {
         // create an object (with ref. count zero)
-        CComObject<NumberCruncher>* tmp = nullptr;
-        CComObject<NumberCruncher>::CreateInstance(&tmp);
+        CComObject<NumberCruncher>* obj = nullptr;
+        CComObject<NumberCruncher>::CreateInstance(&obj);
         // move into smart-ptr (will incr. ref. count to one)
-        return tmp;
+        return obj;
     }
 
     HRESULT STDMETHODCALLTYPE raw_ComputePi(/*out*/double* val) override {

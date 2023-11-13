@@ -53,10 +53,10 @@ public:
     /** Factory function. */
     static CComPtr<MyClient> Create() {
         // create an object (with ref. count zero)
-        CComObject<MyClient> * tmp = nullptr;
-        CComObject<MyClient>::CreateInstance(&tmp);
+        CComObject<MyClient> * obj = nullptr;
+        CComObject<MyClient>::CreateInstance(&obj);
         // move into smart-ptr (will incr. ref. count to one)
-        return tmp;
+        return obj;
     }
 
     BEGIN_COM_MAP(MyClient)
