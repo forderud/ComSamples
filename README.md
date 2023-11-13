@@ -111,6 +111,15 @@ COM clients and servers can decide their [threading model](https://learn.microso
 
 ## Advanced topics
 
+### Registry entries
+Registry entries associated with a COM server:
+* `HKCR\Interface\{GUID}`: Registry entries for a COM interface.
+* `HKCR\CLSID\{GUID}`: Primary registry entries for a COM class.
+* `HKCR\AppID\{GUID}`: Optional additional registry entries for a COM class. Can use same GUID as the COM ClassID (CLSID)
+* `HKCR\TypeLib\{GUID}`: Registry entries for a type library. Used for marshaling calls between languages and processes.
+* `HKCR\{ProgID}`: Optional string-based programmatic identifier for a COM class.
+
+
 ### Security
 Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
 
