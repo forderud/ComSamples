@@ -116,7 +116,7 @@ These topics are primary relevant when _authoring_ COM servers. Consumers of a C
 ### Registry entries
 Registry folders associated with a COM server:
 * [`HKCR\Interface\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/interface-key): Registry entries for a COM interface.
-* [`HKCR\CLSID\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/clsid-key-hklm): Primary registry entries for a creatable COM class. Not needed if the classs is _not_ directly creatable.
+* [`HKCR\CLSID\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/clsid-key-hklm): Primary registry entries for a creatable COM class. Not needed if the class is _not_ directly creatable.
 * [`HKCR\AppID\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/appid-key): Optional additional registry entries for a COM class. Can use same GUID as the COM ClassID (CLSID)
 * `HKCR\TypeLib\{GUID}`: Registry entries for a type library. Used for marshaling calls between languages and processes.
 * [`HKCR\{ProgID}`](https://learn.microsoft.com/en-us/windows/win32/com/-progid--key): Optional string-based programmatic identifier for a COM class.
@@ -135,9 +135,9 @@ Rules:
 * Strings (BSTR): Allocated with [`SysAllocString`/`SysFreeString`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms221105.aspx). Can use [`CComBSTR`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccombstr-class) wrapper to ease access.
 * Dynamic arrays (SAFEARRAY): Allocated with [`CoTaskMemAlloc`/`CoTaskMemFree`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms678418.aspx). Can use [`CComSafeArray<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomsafearray-class) to ease access.
 * [Memory Management Rules](https://learn.microsoft.com/nb-no/windows/win32/com/memory-management-rules) for argument passing:
-  - `[in]` arguments are allocated and freed by the caller (automatic for function beeing called).
+  - `[in]` arguments are allocated and freed by the caller (automatic for function being called).
   - `[out]` arguments are allocated by the function called and later freed by the caller.
-  - `[in,out]` identical to `[in]`, but the function beeing called might also free & reallocate.
+  - `[in,out]` identical to `[in]`, but the function being called might also free & reallocate.
 * Pointer semantics:
   - Method arguments are [`ref` by default](https://learn.microsoft.com/nb-no/windows/win32/rpc/default-pointer-types)
   - [`[ref]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ref): Never NULL or aliased.
