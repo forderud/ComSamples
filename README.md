@@ -113,11 +113,11 @@ COM clients and servers can decide their [threading model](https://learn.microso
 
 ### Registry entries
 Registry folders associated with a COM server:
-* `HKCR\Interface\{GUID}`: Registry entries for a COM interface.
-* `HKCR\CLSID\{GUID}`: Primary registry entries for a creatable COM class. Not needed if the classs is _not_ directly creatable.
-* `HKCR\AppID\{GUID}`: Optional additional registry entries for a COM class. Can use same GUID as the COM ClassID (CLSID)
+* [`HKCR\Interface\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/interface-key): Registry entries for a COM interface.
+* [`HKCR\CLSID\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/clsid-key-hklm): Primary registry entries for a creatable COM class. Not needed if the classs is _not_ directly creatable.
+* [`HKCR\AppID\{GUID}`](https://learn.microsoft.com/en-us/windows/win32/com/appid-key): Optional additional registry entries for a COM class. Can use same GUID as the COM ClassID (CLSID)
 * `HKCR\TypeLib\{GUID}`: Registry entries for a type library. Used for marshaling calls between languages and processes.
-* `HKCR\{ProgID}`: Optional string-based programmatic identifier for a COM class.
+* [`HKCR\{ProgID}`](https://learn.microsoft.com/en-us/windows/win32/com/-progid--key): Optional string-based programmatic identifier for a COM class.
 
 Additional registry folders:
 * Registry entries for 32bit COM servers are stored beneath `HKCR\WOW6432Node`.
