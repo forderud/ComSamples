@@ -146,6 +146,10 @@ Rules:
   - `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-file) unless specified.
 
 ### Security
+COM security defaults are quite strict. The following operations are for instance denied by default:
+* Connecting to an already running COM server in a higher privileges process is blocked by default. You'll need to configure [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) or similar to enable this.
+* Connection attempts over the network are blocked by default. You'll need to enable DCOM to enable this.
+
 Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
 
 ### Custom marshaling
