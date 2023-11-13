@@ -123,6 +123,10 @@ Additional registry folders:
 * Registry entries for 32bit COM servers are stored beneath `HKCR\WOW6432Node`.
 * Per-user registrations are stored beneath `HKCU\SOFTWARE\Classes`.
 
+COM servers are responsible for registering and unregistering themselves. This is typically done through the following commands from an admin command prompt:
+* DLL-based server: `regsvr32.exe <server-name>.dll` and `regsvr32.exe /u <server-name>.dll`
+* EXE-based server: `<server-name>.exe /regserver` and `<server-name>.exe /unregserver`
+
 ### Security
 Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
 
