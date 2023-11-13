@@ -95,7 +95,7 @@ Rules:
   - `[in/out]` identical to [in], but the function beeing called might also free & reallocate-
 
 ### Custom marshaling
-Windows includes an in-built "automation" marshaler (oleaut32.dll) propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
+Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
 
 ## How to test
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
