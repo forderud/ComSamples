@@ -66,6 +66,7 @@ Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exc
 #### Details:
 * **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
+* **Python**: `HRESULT` error codes are automatically mapped to `COMError` exceptions.
 
 ### Threading
 COM clients and servers can decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls<sup>[1]</sup> by configuring the thread associated with the class(es) receiving callbacks to run in either:
