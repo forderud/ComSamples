@@ -93,6 +93,12 @@ Rules:
   - `[in]` arguments are allocated and freed by the caller (automatic for function beeing called).
   - `[out]` arguments are allocated by the function called and later freed by the caller.
   - `[in,out]` identical to `[in]`, but the function beeing called might also free & reallocate.
+* Pointer semantics:
+  - Method arguments are `ref` by default (https://learn.microsoft.com/nb-no/windows/win32/rpc/default-pointer-types)
+  - `[pointer_default()]`: Set semantics for nested pointers. Defaults to `unique` unless specified (https://msdn.microsoft.com/en-us/library/windows/desktop/ms690150.aspx)
+  - `[ref]`: Never NULL or aliased (https://msdn.microsoft.com/en-us/library/windows/desktop/aa367153.aspx)
+  - `[unique]`: Can be NULL, change to/from NULL but not aliased (https://msdn.microsoft.com/en-us/library/windows/desktop/aa367294.aspx)
+  - `[ptr]`: Can be NULL, change to/from NULL and be aliased (https://msdn.microsoft.com/en-us/library/windows/desktop/aa367149.aspx)
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
