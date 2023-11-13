@@ -66,8 +66,8 @@ This repo focuses on IPC and does therefore only contain EXE-based servers, sinc
 Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exceptions, so that developers doesn't need to explicitly check each call for failure.
 
 #### Details:
-* **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
 * **C++** with generated TLH-wrappers: `HRESULT` error codes are automatically mapped to [`_com_error`](https://learn.microsoft.com/en-us/cpp/cpp/com-error-class) exceptions. It's still possible to call the "old" HRESULT versions by adding a `raw_` prefix to the method names.
+* **.Net**: `HRESULT` error codes are automatically [mapped to comparable .Net exceptions](https://learn.microsoft.com/en-us/dotnet/framework/interop/how-to-map-hresults-and-exceptions).
 * **Python**: `HRESULT` error codes are automatically mapped to `COMError` exceptions.
 
 ### Threading
