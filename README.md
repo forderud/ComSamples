@@ -95,7 +95,7 @@ Rules:
   - `[in,out]` identical to `[in]`, but the function beeing called might also free & reallocate.
 * Pointer semantics:
   - Method arguments are [`ref` by default](https://learn.microsoft.com/nb-no/windows/win32/rpc/default-pointer-types)
-  - `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-) unless specified.
+  - `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-file) unless specified.
   - [`[ref]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ref): Never NULL or aliased.
   - [`[unique]`](https://learn.microsoft.com/nb-no/windows/win32/midl/unique): Can be NULL, change to/from NULL but not aliased.
   - [`[ptr]`]((https://learn.microsoft.com/nb-no/windows/win32/midl/ptr)): Can be NULL, change to/from NULL and be aliased.
