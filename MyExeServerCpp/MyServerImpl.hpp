@@ -37,6 +37,20 @@ public:
         return S_OK;
     }
 
+    HRESULT STDMETHODCALLTYPE raw_ComputeValues(unsigned int count, /*out*/SAFEARRAY** vals) override {
+        if (!vals)
+            return E_INVALIDARG;
+
+        // populate array with values
+        CComSafeArray<BYTE> tmp(count);
+        for (unsigned int i = 0; i < count; ++i)
+            tmp[(LONG)i] = (BYTE)i;
+
+        *vals = tmp.Detach();
+        return S_OK;
+    }
+
+
     BEGIN_COM_MAP(NumberCruncher)
         COM_INTERFACE_ENTRY(INumberCruncher)
     END_COM_MAP()

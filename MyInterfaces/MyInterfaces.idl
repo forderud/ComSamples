@@ -88,6 +88,9 @@ interface IMyClient : IUnknown {
 interface INumberCruncher : IUnknown {
     [helpstring("Compute the value of pi")]
     HRESULT ComputePi([out, retval] double *ret);
+
+    [helpstring("Get an array with magic values.")]
+    HRESULT ComputeValues([in] unsigned int count, [out, retval] SAFEARRAY(BYTE)* vals);
 };
 
 [object,
