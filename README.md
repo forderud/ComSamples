@@ -91,8 +91,8 @@ Rules:
 * Dynamic arrays (SAFEARRAY): Allocated with [`CoTaskMemAlloc`/`CoTaskMemFree`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms678418.aspx). Can use [`CComSafeArray<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomsafearray-class) to ease access.
 * [Memory Management Rules](https://learn.microsoft.com/nb-no/windows/win32/com/memory-management-rules) for argument passing:
   - `[in]` arguments are allocated and freed by the caller (automatic for function beeing called).
-  - `[out]` arguments are allocated by the function called and later freed by the caller-
-  - `[in/out]` identical to [in], but the function beeing called might also free & reallocate-
+  - `[out]` arguments are allocated by the function called and later freed by the caller.
+  - `[in,out]` identical to `[in]`, but the function beeing called might also free & reallocate.
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
