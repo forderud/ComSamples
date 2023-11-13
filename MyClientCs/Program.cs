@@ -16,6 +16,9 @@ namespace MyClientCs
                 double pi = cruncher.ComputePi();
                 Console.WriteLine($"pi = {pi}");
 
+                byte[] values = cruncher.ComputeValues(4);
+                Console.WriteLine("ComputeValues: ["+ string.Join(", ", values) + "]");
+
                 // release reference to help GC clean up (not strctly needed)
                 cruncher = null;
             }
