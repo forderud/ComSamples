@@ -33,7 +33,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 
-Server registration is only needed for on-demand loaded COM EXE servers and can be skipped if instead running the server in a background service that is auto-started. In that case, the TypeLib will still need to be registered.
+Server registration is primarily needed for on-demand loaded COM servers. It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.
 
 The client programs should output something resembling this:
 ```
