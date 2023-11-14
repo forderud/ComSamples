@@ -6,7 +6,7 @@ namespace MyClientCs
 {
     class Program
     {
-        static void Test()
+        static void CommunicateWithServer()
         {
             // create or connect to server object in a separate process
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
@@ -17,7 +17,7 @@ namespace MyClientCs
                 double pi = cruncher.ComputePi();
                 Console.WriteLine($"pi = {pi}");
 
-                // release reference to help GC clean up
+                // release reference to help GC clean up (not strctly needed)
                 cruncher = null;
             }
             {
@@ -28,20 +28,23 @@ namespace MyClientCs
                 Thread.Sleep(5000);
 
                 server.Unsubscribe(callback);
-                // release reference to help GC clean up
+                // release reference to help GC clean up (not strctly needed)
                 callback = null;
             }
 
-            // release reference to help GC clean up
+            // release reference to help GC clean up (not strctly needed)
             server = null;
         }
 
         [MTAThread] // or [STAThread]
         static void Main(string[] _)
         {
-            Test();
+            // Perform COM calls in a separate function.
+            // Work-around for GC problem mentioned below.
+            CommunicateWithServer();
 
-            // trigger GC to release references seen by server
+            // Trigger GC to release references seen by server.
+            // WARNING: Doesn't clean up properly if called from the same function as COM calls (observed with .Net 7.0)
             System.GC.Collect();
             System.GC.WaitForPendingFinalizers();
         }
