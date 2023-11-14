@@ -2,9 +2,9 @@ Examples of language-neutral [Component Object Model (COM)](https://learn.micros
 
 Project listing:
 
-| Module       | Description                                 |
-|--------------|---------------------------------------------|
-| ComSupport   | .Net support functions for COM registration |
+| Module       | Description                                                           |
+|--------------|-----------------------------------------------------------------------|
+| ComSupport   | .Net support functions for COM EXE registration (not needed for DLLs) |
 | MyInterfaces | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
 | MyClientCpp  | Sample C++ _client_ |
 | MyClientCs   | Sample C# _client_ |
