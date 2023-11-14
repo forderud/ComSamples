@@ -68,30 +68,38 @@ public:
 int main() {
     CoInitializeEx(0, COINITBASE_MULTITHREADED);
 
-    // create or connect to server object in a separate process
-    MyInterfaces::IMyServerPtr server;
-    HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
-    if (FAILED(hr)) {
-        _com_error err(hr);
-        std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
-        return 1;
+    {
+        // create or connect to server object in a separate process
+        MyInterfaces::IMyServerPtr server;
+        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
+        if (FAILED(hr)) {
+            _com_error err(hr);
+            std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
+            return 1;
+        }
+
+        try {
+            auto cruncher = server->GetNumberCruncher();
+            double pi = cruncher->ComputePi();
+            std::wcout << L"pi = " << pi << std::endl;
+
+            auto callback = MyClient::Create();
+            server->Subscribe(callback);
+
+            // wait 5 seconds before exiting to give the server time to send messages
+            Sleep(5000);
+
+            // cruncher & callback references will be released here
+        }
+        catch (const _com_error& e) {
+            std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
+            return 1;
+        }
+
+        // server reference will be released here
     }
 
-    try {
-        auto cruncher = server->GetNumberCruncher();
-        double pi = cruncher->ComputePi();
-        std::wcout << L"pi = " << pi << std::endl;
-
-        auto callback = MyClient::Create();
-        server->Subscribe(callback);
-
-        // wait 5 seconds before exiting to give the server time to send messages
-        Sleep(5000);
-    } catch (const _com_error& e) {
-        std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
-        return 1;
-    }
-
+    // unload COM runtime (not strictly needed, since it's done automatically on exit)
     CoUninitialize();
 
     return 0;
