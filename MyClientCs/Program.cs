@@ -6,8 +6,7 @@ namespace MyClientCs
 {
     class Program
     {
-        [MTAThread] // or [STAThread]
-        static void Main(string[] _)
+        static void Test()
         {
             // create or connect to server object in a separate process
             // equivalent to Activator.CreateInstance(Type.GetTypeFromCLSID(typeof(MyInterfaces.MyServerClass).GUID))
@@ -18,8 +17,8 @@ namespace MyClientCs
                 double pi = cruncher.ComputePi();
                 Console.WriteLine($"pi = {pi}");
 
-                // release COM reference (avoid having to wait for GC)
-                Marshal.ReleaseComObject(cruncher);
+                // release reference to help GC clean up
+                cruncher = null;
             }
             {
                 var callback = new ClientCallback();
@@ -29,10 +28,22 @@ namespace MyClientCs
                 Thread.Sleep(5000);
 
                 server.Unsubscribe(callback);
+                // release reference to help GC clean up
+                callback = null;
             }
 
-            // release COM reference (avoid having to wait for GC)
-            Marshal.ReleaseComObject(server);
+            // release reference to help GC clean up
+            server = null;
+        }
+
+        [MTAThread] // or [STAThread]
+        static void Main(string[] _)
+        {
+            Test();
+
+            // trigger GC to release references seen by server
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
         }
     }
 
