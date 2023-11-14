@@ -23,9 +23,7 @@ namespace ComSupport
 
             int hr = OleAut32.LoadTypeLibEx(tlbPath, OleAut32.REGKIND.REGKIND_REGISTER, out ComTypes.ITypeLib tlb);
             if (hr < 0)
-            {
                 Marshal.ThrowExceptionForHR(hr);
-            }
 
             // return TypeLib GUID
             IntPtr ptr;
