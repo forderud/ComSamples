@@ -109,6 +109,7 @@ COM clients and servers can decide their [threading model](https://learn.microso
 
 <sup>[2]</sup> STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
 
+In the STA case COM pointers can only be called by the associated thread. The COM pointer need to be explicitly marshaled before they can be accessed by a different thread. This is achieved with [`RoGetAgileReference`](https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-rogetagilereference) and `IAgileReference::Resolve` in C++ and  [`Marshal.GetIUnknownForObject`](https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.getiunknownforobject) in .Net. Marshaling between threads is not required in the MTA case.
 
 ## Intermediate topics
 
