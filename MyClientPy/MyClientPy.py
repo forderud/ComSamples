@@ -34,14 +34,14 @@ if __name__=="__main__":
     # cast to IMyServer interface
     server = server.QueryInterface(MyInterfaces.IMyServer)
 
-    # subscribe to events from server
-    obj = MyClientImpl()
-    server.Subscribe(obj)
-
     # invoke COM methods
     nc = server.GetNumberCruncher()
     pi = nc.ComputePi()
     print("pi = "+str(pi))
+
+    # subscribe to events from server
+    obj = MyClientImpl()
+    server.Subscribe(obj)
 
     # Wait a while to give the server a chance to send events.
     # Need to pump messages since we're in a STA.
