@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <MyInterfaces.tlh>
+#include "../support/ComSupport.hpp"
 
 
 /** Convert SAFEARRAY to a std::vector> */
@@ -50,15 +51,6 @@ public:
         return S_OK;
     }
 
-    /** Factory function. */
-    static CComPtr<MyClient> Create() {
-        // create an object (with ref. count zero)
-        CComObject<MyClient> * obj = nullptr;
-        CComObject<MyClient>::CreateInstance(&obj);
-        // move into smart-ptr (will incr. ref. count to one)
-        return obj;
-    }
-
     BEGIN_COM_MAP(MyClient)
         COM_INTERFACE_ENTRY(MyInterfaces::IMyClient)
     END_COM_MAP()
@@ -66,7 +58,7 @@ public:
 
 
 int main() {
-    CoInitializeEx(0, COINIT_MULTITHREADED);
+    ComInitialize com(COINIT_MULTITHREADED);
 
     {
         // create or connect to server object in a separate process
@@ -83,7 +75,7 @@ int main() {
             double pi = cruncher->ComputePi();
             std::wcout << L"pi = " << pi << std::endl;
 
-            auto callback = MyClient::Create();
+            auto callback = CreateLocalInstance<MyClient>();
             server->Subscribe(callback);
 
             // wait 5 seconds before exiting to give the server time to send messages
@@ -98,9 +90,6 @@ int main() {
 
         // server reference will be released here
     }
-
-    // unload COM runtime (not strictly needed, since it's done automatically on exit)
-    CoUninitialize();
 
     return 0;
 }
