@@ -66,7 +66,7 @@ public:
 
 
 int main() {
-    CoInitializeEx(0, COINITBASE_MULTITHREADED);
+    CoInitializeEx(0, COINIT_MULTITHREADED);
 
     {
         // create or connect to server object in a separate process
