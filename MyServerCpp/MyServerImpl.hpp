@@ -9,6 +9,7 @@
 #include <ATLComTime.h> // for COleDateTime
 #include "MyInterfaces.tlh"
 #include "Resource.h"
+#include "../support/ComSupport.hpp"
 
 
 using namespace MyInterfaces;
@@ -26,15 +27,6 @@ public:
 
     /*NOT virtual*/ ~NumberCruncher() {
         printf("NumberCruncher dtor\n");
-    }
-
-    /** Factory function. */
-    static CComPtr<NumberCruncher> Create() {
-        // create an object (with ref. count zero)
-        CComObject<NumberCruncher>* obj = nullptr;
-        CComObject<NumberCruncher>::CreateInstance(&obj);
-        // move into smart-ptr (will incr. ref. count to one)
-        return obj;
     }
 
     HRESULT STDMETHODCALLTYPE raw_ComputePi(/*out*/double* val) override {
@@ -75,7 +67,7 @@ public:
         if (!obj)
             return E_INVALIDARG;
 
-        *obj = NumberCruncher::Create().Detach();
+        *obj = CreateLocalInstance<NumberCruncher>().Detach();
         return S_OK;
     }
 
