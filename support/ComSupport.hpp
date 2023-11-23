@@ -17,7 +17,15 @@ public:
         if (SUCCEEDED(hr))
             m_initialized = true;
 
+        // Activate fast stub rundown after app crashes. Reduces the cleanup delay from ~11min to <10sec
+        CComPtr<IGlobalOptions> globalOptions;
+        if (FAILED(globalOptions.CoCreateInstance(CLSID_GlobalOptions, NULL, CLSCTX_INPROC_SERVER)))
+            abort();
+        if (FAILED(globalOptions->Set(COMGLB_RO_SETTINGS, COMGLB_FAST_RUNDOWN)))
+            abort();
+
 #ifndef NDEBUG
+        // Disable BSTR caching to make use-after-free bugs crash
         SetOaNoCache();
 #endif
     }
