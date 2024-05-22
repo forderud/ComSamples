@@ -19,6 +19,7 @@
     <ClInclude Include="Resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="MyServerCpp.rgs" />
     <None Include="MyServerImpl.rgs" />
   </ItemGroup>
   <ItemGroup>

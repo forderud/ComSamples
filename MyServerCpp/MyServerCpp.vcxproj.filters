@@ -10,6 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MyServerImpl.rgs" />
+    <None Include="MyServerCpp.rgs" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
