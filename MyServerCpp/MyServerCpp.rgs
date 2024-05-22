@@ -1,0 +1,10 @@
+HKCR
+{
+    NoRemove AppID
+    {
+        ForceRemove '%APPID%' = s 'MyServerCpp Object'
+        {
+            val RunAs = s 'nt authority\networkservice'
+        }
+    }
+}

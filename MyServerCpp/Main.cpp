@@ -11,6 +11,7 @@ public:
     }
 
     DECLARE_LIBID(__uuidof(MyInterfaces::__MyInterfaces))
+    DECLARE_REGISTRY_APPID_RESOURCEID(IDR_MyServerCpp, "{AF080472-F173-4D9D-8BE7-435776617347}")
 };
 
 MyserverModule _AtlModule;
