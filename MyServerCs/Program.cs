@@ -26,7 +26,7 @@ namespace MyServerCs
                     Guid typeLib = TypeLib.Register(exePath);
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
 #if ENABLE_RUN_AS
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
+                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "nt authority\\localservice");
 #endif
                     return;
                 }
