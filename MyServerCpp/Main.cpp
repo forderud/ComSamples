@@ -12,6 +12,16 @@ public:
 
     DECLARE_LIBID(__uuidof(MyInterfaces::__MyInterfaces))
     DECLARE_REGISTRY_APPID_RESOURCEID(IDR_MyServerCpp, "{AF080472-F173-4D9D-8BE7-435776617347}")
+
+    HRESULT InitializeSecurity() noexcept {
+        // Disable COM security to allow any client to connect.
+        // WARNING: Enables non-admin clients to connect to a server running with admin privileges.
+        HRESULT hr = CoInitializeSecurity(nullptr, -1/*auto*/, nullptr, NULL/*reserved*/,
+            RPC_C_AUTHN_LEVEL_DEFAULT, ///< 
+            RPC_C_IMP_LEVEL_IDENTIFY,  ///< allow server to identify but not impersonate client
+            nullptr, EOAC_NONE/*capabilities*/, NULL/*reserved*/);
+        return hr;
+    }
 };
 
 MyserverModule _AtlModule;
@@ -22,13 +32,7 @@ MyserverModule _AtlModule;
 int wmain(int /*argc*/, wchar_t* /*argv*/[]) {
     // initialize COM early for programmatic COM security
     _AtlModule.InitializeCom();
-
-    // Disable COM security to allow any client to connect.
-    // WARNING: Enables non-admin clients to connect to a server running with admin privileges.
-    HRESULT hr = CoInitializeSecurity(nullptr, -1/*auto*/, nullptr, NULL/*reserved*/,
-        RPC_C_AUTHN_LEVEL_DEFAULT, ///< 
-        RPC_C_IMP_LEVEL_IDENTIFY,  ///< allow server to identify but not impersonate client
-        nullptr, EOAC_NONE/*capabilities*/, NULL/*reserved*/);
+    HRESULT hr = _AtlModule.InitializeSecurity();
     if (FAILED(hr))
         abort();
 
