@@ -25,7 +25,7 @@ namespace MyServerCs
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
-#if ENABLE_CONNECT_TO_ELEVATED
+#if ENABLE_RUN_AS
                     AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
 #endif
                     return;
@@ -34,7 +34,7 @@ namespace MyServerCs
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister server and type library
-#if ENABLE_CONNECT_TO_ELEVATED
+#if ENABLE_RUN_AS
                     AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
 #endif
                     LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
