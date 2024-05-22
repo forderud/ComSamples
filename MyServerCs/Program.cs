@@ -13,6 +13,11 @@ namespace MyServerCs
         [MTAThread] // or [STAThread]
         static void Main(string[] args)
         {
+            // allow lower privilege clients to connect
+            int hr = ComSecurity.CoInitializeSecurity(IntPtr.Zero, -1, IntPtr.Zero, IntPtr.Zero, RpcAuthnLevel.Default, RpcImpLevel.Identify, IntPtr.Zero, EoAuthnCap.None, IntPtr.Zero);
+            if (hr != 0) // S_OK check
+                throw new Exception("CoInitializeSecurity failed");
+
             using var consoleTrace = new ConsoleTraceListener();
             Trace.Listeners.Add(consoleTrace);
 
@@ -26,7 +31,7 @@ namespace MyServerCs
                     Guid typeLib = TypeLib.Register(exePath);
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
 #if ENABLE_RUN_AS
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "Interactive User");
+                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "nt authority\\localservice");
 #endif
                     return;
                 }
