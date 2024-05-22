@@ -150,11 +150,12 @@ Rules:
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
 
 ### Security
-COM security defaults are quite strict. The following operations are for instance denied by default:
-* Connecting to an already running COM server in a higher privileges process is blocked by default. You'll need to configure [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) or similar to enable this.
+COM security defaults are quite strict. Some noteworthy details:
+* The [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry value can be used to configure the COM server to start in a different user account.
+* Connecting to an already running COM server in a higher privileges process is blocked by default. You'll need to configure [`CoInitializeSecurity`](https://learn.microsoft.com/en-us/windows/win32/com/setting-processwide-security-with-coinitializesecurity) in the COM server to enable this.
 * Connection attempts over the network are blocked by default. You'll need to enable DCOM to enable this.
 
-Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. The [COM Elevation Moniker](https://learn.microsoft.com/en-us/windows/win32/com/the-com-elevation-moniker) can furthermore be used to request startup of a COM server in an elevated process. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for how to configure security sandboxing and elevation with COM.
+Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for examples of security sandboxing and elevation with COM.
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
