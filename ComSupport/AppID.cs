@@ -21,6 +21,7 @@ namespace ComSupport
             // write HKCR\AppID\{clsid}
             // done to create placeholder for later RunAs values
             using RegistryKey appIdKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.AppID, clsid));
+            appIdKey.SetValue(null, "MyServerCs Object");
         }
 
         public static void Unregister(Guid clsid)
