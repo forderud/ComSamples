@@ -30,18 +30,14 @@ namespace MyServerCs
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
                     LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
-#if ENABLE_RUN_AS
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "nt authority\\localservice");
-#endif
+                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID);
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister server and type library
-#if ENABLE_RUN_AS
                     AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
-#endif
                     LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
                     TypeLib.Unregister(exePath);
                     return;

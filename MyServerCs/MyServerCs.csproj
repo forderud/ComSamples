@@ -19,10 +19,10 @@
     <Win32Resource>$(SolutionDir)$(Platform)\$(Configuration)\MyInterfaces.res</Win32Resource>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <DefineConstants>$(DefineConstants);ENABLE_RUN_AS</DefineConstants>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DefineConstants>$(DefineConstants);ENABLE_RUN_AS</DefineConstants>
+    <DefineConstants>$(DefineConstants)</DefineConstants>
   </PropertyGroup>
 
   <Target Name="ServerUsage" AfterTargets="Build" DependsOnTargets="AssignTargetPaths">

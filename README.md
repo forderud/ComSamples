@@ -151,7 +151,7 @@ These topics are primary relevant when _authoring_ COM servers. Consumers of a C
 
 ### Security
 COM security defaults are quite strict. Some noteworthy details:
-* The [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry value can be used to configure the COM server to start in a different user account.
+* The [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry value can be used to configure the COM server to start in a different user account. The [RunInSandbox](https://github.com/forderud/RunInSandbox) `ComRunAs` tool can be used to configure this.
 * Connecting to an already running COM server in a higher privileges process is blocked by default. You'll need to configure [`CoInitializeSecurity`](https://learn.microsoft.com/en-us/windows/win32/com/setting-processwide-security-with-coinitializesecurity) in the COM server to enable this.
 * Connection attempts over the network are blocked by default. You'll need to enable DCOM to enable this.
 
