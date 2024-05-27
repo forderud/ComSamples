@@ -29,8 +29,8 @@ namespace MyServerCs
                 {
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
-                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib);
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID);
+                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib, "MyServerCs Object");
+                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "MyServerCs Object");
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||

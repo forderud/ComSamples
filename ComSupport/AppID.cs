@@ -7,7 +7,7 @@ namespace ComSupport
     public static class AppID
     {
         /** Uses the CLSID also as AppID for convenience (same as on https://github.com/dotnet/samples/blob/main/core/extensions/OutOfProcCOM/COMRegistration/DllSurrogate.cs) */
-        public static void Register(Guid clsid)
+        public static void Register(Guid clsid, string description)
         {
             Trace.WriteLine($"Registering server with system-supplied DLL surrogate:");
             Trace.Indent();
@@ -21,7 +21,7 @@ namespace ComSupport
             // write HKCR\AppID\{clsid}
             // done to create placeholder for later RunAs values
             using RegistryKey appIdKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.AppID, clsid));
-            appIdKey.SetValue(null, "MyServerCs Object");
+            appIdKey.SetValue(null, description);
         }
 
         public static void Unregister(Guid clsid)
