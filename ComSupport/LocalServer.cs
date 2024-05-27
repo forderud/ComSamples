@@ -17,7 +17,7 @@ namespace ComSupport
     {
         public static bool m_active = false; // first object have been created
 
-        public static void Register(Guid clsid, string exePath, Guid typeLib)
+        public static void Register(Guid clsid, string exePath, Guid typeLib, string description)
         {
             Trace.WriteLine($"Registering server:");
             Trace.Indent();
@@ -25,15 +25,18 @@ namespace ComSupport
             Trace.WriteLine($"Executable: {exePath}");
             Trace.Unindent();
 
+            // write HKCR\CLSID\{clsid} = {desc}
+            string clsidPath = string.Format(@$"{KeyFormat.CLSID}", clsid);
+            using RegistryKey clsidKey = Registry.LocalMachine.CreateSubKey(clsidPath);
+            clsidKey.SetValue(null, description);
+
             // write HKCR\CLSID\{clsid}\LocalServer32 = {exePath}
-            string serverKey = string.Format(@$"{KeyFormat.CLSID}\LocalServer32", clsid);
-            using RegistryKey regKey1 = Registry.LocalMachine.CreateSubKey(serverKey);
-            regKey1.SetValue(null, exePath);
+            using RegistryKey lsKey = Registry.LocalMachine.CreateSubKey(clsidPath + "\\LocalServer32");
+            lsKey.SetValue(null, exePath);
 
             // write HKCR\CLSID\{clsid}\TypeLib = {typeLib}
-            string tlbKey = string.Format(@$"{KeyFormat.CLSID}\TypeLib", clsid);
-            using RegistryKey regKey2 = Registry.LocalMachine.CreateSubKey(tlbKey);
-            regKey2.SetValue(null, "{"+typeLib+"}");
+            using RegistryKey tlbKey = Registry.LocalMachine.CreateSubKey(clsidPath + "\\TypeLib");
+            tlbKey.SetValue(null, "{"+typeLib+"}");
         }
 
         public static void Unregister(Guid clsid)
@@ -43,14 +46,16 @@ namespace ComSupport
             Trace.WriteLine($"CLSID: {clsid:B}");
             Trace.Unindent();
 
+            string clsidPath = string.Format(@$"{KeyFormat.CLSID}", clsid);
+
             // delete HKCR\CLSID\{clsid}\LocalServer32
-            string serverKey = string.Format(@$"{KeyFormat.CLSID}\LocalServer32", clsid);
-            Registry.LocalMachine.DeleteSubKey(serverKey, throwOnMissingSubKey: false);
+            Registry.LocalMachine.DeleteSubKey(clsidPath + "\\LocalServer32", throwOnMissingSubKey: false);
 
             // delete HKCR\CLSID\{clsid}\TypeLib
-            string tlbKey = string.Format(@$"{KeyFormat.CLSID}\TypeLib", clsid);
-            Registry.LocalMachine.DeleteSubKey(tlbKey, throwOnMissingSubKey: false);
+            Registry.LocalMachine.DeleteSubKey(clsidPath + "\\TypeLib", throwOnMissingSubKey: false);
 
+            // delete HKCR\CLSID\{clsid}
+            Registry.LocalMachine.DeleteSubKey(clsidPath, throwOnMissingSubKey: false);
         }
 
         private readonly List<int> registrationCookies = new List<int>();
