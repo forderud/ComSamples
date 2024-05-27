@@ -150,12 +150,12 @@ Rules:
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
 
 ### Security
-COM security defaults are quite strict. Some noteworthy details:
+Some noteworthy details:
 * The [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry value can be used to configure the COM server to start in a different user account. The [RunInSandbox](https://github.com/forderud/RunInSandbox) `ComRunAs` tool can be used to configure this.
 * Connecting to an already running COM server in a higher privileges process is blocked by default. You'll need to configure [`CoInitializeSecurity`](https://learn.microsoft.com/en-us/windows/win32/com/setting-processwide-security-with-coinitializesecurity) in the COM server to enable this.
 * Connection attempts over the network are blocked by default. You'll need to enable DCOM to enable this.
 
-Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for examples of security sandboxing and elevation with COM.
+COM security defaults are quite strict. Most security settings for a COM server can be configured through [AppID](https://learn.microsoft.com/en-us/windows/win32/com/appid-key) registry entries. See the [RunInSandbox](https://github.com/forderud/RunInSandbox) project for examples of security sandboxing and elevation with COM.
 
 ### Custom marshaling
 Windows includes an in-built "automation" marshaler (oleaut32.dll) for propagating IPC calls between processes. This is sufficient for most projects, but it's also possible to customize IPC marshaling by implementing the [`IMarshal`](https://learn.microsoft.com/nb-no/windows/win32/api/objidl/nn-objidl-imarshal) interface. The [SharedMemMarshal](https://github.com/forderud/SharedMemMarshal) project demonstrates how a custom marshaler can utilize shared memory to avoid copying overhead when passing large amounts of data between processes.
