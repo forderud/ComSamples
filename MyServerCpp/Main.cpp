@@ -11,7 +11,7 @@ public:
     }
 
     DECLARE_LIBID(__uuidof(MyInterfaces::__MyInterfaces))
-    DECLARE_REGISTRY_APPID_RESOURCEID(IDR_MyServerCpp, "{AF080472-F173-4D9D-8BE7-435776617347}")
+    DECLARE_REGISTRY_APPID_RESOURCEID(IDR_AppID, "{AF080472-F173-4D9D-8BE7-435776617347}")
 
     HRESULT InitializeSecurity() noexcept {
         // Disable COM security to allow any client to connect.
