@@ -29,7 +29,7 @@ public:
         printf("NumberCruncher dtor\n");
     }
 
-    HRESULT STDMETHODCALLTYPE raw_ComputePi(/*out*/double* val) override {
+    HRESULT raw_ComputePi(/*out*/double* val) override {
         if (!val)
             return E_INVALIDARG;
 
@@ -63,7 +63,7 @@ public:
         m_thread.join();
     }
 
-    HRESULT STDMETHODCALLTYPE raw_GetNumberCruncher(/*out*/INumberCruncher** obj) override {
+    HRESULT raw_GetNumberCruncher(/*out*/INumberCruncher** obj) override {
         if (!obj)
             return E_INVALIDARG;
 
@@ -71,7 +71,7 @@ public:
         return S_OK;
     }
 
-    HRESULT STDMETHODCALLTYPE raw_Subscribe(/*in*/IMyClient* client) override {
+    HRESULT raw_Subscribe(/*in*/IMyClient* client) override {
         if (!client)
             return E_INVALIDARG;
 
@@ -80,7 +80,7 @@ public:
         return S_OK;
     }
 
-    HRESULT STDMETHODCALLTYPE raw_Unsubscribe(/*in*/IMyClient* client) override {
+    HRESULT raw_Unsubscribe(/*in*/IMyClient* client) override {
         if (!client)
             return E_INVALIDARG;
 
