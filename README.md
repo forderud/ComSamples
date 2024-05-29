@@ -10,7 +10,7 @@ Project listing:
 | MyClientCs   | Sample C# _client_ |
 | MyClientPy   | Sample Python _client_ |
 | MyServerCpp  | C++ _server_ implementation |
-| MyServerCs   | C# _server_ implementation |
+| MyExeServerCs| C# _server_ EXE implementation |
 
 Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
@@ -22,14 +22,14 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
-    * Either run `MyServerCs.exe" /regserver`  with admin privileges,
+    * Either run `MyExeServerCs.exe" /regserver`  with admin privileges,
     * Or run `MyServerCpp.exe" /regserver`  with admin privileges.
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
-    * Either run `MyServerCs.exe" /unregserver` with admin privileges,
+    * Either run `MyExeServerCs.exe" /unregserver` with admin privileges,
     * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 

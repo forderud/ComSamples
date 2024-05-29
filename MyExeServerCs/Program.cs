@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace MyServerCs
+namespace MyExeServerCs
 {
     class Program
     {
-        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyServerCs.exe");
+        private static readonly string exePath = Path.Combine(AppContext.BaseDirectory, "MyExeServerCs.exe");
 
         [MTAThread] // or [STAThread]
         static void Main(string[] args)
@@ -30,8 +30,8 @@ namespace MyServerCs
                 {
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
-                    ExeServer.Register(clsid, exePath, typeLib, "MyServerCs Object");
-                    AppID.Register(clsid, clsid, "MyServerCs Object");
+                    ExeServer.Register(clsid, exePath, typeLib, "MyExeServerCs Object");
+                    AppID.Register(clsid, clsid, "MyExeServerCs Object");
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
