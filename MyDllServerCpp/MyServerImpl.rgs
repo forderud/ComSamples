@@ -1,0 +1,12 @@
+HKCR
+{
+    NoRemove CLSID
+    {
+        ForceRemove {AF080472-F173-4D9D-8BE7-435776617347} = s 'MyDllServerCpp Object'
+        {
+            val AppID = s '%APPID%'
+            InprocServer32 = s '%MODULE%'
+            TypeLib = s '{46F3FEB2-121D-4830-AA22-0CDA9EA90DC3}'
+        }
+    }
+}
