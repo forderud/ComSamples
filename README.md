@@ -22,15 +22,15 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
-    * Either run `MyExeServerCs.exe" /regserver`  with admin privileges,
-    * Or run `MyExeServerCpp.exe" /regserver`  with admin privileges.
+    * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
+    * Or run `MyExeServerCpp.exe /regserver`  with admin privileges.
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
-    * Either run `MyExeServerCs.exe" /unregserver` with admin privileges,
-    * Or run `MyExeServerCpp.exe" /unregserver`  with admin privileges,
+    * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
+    * Or run `MyExeServerCpp.exe /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 
 Server registration is primarily needed for on-demand loaded COM servers. It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.
