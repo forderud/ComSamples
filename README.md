@@ -94,7 +94,7 @@ COM servers can be compiled as either:
 
 COM provides transparent marshaling. This means that the client code doesn't need to know if the COM server runs in the same or a different process. The object that exposes a COM interface looks the same, regardless of if it's running in the same or a separate process or is implemented in a different programming language.
 
-This repo focuses on IPC and does therefore only contain EXE-based servers, since there are fewer online resources on that. Microsoft provides [COMServerDemo](https://github.com/dotnet/samples/tree/main/core/extensions/COMServerDemo) sample code for DLL-based servers implemented in C#/.Net and [Create a Classic COM Component Using WRL](https://learn.microsoft.com/en-us/cpp/cppcx/wrl/how-to-create-a-classic-com-component-using-wrl) for servers implemented in C++.
+Microsoft provides [COMServerDemo](https://github.com/dotnet/samples/tree/main/core/extensions/COMServerDemo) sample code for DLL-based servers implemented in C#/.Net and [Create a Classic COM Component Using WRL](https://learn.microsoft.com/en-us/cpp/cppcx/wrl/how-to-create-a-classic-com-component-using-wrl) for servers implemented in C++.
 
 <sup>[1]</sup> DLL-based COM servers can also be started in a _separate_ process if configuring a [DllSurrogate](https://learn.microsoft.com/en-us/windows/win32/com/registering-the-dll-server-for-surrogate-activation). This can sometimes be useful for testing, since it allows the same COM server to either be loaded in-proc or out-of-proc without having to rebuild it.
 
