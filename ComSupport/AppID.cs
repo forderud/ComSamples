@@ -7,7 +7,7 @@ namespace ComSupport
     public static class AppID
     {
         /** Uses the CLSID also as AppID for convenience (same as on https://github.com/dotnet/samples/blob/main/core/extensions/OutOfProcCOM/COMRegistration/DllSurrogate.cs) */
-        public static void Register(Guid clsid, string description)
+        public static void Register(Guid clsid, Guid appid, string description)
         {
             Trace.WriteLine($"Registering server with system-supplied DLL surrogate:");
             Trace.Indent();
@@ -16,15 +16,15 @@ namespace ComSupport
 
             // write HKCR\CLSID\{clsid}\AppID = {appid}
             using RegistryKey clsidKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.CLSID, clsid));
-            clsidKey.SetValue("AppID", clsid.ToString("B"));
+            clsidKey.SetValue("AppID", appid.ToString("B"));
 
-            // write HKCR\AppID\{clsid}
+            // write HKCR\AppID\{appid}
             // done to create placeholder for later RunAs values
-            using RegistryKey appIdKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.AppID, clsid));
+            using RegistryKey appIdKey = Registry.LocalMachine.CreateSubKey(string.Format(KeyFormat.AppID, appid));
             appIdKey.SetValue(null, description);
         }
 
-        public static void Unregister(Guid clsid)
+        public static void Unregister(Guid clsid, Guid appid)
         {
             Trace.WriteLine($"Unregistering server:");
             Trace.Indent();
@@ -36,8 +36,8 @@ namespace ComSupport
             if (clsidKey != null)
                 clsidKey.DeleteValue("AppID");
 
-            // delete HKCR\AppID\{clsid}
-            Registry.LocalMachine.DeleteSubKey(string.Format(KeyFormat.AppID, clsid), throwOnMissingSubKey: false);
+            // delete HKCR\AppID\{appid}
+            Registry.LocalMachine.DeleteSubKey(string.Format(KeyFormat.AppID, appid), throwOnMissingSubKey: false);
         }
     }
 }

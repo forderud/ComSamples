@@ -31,14 +31,14 @@ namespace MyServerCs
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
                     LocalServer.Register(clsid, exePath, typeLib, "MyServerCs Object");
-                    AppID.Register(clsid, "MyServerCs Object");
+                    AppID.Register(clsid, clsid, "MyServerCs Object");
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister server and type library
-                    AppID.Unregister(clsid);
+                    AppID.Unregister(clsid, clsid);
                     LocalServer.Unregister(clsid);
                     TypeLib.Unregister(exePath);
                     return;
