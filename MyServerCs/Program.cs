@@ -20,6 +20,7 @@ namespace MyServerCs
 
             using var consoleTrace = new ConsoleTraceListener();
             Trace.Listeners.Add(consoleTrace);
+            var clsid = typeof(MyInterfaces.MyServerClass).GUID; // COM class ID (also used as AppID)
 
             if (args.Length == 1)
             {
@@ -29,16 +30,16 @@ namespace MyServerCs
                 {
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
-                    LocalServer.Register(typeof(MyInterfaces.MyServerClass).GUID, exePath, typeLib, "MyServerCs Object");
-                    AppID.Register(typeof(MyInterfaces.MyServerClass).GUID, "MyServerCs Object");
+                    LocalServer.Register(clsid, exePath, typeLib, "MyServerCs Object");
+                    AppID.Register(clsid, "MyServerCs Object");
                     return;
                 }
                 else if (regCommandMaybe.Equals("/unregserver", StringComparison.OrdinalIgnoreCase) ||
                     regCommandMaybe.Equals("-unregserver", StringComparison.OrdinalIgnoreCase))
                 {
                     // Unregister server and type library
-                    AppID.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
-                    LocalServer.Unregister(typeof(MyInterfaces.MyServerClass).GUID);
+                    AppID.Unregister(clsid);
+                    LocalServer.Unregister(clsid);
                     TypeLib.Unregister(exePath);
                     return;
                 }
@@ -47,7 +48,7 @@ namespace MyServerCs
                 {
                     // auto-started by COM runtime
                     using var server = new LocalServer();
-                    server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                    server.RegisterClass<MyServerImpl>(clsid);
                     // terminate process after last client disconnect
                     server.WaitForRefCountsToReachZero();
                     return;
@@ -57,7 +58,7 @@ namespace MyServerCs
             {
                 // process manually started
                 using var server = new LocalServer();
-                server.RegisterClass<MyServerImpl>(typeof(MyInterfaces.MyServerClass).GUID);
+                server.RegisterClass<MyServerImpl>(clsid);
                 // run until terminated
                 Thread.Sleep(Timeout.Infinite);
             }
