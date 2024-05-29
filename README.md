@@ -137,8 +137,8 @@ COM servers are responsible for registering and unregistering themselves. This i
 
 ### Memory management rules (for C++)
 Rules:
-* [Rules for Managing Reference Counts](https://learn.microsoft.com/en-us/windows/win32/com/rules-for-managing-reference-counts). Can use smart-pointers like [`CComPtr<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomptr-class) or [`_com_ptr_t<T>`](https://learn.microsoft.com/en-us/cpp/cpp/com-ptr-t-class) to ease access.
-* Strings (BSTR): Allocated with [`SysAllocString`/`SysFreeString`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms221105.aspx). Can use [`CComBSTR`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccombstr-class) wrapper to ease access.
+* [Rules for Managing Reference Counts](https://learn.microsoft.com/en-us/windows/win32/com/rules-for-managing-reference-counts). Use smart-pointers like [`CComPtr<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomptr-class) or [`_com_ptr_t<T>`](https://learn.microsoft.com/en-us/cpp/cpp/com-ptr-t-class) to ease access.
+* Strings (BSTR): Allocated with [`SysAllocString`/`SysFreeString`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms221105.aspx). Use [`CComBSTR`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccombstr-class) wrapper to ease access.
 * Dynamic arrays (SAFEARRAY): Allocated with [`SafeArrayCreate`](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-safearraycreate)/[`SafeArrayDestroy`](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-safearraydestroy). Use [`CComSafeArray<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomsafearray-class) to ease access.
 * Dynamic memory: Allocated with [`CoTaskMemAlloc`/`CoTaskMemFree`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms678418.aspx).
 * [Memory Management Rules](https://learn.microsoft.com/nb-no/windows/win32/com/memory-management-rules) for argument passing:
