@@ -63,7 +63,8 @@ int main() {
     {
         // create or connect to server object in a separate process
         MyInterfaces::IMyServerPtr server;
-        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer));
+        DWORD context = CLSCTX_ALL; // change to CLSCTX_LOCAL_SERVER to force out-of-proc
+        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, context);
         if (FAILED(hr)) {
             _com_error err(hr);
             std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
