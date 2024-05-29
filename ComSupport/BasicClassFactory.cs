@@ -45,7 +45,7 @@ namespace ComSupport
 
             ppvObject = GetObjectAsInterface(obj, interfaceType);
 
-            LocalServer.m_active = true; // first object created
+            RunningServer.m_active = true; // first object created
         }
 
         public void LockServer([MarshalAs(UnmanagedType.Bool)] bool fLock) {

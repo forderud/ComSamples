@@ -30,7 +30,7 @@ namespace MyServerCs
                 {
                     // Register server and type library
                     Guid typeLib = TypeLib.Register(exePath);
-                    LocalServer.Register(clsid, exePath, typeLib, "MyServerCs Object");
+                    ExeServer.Register(clsid, exePath, typeLib, "MyServerCs Object");
                     AppID.Register(clsid, clsid, "MyServerCs Object");
                     return;
                 }
@@ -39,7 +39,7 @@ namespace MyServerCs
                 {
                     // Unregister server and type library
                     AppID.Unregister(clsid, clsid);
-                    LocalServer.Unregister(clsid);
+                    ExeServer.Unregister(clsid);
                     TypeLib.Unregister(exePath);
                     return;
                 }
@@ -47,7 +47,7 @@ namespace MyServerCs
                     regCommandMaybe.Equals("-Embedding", StringComparison.OrdinalIgnoreCase))
                 {
                     // auto-started by COM runtime
-                    using var server = new LocalServer();
+                    using var server = new RunningServer();
                     server.RegisterClass<MyServerImpl>(clsid);
                     // terminate process after last client disconnect
                     server.WaitForRefCountsToReachZero();
@@ -57,7 +57,7 @@ namespace MyServerCs
             else if(args.Length == 0)
             {
                 // process manually started
-                using var server = new LocalServer();
+                using var server = new RunningServer();
                 server.RegisterClass<MyServerImpl>(clsid);
                 // run until terminated
                 Thread.Sleep(Timeout.Infinite);
