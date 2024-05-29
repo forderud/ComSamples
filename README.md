@@ -9,6 +9,7 @@ Project listing:
 | MyClientCpp   | Sample C++ _client_ |
 | MyClientCs    | Sample C# _client_ |
 | MyClientPy    | Sample Python _client_ |
+| MyDllServerCpp| C++ _server_ DLL implementation |
 | MyExeServerCpp| C++ _server_ EXE implementation |
 | MyExeServerCs | C# _server_ EXE implementation |
 
@@ -24,6 +25,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Register the server:
     * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
     * Or run `MyExeServerCpp.exe /regserver`  with admin privileges.
+    * Or run `regsvr32.exe MyDlleServerCpp.dll`  with admin privileges.
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
@@ -32,6 +34,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
     * Or run `MyExeServerCpp.exe /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
+    * Or run `regsvr32.exe /u MyDlleServerCpp.dll`  with admin privileges.
 
 Server registration is primarily needed for on-demand loaded COM servers. It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.
 
