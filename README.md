@@ -2,15 +2,15 @@ Examples of language-neutral [Component Object Model (COM)](https://learn.micros
 
 Project listing:
 
-| Module       | Description                                                           |
-|--------------|-----------------------------------------------------------------------|
-| ComSupport   | .Net support functions for COM EXE registration (not needed for DLLs) |
-| MyInterfaces | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
-| MyClientCpp  | Sample C++ _client_ |
-| MyClientCs   | Sample C# _client_ |
-| MyClientPy   | Sample Python _client_ |
-| MyServerCpp  | C++ _server_ implementation |
-| MyExeServerCs| C# _server_ EXE implementation |
+| Module        | Description                                                           |
+|---------------|-----------------------------------------------------------------------|
+| ComSupport    | .Net support functions for COM EXE registration (not needed for DLLs) |
+| MyInterfaces  | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
+| MyClientCpp   | Sample C++ _client_ |
+| MyClientCs    | Sample C# _client_ |
+| MyClientPy    | Sample Python _client_ |
+| MyExeServerCpp| C++ _server_ EXE implementation |
+| MyExeServerCs | C# _server_ EXE implementation |
 
 Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
@@ -23,14 +23,14 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Build all projects.
 1. Register the server:
     * Either run `MyExeServerCs.exe" /regserver`  with admin privileges,
-    * Or run `MyServerCpp.exe" /regserver`  with admin privileges.
+    * Or run `MyExeServerCpp.exe" /regserver`  with admin privileges.
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
     * Either run `MyExeServerCs.exe" /unregserver` with admin privileges,
-    * Or run `MyServerCpp.exe" /unregserver`  with admin privileges,
+    * Or run `MyExeServerCpp.exe" /unregserver`  with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges.
 
 Server registration is primarily needed for on-demand loaded COM servers. It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.

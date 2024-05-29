@@ -28,7 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		UNREGISTER.bat = UNREGISTER.bat
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyServerCpp", "MyServerCpp\MyServerCpp.vcxproj", "{1D632A13-3FE6-4929-A2D7-5186FC0EBF57}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyExeServerCpp", "MyExeServerCpp\MyExeServerCpp.vcxproj", "{1D632A13-3FE6-4929-A2D7-5186FC0EBF57}"
 	ProjectSection(ProjectDependencies) = postProject
 		{197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74} = {197EFA7E-92F1-44ED-9CCD-E32ECC7C9D74}
 	EndProjectSection

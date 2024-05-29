@@ -2,7 +2,7 @@ HKCR
 {
     NoRemove CLSID
     {
-        ForceRemove {AF080472-F173-4D9D-8BE7-435776617347} = s 'MyServerCpp Object'
+        ForceRemove {AF080472-F173-4D9D-8BE7-435776617347} = s 'MyExeServerCpp Object'
         {
             val AppID = s '%APPID%'
             LocalServer32 = s '%MODULE%'
