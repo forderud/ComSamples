@@ -2,10 +2,11 @@
 #include <atlcom.h> // for CComObject
 #include <atlsafe.h> // for CComSafeArray
 #include <iostream>
+#include <mutex>
 #include <vector>
-#include <MyInterfaces.tlh>
+#include "../MyInterfaces/MyInterfaces_h.h"
 #include "../support/ComSupport.hpp"
-
+#include "SharedRef.hpp"
 
 /** Convert SAFEARRAY to a std::vector> */
 template<class T>
@@ -27,7 +28,7 @@ std::vector<T> ToStdVector(const SAFEARRAY * sa) {
 class MyClient : 
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<MyClient>, // no CLSID needed
-    public MyInterfaces::IMyClient {
+    public IMyClient {
 public:
     MyClient() {
         wprintf(L"MyClient constructor\n");
@@ -39,7 +40,7 @@ public:
     }
 
     /** XmitMessage impl. */
-    HRESULT raw_XmitMessage(MyInterfaces::Message * msg) override {
+    HRESULT XmitMessage(Message * msg) override {
         if (!msg)
             return E_INVALIDARG;
 
@@ -63,7 +64,7 @@ public:
     }
 
     BEGIN_COM_MAP(MyClient)
-        COM_INTERFACE_ENTRY(MyInterfaces::IMyClient)
+        COM_INTERFACE_ENTRY(IMyClient)
     END_COM_MAP()
 
     static inline ULONG s_obj_count = 0;
@@ -73,6 +74,44 @@ public:
 int main() {
     ComInitialize com(COINIT_MULTITHREADED);
 
+    {
+        CComPtr<IUnknown> strong;
+        CComPtr<IWeakRef> weak;
+        {
+            CComPtr<IUnknown> obj(new SharedRef<IMyClient, MyClient>());
+
+            obj->QueryInterface(__uuidof(IUnknown), (void**)&strong);
+            obj->QueryInterface(__uuidof(IWeakRef), (void**)&weak);
+        }
+
+        {
+            // verify that Resolve succeed when use-count>0
+            CComPtr<IUnknown> tmp;
+            weak->Resolve(&tmp);
+
+            CComPtr<IMyClient> obj;
+            obj = tmp;
+            Message m;
+            obj->XmitMessage(&m);
+        }
+
+        {
+            // cast IWeakRef to IUnknown
+            CComPtr<IUnknown> tmp;
+            weak->QueryInterface(&tmp);
+        }
+
+        strong.Release();
+
+        {
+            // verify that Resolve fail when use-count=0
+            CComPtr<IUnknown> tmp;
+            HRESULT hr = weak->Resolve(&tmp);
+            assert(hr == E_FAIL);
+        }
+    }
+    auto count = SharedRef<IMyClient, MyClient>::ObjectCount();
+    assert(count == 0);
     assert(MyClient::s_obj_count == 0);
 
     return 0;
