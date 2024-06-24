@@ -45,12 +45,14 @@ public:
         wcout << L"  value=" << msg->value << L"\n";
         wcout << L"  desc=" << msg->desc << L"\n";
         wcout << L"  color=(" << msg->color[0] << L", " << msg->color[1] << L", " << msg->color[2] << L")\n";
-        {
-            wcout << L"  data=[";
+
+        wcout << L"  data=[";
+        if (msg->data) {
             for (BYTE elm : ToStdVector<BYTE>(msg->data))
                 wcout << elm << L",";
-            wcout << L"]\n";
         }
+        wcout << L"]\n";
+
         return S_OK;
     }
 
