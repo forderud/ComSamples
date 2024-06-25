@@ -19,7 +19,7 @@ class MyClientImpl(comtypes.CoClass):
     '''Non-creatable COM class that doesn't need any CLSID'''
     _com_interfaces_ = [MyInterfaces.IMyClient]
 
-    def SendMessage(self, message):
+    def XmitMessage(self, message):
         msg = message.contents # access Message struct fields
         print("Received message:")
         print("  sev="+str(msg.sev))

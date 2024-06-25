@@ -127,7 +127,7 @@ public:
     void BroadcastMessage(Message& msg) {
         for (auto it = m_clients.begin(); it != m_clients.end();) {
             try {
-                (*it)->SendMessage(&msg);
+                (*it)->XmitMessage(&msg);
             } catch (_com_error& err) {
                 HRESULT hr = err.Error();
 

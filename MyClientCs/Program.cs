@@ -52,7 +52,7 @@ namespace MyClientCs
     /** Non-creatable COM class that doesn't need any CLSID. */
     class ClientCallback : MyInterfaces.IMyClient
     {
-        public void SendMessage(ref MyInterfaces.Message msg)
+        public void XmitMessage(ref MyInterfaces.Message msg)
         {
             Console.WriteLine("Received message:");
             Console.WriteLine("  sev=" + msg.sev);

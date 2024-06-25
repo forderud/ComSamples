@@ -55,7 +55,7 @@ namespace MyExeServerCs
                 try
                 {
                     // throws InvalidCastException or COMException if client is disconnected
-                    client.SendMessage(msg);
+                    client.XmitMessage(msg);
 
                     // advance to next index if call doesn't throw
                     i++;

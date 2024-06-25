@@ -78,7 +78,7 @@ cpp_quote("#endif")
  helpstring("Client callback interface")]
 interface IMyClient : IUnknown {
     [helpstring("Send message to client")]
-    HRESULT SendMessage([in] Message * message);
+    HRESULT XmitMessage([in] Message * message);
 };
 
 [object,

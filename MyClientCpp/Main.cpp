@@ -36,8 +36,8 @@ public:
         wprintf(L"MyClient destructor\n");
     }
 
-    /** SendMessage impl. */
-    HRESULT raw_SendMessage(MyInterfaces::Message * msg) override {
+    /** XmitMessage impl. */
+    HRESULT raw_XmitMessage(MyInterfaces::Message * msg) override {
         if (!msg)
             return E_INVALIDARG;
 
