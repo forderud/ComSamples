@@ -31,9 +31,11 @@ class MyClient :
 public:
     MyClient() {
         wprintf(L"MyClient constructor\n");
+        ++s_obj_count;
     }
     ~MyClient() {
         wprintf(L"MyClient destructor\n");
+        --s_obj_count;
     }
 
     /** XmitMessage impl. */
@@ -63,12 +65,15 @@ public:
     BEGIN_COM_MAP(MyClient)
         COM_INTERFACE_ENTRY(MyInterfaces::IMyClient)
     END_COM_MAP()
+
+    static inline ULONG s_obj_count = 0;
 };
 
 
 int main() {
     ComInitialize com(COINIT_MULTITHREADED);
 
+    assert(MyClient::s_obj_count == 0);
 
     return 0;
 }
