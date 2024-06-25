@@ -69,37 +69,6 @@ public:
 int main() {
     ComInitialize com(COINIT_MULTITHREADED);
 
-    {
-        // create or connect to server object in a separate process
-        MyInterfaces::IMyServerPtr server;
-        DWORD context = CLSCTX_ALL; // change to CLSCTX_LOCAL_SERVER to force out-of-proc
-        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, context);
-        if (FAILED(hr)) {
-            _com_error err(hr);
-            std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
-            return 1;
-        }
-
-        try {
-            auto cruncher = server->GetNumberCruncher();
-            double pi = cruncher->ComputePi();
-            std::wcout << L"pi = " << pi << std::endl;
-
-            auto callback = CreateLocalInstance<MyClient>();
-            server->Subscribe(callback);
-
-            // wait 5 seconds before exiting to give the server time to send messages
-            Sleep(5000);
-
-            // cruncher & callback references will be released here
-        }
-        catch (const _com_error& e) {
-            std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
-            return 1;
-        }
-
-        // server reference will be released here
-    }
 
     return 0;
 }
