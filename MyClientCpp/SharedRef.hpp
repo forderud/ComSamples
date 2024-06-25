@@ -3,13 +3,16 @@
 
 
 /** COM wrapper class that provides support for weak references through the IWeakRef interface. */
-template <class Interface>
+template <class Interface, class Class>
 class SharedRef : public IUnknown {
+    static constexpr ULONG EXPIRED_STRONG = 1;
 public:
-    SharedRef(Interface* ptr) : m_ptr(ptr), m_child(*this) {
+    SharedRef() : m_child(*this) {
         wprintf(L"SharedRef ctor\n");
+        CComAggObject<Class>* tmp = nullptr; // non-owning
+        CComAggObject<Class>::CreateInstance(this, &tmp);
+        tmp->QueryInterface(__uuidof(Interface), (void**)&m_ptr);
         assert(m_ptr);
-        m_ptr->AddRef();
         ++s_obj_count;
     }
     ~SharedRef() {
@@ -53,13 +56,13 @@ public:
     ULONG Release() override {
         RefBlock refs = m_refs.Release(true);
 
-        if (m_ptr && (refs.strong == 0)) {
+        if (m_ptr && (refs.strong == EXPIRED_STRONG)) {
             // release object handle
             m_ptr->Release();
             m_ptr = nullptr;
         }
 
-        if (refs.strong + refs.weak == 0)
+        if ((refs.strong == EXPIRED_STRONG) && !refs.weak)
             delete this;
 
         return refs.strong;
@@ -104,7 +107,7 @@ private:
 
         ULONG Release() override {
             RefBlock refs = m_parent.m_refs.Release(false);
-            if (refs.strong + refs.weak == 0)
+            if ((refs.strong <= EXPIRED_STRONG) && !refs.weak) // delete both if strong is 0 or 1
                 delete &m_parent;
 
             return refs.weak;
@@ -151,7 +154,7 @@ private:
         bool AddRefIfStrongValid() {
             uint32_t prev = strong;
 
-            if (prev < 1)
+            if (prev <= EXPIRED_STRONG)
                 return false; // no strong references
 
             // if (strong == prev)
@@ -160,7 +163,7 @@ private:
             //     prev = strong;
             while (!strong.compare_exchange_strong(prev, prev + 1)) {
                 // "strong" have changed from a different thread
-                if (prev < 1)
+                if (prev <= EXPIRED_STRONG)
                     return false; // no strong references any more
             }
 

@@ -74,8 +74,7 @@ int main() {
         CComPtr<IUnknown> strong;
         CComPtr<IWeakRef> weak;
         {
-            auto client = CreateLocalInstance<MyClient>();
-            CComPtr<IUnknown> obj(new SharedRef<IMyClient>(client));
+            CComPtr<IUnknown> obj(new SharedRef<IMyClient, MyClient>());
 
             obj->QueryInterface(__uuidof(IUnknown), (void**)&strong);
             obj->QueryInterface(__uuidof(IWeakRef), (void**)&weak);
@@ -107,7 +106,8 @@ int main() {
             assert(hr == E_FAIL);
         }
     }
-    assert(SharedRef<IMyClient>::ObjectCount() == 0);
+    auto count = SharedRef<IMyClient, MyClient>::ObjectCount();
+    assert(count == 0);
 
     return 0;
 }
