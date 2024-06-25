@@ -108,15 +108,6 @@ private:
             return refs.weak;
         }
 
-        /** Resolve a strong object reference. */
-        HRESULT Resolve(IUnknown** ptr) override {
-            if (!m_parent.m_refs.AddRefIfStrongValid())
-                return E_FAIL;
-
-            *ptr = &m_parent;
-            return S_OK;
-        }
-
     private:
         SharedRef& m_parent;
     };
@@ -143,26 +134,6 @@ private:
             else {
                 return { strong, --weak };
             }
-        }
-
-        /** Atomic increment of "strong" if the value is already >0. Based on https://devblogs.microsoft.com/oldnewthing/20221209-00/?p=107570 .*/
-        bool AddRefIfStrongValid() {
-            uint32_t prev = strong;
-
-            if (prev < 1)
-                return false; // no strong references
-
-            // if (strong == prev)
-            //     strong = prev + 1;
-            // else
-            //     prev = strong;
-            while (!strong.compare_exchange_strong(prev, prev + 1)) {
-                // "strong" have changed from a different thread
-                if (prev < 1)
-                    return false; // no strong references any more
-            }
-
-            return true;
         }
 
     private:

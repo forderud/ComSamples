@@ -86,11 +86,8 @@ int main() {
 
         {
             // verify that Resolve succeed when use-count>0
-            CComPtr<IUnknown> tmp;
-            weak->Resolve(&tmp);
-
             CComPtr<IMyClient> obj;
-            obj = tmp;
+            weak.QueryInterface(&obj);
             Message m;
             obj->XmitMessage(&m);
         }
@@ -106,8 +103,8 @@ int main() {
         {
             // verify that Resolve fail when use-count=0
             CComPtr<IUnknown> tmp;
-            HRESULT hr = weak->Resolve(&tmp);
-            assert(hr == E_FAIL);
+            HRESULT hr = weak.QueryInterface(&tmp);
+            assert(hr == E_NOT_SET);
         }
     }
     auto count = SharedRef<IMyClient, MyClient>::ObjectCount();
