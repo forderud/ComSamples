@@ -8,7 +8,6 @@ class SharedRef : public IUnknown {
     static constexpr ULONG EXPIRED_STRONG = 1;
 public:
     SharedRef() : m_child(*this) {
-        wprintf(L"SharedRef ctor\n");
         CComAggObject<Class>::CreateInstance(this, &m_ptr);
         assert(m_ptr);
         m_ptr->AddRef();
@@ -16,7 +15,6 @@ public:
         ++s_obj_count;
     }
     ~SharedRef() {
-        wprintf(L"SharedRef dtor\n");
         assert(m_ptr == nullptr);
         --s_obj_count;
     }
@@ -84,10 +82,8 @@ private:
         friend class SharedRef;
     public:
         WeakRef(SharedRef& parent) : m_parent(parent) {
-            wprintf(L"WeakRef ctor\n");
         }
         ~WeakRef() {
-            wprintf(L"WeakRef dtor\n");
         }
 
         /** QueryInterface doesn't adhere to the COM aggregation rules for inner objects, but this is a project-internal pointer that's not shared with anyone.
