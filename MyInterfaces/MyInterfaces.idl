@@ -16,7 +16,7 @@ typedef [
  v1_enum, // 32bit enum size
  helpstring("")]
 enum Severity {
-    Unknown,
+    Unknown_,
     Info,
     Warning,
     Error,
