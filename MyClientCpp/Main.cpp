@@ -29,8 +29,12 @@ class MyClient :
     public CComCoClass<MyClient>, // no CLSID needed
     public MyInterfaces::IMyClient {
 public:
-    MyClient() = default;
-    ~MyClient() = default;
+    MyClient() {
+        wprintf(L"MyClient constructor\n");
+    }
+    ~MyClient() {
+        wprintf(L"MyClient destructor\n");
+    }
 
     /** SendMessage impl. */
     HRESULT raw_SendMessage(MyInterfaces::Message * msg) override {
