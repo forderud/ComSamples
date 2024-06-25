@@ -105,8 +105,19 @@ interface IMyServer : IUnknown {
     HRESULT Unsubscribe([in] IMyClient* client);
 };
 
+
+[object, oleautomation, uuid(146532F9-763D-44C9-875A-7B5B732B9046),
+helpstring("IUnknown-based alternative to Microsoft's IWeakReference.\n"
+           "References to this interface are weak, meaning they do not extend the lifetime of the object.")]
+interface IWeakRef : IUnknown {
+    [helpstring("Resolve a strong interface to the object. Will fail if the object is destroyed.")]
+    HRESULT Resolve([out,retval] IUnknown** ptr);
+};
+
 [uuid(46F3FEB2-121D-4830-AA22-0CDA9EA90DC3)]
 library MyInterfaces {
+    interface IWeakRef;
+
     [uuid(AF080472-F173-4D9D-8BE7-435776617347)]
     coclass MyServer {
         [default] interface IMyServer;

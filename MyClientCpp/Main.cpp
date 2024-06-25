@@ -2,10 +2,11 @@
 #include <atlcom.h> // for CComObject
 #include <atlsafe.h> // for CComSafeArray
 #include <iostream>
+#include <mutex>
 #include <vector>
-#include <MyInterfaces.tlh>
+#include "../MyInterfaces/MyInterfaces_h.h"
 #include "../support/ComSupport.hpp"
-
+#include "SharedRef.hpp"
 
 /** Convert SAFEARRAY to a std::vector> */
 template<class T>
@@ -27,7 +28,7 @@ std::vector<T> ToStdVector(const SAFEARRAY * sa) {
 class MyClient : 
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<MyClient>, // no CLSID needed
-    public MyInterfaces::IMyClient {
+    public IMyClient {
 public:
     MyClient() {
         wprintf(L"MyClient constructor\n");
@@ -37,7 +38,7 @@ public:
     }
 
     /** XmitMessage impl. */
-    HRESULT raw_XmitMessage(MyInterfaces::Message * msg) override {
+    HRESULT XmitMessage(Message * msg) override {
         if (!msg)
             return E_INVALIDARG;
 
@@ -61,7 +62,7 @@ public:
     }
 
     BEGIN_COM_MAP(MyClient)
-        COM_INTERFACE_ENTRY(MyInterfaces::IMyClient)
+        COM_INTERFACE_ENTRY(IMyClient)
     END_COM_MAP()
 };
 
@@ -70,36 +71,43 @@ int main() {
     ComInitialize com(COINIT_MULTITHREADED);
 
     {
-        // create or connect to server object in a separate process
-        MyInterfaces::IMyServerPtr server;
-        DWORD context = CLSCTX_ALL; // change to CLSCTX_LOCAL_SERVER to force out-of-proc
-        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, context);
-        if (FAILED(hr)) {
-            _com_error err(hr);
-            std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
-            return 1;
+        CComPtr<IUnknown> strong;
+        CComPtr<IWeakRef> weak;
+        {
+            CComPtr<IUnknown> obj(new SharedRef<IMyClient, MyClient>());
+
+            obj->QueryInterface(__uuidof(IUnknown), (void**)&strong);
+            obj->QueryInterface(__uuidof(IWeakRef), (void**)&weak);
         }
 
-        try {
-            auto cruncher = server->GetNumberCruncher();
-            double pi = cruncher->ComputePi();
-            std::wcout << L"pi = " << pi << std::endl;
+        {
+            // verify that Resolve succeed when use-count>0
+            CComPtr<IUnknown> tmp;
+            weak->Resolve(&tmp);
 
-            auto callback = CreateLocalInstance<MyClient>();
-            server->Subscribe(callback);
-
-            // wait 5 seconds before exiting to give the server time to send messages
-            Sleep(5000);
-
-            // cruncher & callback references will be released here
-        }
-        catch (const _com_error& e) {
-            std::wcout << L"Call failure: " << e.ErrorMessage() << std::endl;
-            return 1;
+            CComPtr<IMyClient> obj;
+            obj = tmp;
+            Message m;
+            obj->XmitMessage(&m);
         }
 
-        // server reference will be released here
+        {
+            // cast IWeakRef to IUnknown
+            CComPtr<IUnknown> tmp;
+            weak->QueryInterface(&tmp);
+        }
+
+        strong.Release();
+
+        {
+            // verify that Resolve fail when use-count=0
+            CComPtr<IUnknown> tmp;
+            HRESULT hr = weak->Resolve(&tmp);
+            assert(hr == E_FAIL);
+        }
     }
+    auto count = SharedRef<IMyClient, MyClient>::ObjectCount();
+    assert(count == 0);
 
     return 0;
 }
