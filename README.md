@@ -62,10 +62,10 @@ COM interfaces are first defined in IDL files. The IDL files are afterwards comp
 * **Language neutral** interface definitions in IDL files.
 * COM is **in-built in Windows**. There's no need to install any additional "runtime" or "brokers". COM is used for GPU programming with Direct3D, HW diagnostics with WMI and most new Windows features are exposed through COM-based [WinRT](https://github.com/microsoft/xlang) interfaces.
 * Support for **type-safe** interfaces where type mismatches are detected at compile-time instead of run-time.
-* Support for bidirectional **object-oriented** communication.
+* Support for **bidirectional** and **object-oriented** communication.
 * Support for **interface versioning** for controlled API evolution.
 * **Transparent IPC marshaling** of method calls. The client doesn't need to know that an object resides in a different process.
-* Languages like C++ and C# natively support COM, whereas Python support is achieved through the [comtypes](https://github.com/enthought/comtypes) package. This **avoids** the need for manually maintained **language bindings**.
+* Languages like C++ and C# natively support COM, whereas Python support is achieved through the [comtypes](https://github.com/enthought/comtypes) package. This **avoid** the need for manually **maintaining language bindings**.
 * **Long-term stable binary API** (ABI) that has been available since 1993. Allows interoperability with COM servers compiled 20 years ago without having to rebuild them.
 * Inherently **secure** with strict default settings and design protection against remote attacks. Does unlike sockets _not_ depend on opening any ports that need to be secured through authentication and firewall lockdown. Security settings are furthermore highly configurable.
 
