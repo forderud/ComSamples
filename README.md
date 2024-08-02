@@ -73,7 +73,7 @@ COM interfaces are first defined in IDL files. The IDL files are afterwards comp
 * Best practice is poorly documented.
 * Some boilerplate code needed with C++.
 * Better alternatives usually exist for network-based distributed communication APIs.
-* Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project can partly mitigate this for in-process needs.
+* Not as easily available on non-Windows platforms. The [MiniCOM](https://github.com/forderud/MiniCOM) project seek to partly mitigate this.
 
 ### COM concepts
 Some common concepts:
