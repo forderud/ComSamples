@@ -29,12 +29,18 @@ MyserverModule _AtlModule;
 
 
 // EXE Entry Point
-int wmain(int /*argc*/, wchar_t* /*argv*/[]) {
+int wmain(int argc, wchar_t* /*argv*/[]) {
     // initialize COM early for programmatic COM security
     _AtlModule.InitializeCom();
     HRESULT hr = _AtlModule.InitializeSecurity();
     if (FAILED(hr))
         abort();
+
+    if (argc == 1) {
+        // process started without arguments
+        // add an artificial reference to make the server outlive COM clients
+        CoAddRefServerProcess();
+    }
 
     return _AtlModule.WinMain(SW_SHOWDEFAULT);
 }
