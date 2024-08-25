@@ -9,12 +9,20 @@ HANDLE                g_ServiceStopEvent = INVALID_HANDLE_VALUE; // weak-ref to 
 
 /* Set the current state of the service. */
 void ServiceSetState(DWORD newState, DWORD exitCode) {
+    static DWORD counter = 1; // counter to report progress
+
     SERVICE_STATUS serviceStatus = {};
-    serviceStatus.dwCheckPoint = 0;
+
+    if ((newState == SERVICE_RUNNING) || (newState == SERVICE_STOPPED))
+        serviceStatus.dwCheckPoint = 0;
+    else
+        serviceStatus.dwCheckPoint = counter++;
+
     if ((newState == SERVICE_START_PENDING) || (newState == SERVICE_STOPPED))
         serviceStatus.dwControlsAccepted = 0;
     else
         serviceStatus.dwControlsAccepted = SERVICE_ACCEPT_STOP; // can be stopped
+
     serviceStatus.dwCurrentState = newState;
     serviceStatus.dwServiceSpecificExitCode = 0;
     serviceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
