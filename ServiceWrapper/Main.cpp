@@ -8,10 +8,13 @@ HANDLE                g_ServiceStopEvent = INVALID_HANDLE_VALUE; // weak-ref to 
 
 
 /* Set the current state of the service. */
-void ServiceSetState(DWORD acceptedControls, DWORD newState, DWORD exitCode) {
+void ServiceSetState(DWORD newState, DWORD exitCode) {
     SERVICE_STATUS serviceStatus = {};
     serviceStatus.dwCheckPoint = 0;
-    serviceStatus.dwControlsAccepted = acceptedControls;
+    if ((newState == SERVICE_START_PENDING) || (newState == SERVICE_STOPPED))
+        serviceStatus.dwControlsAccepted = 0;
+    else
+        serviceStatus.dwControlsAccepted = SERVICE_ACCEPT_STOP; // can be stopped
     serviceStatus.dwCurrentState = newState;
     serviceStatus.dwServiceSpecificExitCode = 0;
     serviceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
@@ -29,15 +32,15 @@ void WINAPI ServiceCtrlHandler(DWORD CtrlCode) {
     switch (CtrlCode) {
     case SERVICE_CONTROL_STOP:
         SetEvent(g_ServiceStopEvent); // signal service stop
-        ServiceSetState(0, SERVICE_STOPPED, 0);
+        ServiceSetState(SERVICE_STOPPED, 0);
         break;
 
     case SERVICE_CONTROL_PAUSE:
-        ServiceSetState(0, SERVICE_PAUSED, 0);
+        ServiceSetState(SERVICE_PAUSED, 0);
         break;
 
     case SERVICE_CONTROL_CONTINUE:
-        ServiceSetState(0, SERVICE_RUNNING, 0);
+        ServiceSetState(SERVICE_RUNNING, 0);
         break;
 
     case SERVICE_CONTROL_INTERROGATE:
@@ -64,7 +67,7 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     g_StatusHandle = RegisterServiceCtrlHandlerW(ServiceName, ServiceCtrlHandler);
     if (!g_StatusHandle) {
         OutputDebugStringW(L"RegisterServiceCtrlHandler() failed\n");
-        ServiceSetState(0, SERVICE_STOPPED, GetLastError());
+        ServiceSetState(SERVICE_STOPPED, GetLastError());
         return;
     }
 
@@ -83,12 +86,12 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     const WCHAR* procCurDir = nullptr;
     PROCESS_INFORMATION process = {};
     if (!CreateProcessW(NULL, args, NULL, NULL, FALSE, CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, (void*)procEnv, procCurDir, &startupInfo, &process)) {
-        ServiceSetState(0, SERVICE_STOPPED, GetLastError());
+        ServiceSetState(SERVICE_STOPPED, GetLastError());
         return;
     }
         
     // process created
-    ServiceSetState(SERVICE_ACCEPT_STOP, SERVICE_RUNNING, 0);
+    ServiceSetState(SERVICE_RUNNING, 0);
 
     // Keep the service alive until stopped or the target application exits
     while (WaitForSingleObject(ServiceStopEvent.get(), 0) != WAIT_OBJECT_0) {
@@ -101,7 +104,7 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
 
     TerminateProcess(process.hProcess, 0); // kill the target process if it's still running
 
-    ServiceSetState(0, SERVICE_STOPPED, 0);
+    ServiceSetState(SERVICE_STOPPED, 0);
 }
 
 
