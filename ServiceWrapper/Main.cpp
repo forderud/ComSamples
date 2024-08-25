@@ -112,6 +112,10 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
 
     TerminateProcess(process.hProcess, 0); // kill the target process if it's still running
 
+    // close process handles
+    CloseHandle(process.hProcess);
+    CloseHandle(process.hThread);
+
     ServiceSetState(SERVICE_STOPPED, 0);
 }
 
