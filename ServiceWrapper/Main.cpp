@@ -5,6 +5,7 @@
 
 SERVICE_STATUS_HANDLE g_StatusHandle = NULL;
 HANDLE                g_ServiceStopEvent = INVALID_HANDLE_VALUE; // weak-ref to ServiceMain variable
+PROCESS_INFORMATION   g_Process = {};
 
 
 /* Set the current state of the service. */
@@ -41,6 +42,7 @@ void WINAPI ServiceCtrlHandler(DWORD CtrlCode) {
     case SERVICE_CONTROL_STOP:
         SetEvent(g_ServiceStopEvent); // signal service stop
         ServiceSetState(SERVICE_STOPPED, 0);
+        TerminateProcess(g_Process.hProcess, 0); // kill the target process if it's still running (unable to do this from ServiceMain)
         break;
 
     case SERVICE_CONTROL_PAUSE:
@@ -92,8 +94,7 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     // try to create target process
     const WCHAR* procEnv = nullptr;
     const WCHAR* procCurDir = nullptr;
-    PROCESS_INFORMATION process = {};
-    if (!CreateProcessW(NULL, args, NULL, NULL, FALSE, CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, (void*)procEnv, procCurDir, &startupInfo, &process)) {
+    if (!CreateProcessW(NULL, args, NULL, NULL, FALSE, CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, (void*)procEnv, procCurDir, &startupInfo, &g_Process)) {
         ServiceSetState(SERVICE_STOPPED, GetLastError());
         return;
     }
@@ -104,17 +105,11 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     // Keep the service alive until stopped or the target application exits
     while (WaitForSingleObject(ServiceStopEvent.get(), 0) != WAIT_OBJECT_0) {
         // signal stop-event if the target process has exited
-        if (WaitForSingleObject(process.hProcess, 0) == WAIT_OBJECT_0)
+        if (WaitForSingleObject(g_Process.hProcess, 0) == WAIT_OBJECT_0)
             SetEvent(ServiceStopEvent.get());
 
         Sleep(1000);
     }
-
-    TerminateProcess(process.hProcess, 0); // kill the target process if it's still running
-
-    // close process handles
-    CloseHandle(process.hProcess);
-    CloseHandle(process.hThread);
 
     ServiceSetState(SERVICE_STOPPED, 0);
 }
