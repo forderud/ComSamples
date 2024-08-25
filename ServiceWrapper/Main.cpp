@@ -83,7 +83,7 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     const WCHAR* procCurDir = nullptr;
     PROCESS_INFORMATION process = {};
     if (!CreateProcessW(NULL, args, NULL, NULL, FALSE, CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, (void*)procEnv, procCurDir, &startupInfo, &process)) {
-        ServiceSetState(0, SERVICE_STOPPED, 0);
+        ServiceSetState(0, SERVICE_STOPPED, GetLastError());
         return;
     }
         
