@@ -102,13 +102,13 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     // process created
     ServiceSetState(SERVICE_RUNNING, 0);
 
-    // Keep the service alive until stopped or the target application exits
-    while (WaitForSingleObject(ServiceStopEvent.get(), 0) != WAIT_OBJECT_0) {
+    // wait until stopped or the target application exits
+    HANDLE handles[] = { ServiceStopEvent.get() , g_Process.hProcess };
+    constexpr DWORD processOffset = 1; // g_Process.hProcess index in handles array
+    DWORD ret = WaitForMultipleObjects((DWORD)std::size(handles), handles, FALSE, INFINITE);
+    if (ret == WAIT_OBJECT_0 + processOffset) {
         // signal stop-event if the target process has exited
-        if (WaitForSingleObject(g_Process.hProcess, 0) == WAIT_OBJECT_0)
-            SetEvent(ServiceStopEvent.get());
-
-        Sleep(1000);
+        SetEvent(ServiceStopEvent.get());
     }
 
     ServiceSetState(SERVICE_STOPPED, 0);
