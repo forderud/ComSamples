@@ -1,4 +1,4 @@
-Windows service wrapper that allows "regular" executables to be started as a Windows service. Replacement for [srvany](https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/create-user-defined-service) that is no longer distributed with the Windows SDK.
+Windows service wrapper that allows "regular" executables to be started as a [Windows service](https://learn.microsoft.com/en-us/windows/win32/services/using-services). Replacement for [srvany](https://learn.microsoft.com/en-us/troubleshoot/windows-client/setup-upgrade-and-drivers/create-user-defined-service) that is no longer distributed with the Windows SDK.
 
 
 Example [`sc create`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/sc-create) installation command:
