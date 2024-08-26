@@ -7,3 +7,5 @@ sc.exe create MyExeServerCpp start= delayed-auto error= normal binpath= "\"C:\<p
 ```
 
 The service configuration will be stored in the `HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\MyExeServerCpp` registry folder afterwards.
+
+If launching a COM server, then the COM server needs to have a [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry parameter with user account matching the `obj= ` account. 
