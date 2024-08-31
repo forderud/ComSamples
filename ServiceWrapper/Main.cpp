@@ -112,6 +112,9 @@ void WINAPI ServiceMain(DWORD svc_argc, WCHAR* svc_argv[]) {
     }
 
     ServiceSetState(SERVICE_STOPPED, 0);
+
+    CloseHandle(g_Process.hProcess);
+    CloseHandle(g_Process.hThread);
 }
 
 
