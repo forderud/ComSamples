@@ -69,11 +69,22 @@ public:
 int main() {
     ComInitialize com(COINIT_MULTITHREADED);
 
+    // Disable COM security to allow callbacks from elevated servers.
+    HRESULT hr = CoInitializeSecurity(nullptr, -1/*auto*/, nullptr, NULL/*reserved*/,
+        RPC_C_AUTHN_LEVEL_DEFAULT, ///< 
+        RPC_C_IMP_LEVEL_IDENTIFY,  ///< allow server to identify but not impersonate client
+        nullptr, EOAC_NONE/*capabilities*/, NULL/*reserved*/);
+    if (FAILED(hr)) {
+        _com_error err(hr);
+        std::wcout << L"CoInitializeSecurity failure: " << err.ErrorMessage() << std::endl;
+        return 1;
+    }
+
     {
         // create or connect to server object in a separate process
         MyInterfaces::IMyServerPtr server;
         DWORD context = CLSCTX_ALL; // change to CLSCTX_LOCAL_SERVER to force out-of-proc
-        HRESULT hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, context);
+        hr = server.CreateInstance(__uuidof(MyInterfaces::MyServer), nullptr, context);
         if (FAILED(hr)) {
             _com_error err(hr);
             std::wcout << L"CoCreateInstance failure: " << err.ErrorMessage() << std::endl;
