@@ -164,6 +164,8 @@ If doing so, then one _can_ also consider using the Running Object Table (ROT) t
 * [RegisterActiveObject](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-registeractiveobject) and [RevokeActiveObject](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-revokeactiveobject) to (un)register the COM server in ROT.
 * [GetActiveObject](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-getactiveobject) to connect to the already running COM server.
 
+`GetActiveObject` only succeed if the COM server is already running, wheras `CoCreateInstance` always succeed and will start the COM server if not already running.
+
 ### Security
 Some noteworthy details:
 * The [`RunAs`](https://learn.microsoft.com/en-us/windows/win32/com/runas) registry value can be used to configure the COM server to start in a different user account. The [RunInSandbox](https://github.com/forderud/RunInSandbox) `ComRunAs` tool can be used to configure this.
