@@ -15,7 +15,7 @@ Project listing:
 | MyExeServerCs | C# _server_ EXE implementation |
 | ServiceWrapper| Support project for running "regular" COM servers as a Windows service |
 
-Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually to facilitate background service deployment. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
+Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually in advance if desired. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
 The server projects implement the `IMyServer` interface whereas the client projects implement the `IMyClient` callback interface:  
 ![Overview](Overview.svg)
@@ -40,7 +40,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
-Server registration is primarily needed for on-demand loaded COM servers. It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.
+Server registration is primarily needed for on-demand loaded COM servers.
 
 The client programs should output something resembling this:
 ```
@@ -156,6 +156,9 @@ Rules:
 
 ## Advanced topics
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
+
+### Background service deployment
+It can be scaled down to just TypeLib registration if instead running the server in a background service that is started in advance.
 
 ### Security
 Some noteworthy details:
