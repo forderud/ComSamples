@@ -158,7 +158,7 @@ Rules:
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
 
 ### Background service deployment
-The `ServiceWrapper` project can be used to start a COM service as a Windows background service.
+The `ServiceWrapper` project can be used to start a COM server as a Windows background service.
 
 If doing so, then one _can_ also consider using the Running Object Table (ROT) to connect to the already running COM server. This can be achieved through the following functions:
 * [RegisterActiveObject](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-registeractiveobject) and [RevokeActiveObject](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-revokeactiveobject) to (un)register the COM server in ROT.
