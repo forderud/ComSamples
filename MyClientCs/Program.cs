@@ -16,7 +16,7 @@ namespace MyClientCs
                 double pi = cruncher.ComputePi();
                 Console.WriteLine($"pi = {pi}");
 
-                // release reference to help GC clean up (not strctly needed)
+                // release reference to help GC clean up (not strictly needed)
                 cruncher = null;
             }
             {
@@ -27,11 +27,11 @@ namespace MyClientCs
                 Thread.Sleep(5000);
 
                 server.Unsubscribe(callback);
-                // release reference to help GC clean up (not strctly needed)
+                // release reference to help GC clean up (not strictly needed)
                 callback = null;
             }
 
-            // release reference to help GC clean up (not strctly needed)
+            // release reference to help GC clean up (not strictly needed)
             server = null;
         }
 
