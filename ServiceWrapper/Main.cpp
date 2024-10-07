@@ -39,21 +39,21 @@ void ServiceSetState(DWORD newState, DWORD exitCode) {
 /* Handle service control requests, like STOP, PAUSE and CONTINUE. */
 void WINAPI ServiceCtrlHandler(DWORD CtrlCode) {
     switch (CtrlCode) {
-    case SERVICE_CONTROL_STOP:
+    case SERVICE_CONTROL_STOP: // enabled by dwControlsAccepted=SERVICE_ACCEPT_STOP
         SetEvent(g_ServiceStopEvent); // signal service stop
         ServiceSetState(SERVICE_STOPPED, 0);
         TerminateProcess(g_Process.hProcess, 0); // kill the target process if it's still running (unable to do this from ServiceMain)
         break;
 
-    case SERVICE_CONTROL_PAUSE:
+    case SERVICE_CONTROL_PAUSE: // enabled by dwControlsAccepted=SERVICE_ACCEPT_PAUSE_CONTINUE
         ServiceSetState(SERVICE_PAUSED, 0);
         break;
 
-    case SERVICE_CONTROL_CONTINUE:
+    case SERVICE_CONTROL_CONTINUE: // enabled by dwControlsAccepted=SERVICE_ACCEPT_PAUSE_CONTINUE
         ServiceSetState(SERVICE_RUNNING, 0);
         break;
 
-    case SERVICE_CONTROL_INTERROGATE:
+    case SERVICE_CONTROL_INTERROGATE: // always enabled
         break;
 
     default:
