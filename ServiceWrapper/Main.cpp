@@ -45,6 +45,7 @@ void WINAPI ServiceCtrlHandler(DWORD CtrlCode) {
         TerminateProcess(g_Process.hProcess, 0); // kill the target process if it's still running (unable to do this from ServiceMain)
         break;
 
+#if 0
     case SERVICE_CONTROL_PAUSE: // enabled by dwControlsAccepted=SERVICE_ACCEPT_PAUSE_CONTINUE
         ServiceSetState(SERVICE_PAUSED, 0);
         break;
@@ -52,6 +53,7 @@ void WINAPI ServiceCtrlHandler(DWORD CtrlCode) {
     case SERVICE_CONTROL_CONTINUE: // enabled by dwControlsAccepted=SERVICE_ACCEPT_PAUSE_CONTINUE
         ServiceSetState(SERVICE_RUNNING, 0);
         break;
+#endif
 
     case SERVICE_CONTROL_INTERROGATE: // always enabled
         break;
