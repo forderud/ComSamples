@@ -44,7 +44,7 @@ if __name__=="__main__":
     
     import sys
     if sys.argv[-1] == "/unregserver":
-        # Work-around for broken comtypes TypeLib unregistration in 64bit
+        # Work-around for broken comtypes TypeLib unregistration in 64bit (https://github.com/enthought/comtypes/pull/677)
         import comtypes.typeinfo
         tlb = MyInterfaces.MyServer._reg_typelib_ # (GUID, verMajor, verMinor) triple
         comtypes.typeinfo.UnRegisterTypeLib(tlb[0], tlb[1], tlb[2], 0, comtypes.typeinfo.SYS_WIN64) # override SYS_WIN32 default
