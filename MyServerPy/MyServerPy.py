@@ -21,7 +21,7 @@ class MyServerImpl(MyInterfaces.MyServer):
      # registry entries
     _reg_threading_ = "Both"
     _reg_desc_ = "Python-based COM server for testing"
-    _reg_clsctx_ = comtypes.CLSCTX_LOCAL_SERVER
+    _reg_clsctx_ = comtypes.CLSCTX_LOCAL_SERVER # run in separate process
     _regcls_ = comtypes.server.localserver.REGCLS_MULTIPLEUSE
     
     def GetNumberCruncher(self):
