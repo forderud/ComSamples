@@ -15,7 +15,7 @@ Project listing:
 | MyExeServerCs | C# _server_ EXE implementation |
 | ServiceWrapper| Support project for running "regular" COM servers as a Windows service |
 
-Both servers are implemented as on-demand loaded COM EXE servers. The processes can also be started manually in advance if desired. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
+The servers are implemented as on-demand loaded COM DLL or EXEs. The processes can also be started manually in advance if desired. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
 The server projects implement the `IMyServer` interface whereas the client projects implement the `IMyClient` callback interface:  
 ![Overview](Overview.svg)
