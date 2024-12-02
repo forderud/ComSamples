@@ -13,6 +13,7 @@ Project listing:
 | MyDllServerCs | C# _server_ DLL implementation |
 | MyExeServerCpp| C++ _server_ EXE implementation |
 | MyExeServerCs | C# _server_ EXE implementation |
+| MyServerPy    | Python _server_ implementation |
 | ServiceWrapper| Support project for running "regular" COM servers as a Windows service |
 
 The servers are implemented as on-demand loaded COM DLL or EXEs. The processes can also be started manually in advance if desired. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
