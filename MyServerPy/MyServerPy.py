@@ -39,6 +39,12 @@ if __name__=="__main__":
     #import logging
     #logging.basicConfig(level=logging.DEBUG)
 
-    # TODO: /unregserver only unregisters CLSID, but not TypeLib or interfaces 
     from comtypes.server.register import UseCommandLine
     UseCommandLine(MyServerImpl) # will parse /regserver and /unregserver arguments
+    
+    import sys
+    if sys.argv[-1] == "/unregserver":
+        # Work-around for broken comtypes TypeLib unregistration in 64bit
+        import comtypes.typeinfo
+        tlb = MyInterfaces.MyServer._reg_typelib_ # (GUID, verMajor, verMinor) triple
+        comtypes.typeinfo.UnRegisterTypeLib(tlb[0], tlb[1], tlb[2], 0, comtypes.typeinfo.SYS_WIN64) # override SYS_WIN32 default
