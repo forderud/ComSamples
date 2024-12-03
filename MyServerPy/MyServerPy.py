@@ -36,9 +36,6 @@ class MyServerImpl(MyInterfaces.MyServer):
 
 
 if __name__=="__main__":
-    #import logging
-    #logging.basicConfig(level=logging.DEBUG)
-
     from comtypes.server.register import UseCommandLine
     UseCommandLine(MyServerImpl) # will parse /regserver and /unregserver arguments
     
