@@ -28,6 +28,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Register the server:
     * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
     * Or run `MyExeServerCpp.exe /regserver` with admin privileges,
+    * Or run `MyServerPy.py /regserver` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCpp.dll` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
 1. Run the test clients:
@@ -37,6 +38,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. **Un**register the server to clean up:
     * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
     * Or run `MyExeServerCpp.exe /unregserver`  with admin privileges,
+    * Or run `MyServerPy.py /unregserver`  with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCpp.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
