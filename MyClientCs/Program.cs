@@ -13,7 +13,16 @@ namespace MyClientCs
 
             {
                 var cruncher = server.GetNumberCruncher();
-                double pi = cruncher.ComputePi();
+                double pi = 0;
+                try {
+                    // try to cast to INumberCruncher2 to check if the new interface is implemented
+                    var cruncher2 = (MyInterfaces.INumberCruncher2)cruncher;
+                    // use new interface
+                    pi = cruncher2.ComputePi2();
+                } catch (System.InvalidCastException) {
+                    // fallback to old interface
+                    pi = cruncher.ComputePi();
+                }
                 Console.WriteLine($"pi = {pi}");
 
                 // release reference to help GC clean up (not strictly needed)
