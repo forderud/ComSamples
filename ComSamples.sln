@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDllServerCs", "MyDllServe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServiceWrapper", "ServiceWrapper\ServiceWrapper.vcxproj", "{CB35FD3C-4727-4434-9EAF-249B9C79BB14}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MyServerPy", "MyServerPy\MyServerPy.pyproj", "{518B159B-483F-4DAA-8DA4-142CDA634FAC}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MyExeServerPy", "MyExeServerPy\MyExeServerPy.pyproj", "{518B159B-483F-4DAA-8DA4-142CDA634FAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -4,12 +4,12 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>518b159b-483f-4daa-8da4-142cda634fac</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MyServerPy.py</StartupFile>
+    <StartupFile>MyExeServerPy.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>MyServerPy</Name>
+    <Name>MyExeServerPy</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,7 +20,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="MyServerPy.py" />
+    <Compile Include="MyExeServerPy.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
