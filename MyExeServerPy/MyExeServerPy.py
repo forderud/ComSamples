@@ -5,6 +5,10 @@ import comtypes.server.localserver
 # * Delete the "comtypes.client.gen_dir" folder when changing a COM interface without updating the GUID, or
 # * Set "comtypes.client.gen_dir = None" during script startup to disable caching (doesn't always work).
 
+from packaging.version import parse
+if parse(comtypes.__version__) < parse("1.4.9"):
+    raise ImportError("comtypes 1.4.9 or newer required due to https://github.com/enthought/comtypes/pull/678")
+
 # Load type library
 MyInterfaces = comtypes.client.GetModule("../x64/Debug/MyInterfaces.tlb")
 #MyInterfaces = comtypes.client.GetModule("../x64/Release/MyInterfaces.tlb")
@@ -38,12 +42,3 @@ class MyServerImpl(MyInterfaces.MyServer):
 if __name__=="__main__":
     from comtypes.server.register import UseCommandLine
     UseCommandLine(MyServerImpl) # will parse /regserver and /unregserver arguments
-    
-    from packaging.version import parse
-    if parse(comtypes.__version__) <= parse("1.4.8"):
-        import sys
-        if sys.argv[-1] == "/unregserver":
-            # Work-around for broken comtypes TypeLib unregistration in 64bit (https://github.com/enthought/comtypes/pull/678)
-            import comtypes.typeinfo
-            tlb = MyInterfaces.MyServer._reg_typelib_ # (GUID, verMajor, verMinor) triple
-            comtypes.typeinfo.UnRegisterTypeLib(tlb[0], tlb[1], tlb[2], 0, comtypes.typeinfo.SYS_WIN64) # override SYS_WIN32 default
