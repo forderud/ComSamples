@@ -164,7 +164,7 @@ These topics are primary relevant when _authoring_ COM servers. Consumers of a C
 In-process COM servers that rely on programmatic DLL loading might need to temporarily modify the DLL search path with either:
 * [`SetDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw) before the [`LoadLibrary(dll_name)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call and `SetDllDirectory(0)` afterwards, or
 * [`cookie = AddDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
-[`LoadLibraryExW(dll_name, 0, LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, and [`RemoveDllDirectory(cookie)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
+[`LoadLibraryExW(dll_name, 0, LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw) call, and [`RemoveDllDirectory(cookie)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
 
 This limitation does _not_ affect out-of-process COM servers. [CurrentModule.hpp](support/CurrentModule.hpp) contains a convenience function for getting the path to the current EXE or DLL.
 
