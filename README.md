@@ -160,6 +160,14 @@ Rules:
 ## Advanced topics
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
 
+## Programmatic DLL loading
+In-process COM servers that rely on programmatic DLL loading might need to tempoarily modify the DLL search path with either:
+* [`SetDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw) before and after  the [`LoadLibrary`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, or
+* [`AddDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
+[`LoadLibraryExW(.., LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, and [`RemoveDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
+
+This limitation does _not_ affect out-of-process COM servers.
+
 ### Background service deployment
 The [ServiceWrapper](ServiceWrapper/) project can be used to start a COM server as a Windows background service.
 
