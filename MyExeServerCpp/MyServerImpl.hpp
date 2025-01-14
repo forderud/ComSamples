@@ -10,7 +10,7 @@
 #include "MyInterfaces.tlh"
 #include "Resource.h"
 #include "../support/ComSupport.hpp"
-
+#include "../support/CurrentModule.hpp"
 
 using namespace MyInterfaces;
 
@@ -53,6 +53,23 @@ public:
     MyServerImpl() {
         printf("MyServerImpl ctor\n");
 
+        {
+#ifdef _WINDLL
+            // get folder path to this DLL
+            std::wstring module_folder = GetModuleFolderPath();
+            wprintf(L"Module folder: %s\n", module_folder.c_str());
+            // temporarily add path to DLL search list
+            SetDllDirectoryW(GetModuleFolderPath().c_str());
+#endif
+
+            m_dll = LoadLibraryW(L"MySharedLib");
+            assert(m_dll);
+
+#ifdef _WINDLL
+            SetDllDirectoryW(nullptr); // revert to the standard search list
+#endif
+        }
+
         m_thread = std::thread(&MyServerImpl::ThreadStart, this);
     }
 
@@ -61,6 +78,8 @@ public:
 
         m_active = false;
         m_thread.join();
+
+        FreeLibrary(m_dll);
     }
 
     HRESULT raw_GetNumberCruncher(/*out*/INumberCruncher** obj) override {
@@ -156,6 +175,7 @@ private:
     bool m_active = true;
     std::thread m_thread;
     std::vector<IMyClientPtr> m_clients;
+    HMODULE     m_dll = 0;
 };
 
 OBJECT_ENTRY_AUTO(__uuidof(MyServer), MyServerImpl)
