@@ -160,7 +160,7 @@ Rules:
 ## Advanced topics
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
 
-## Programmatic DLL loading
+### Programmatic DLL loading
 In-process COM servers that rely on programmatic DLL loading might need to temporarily modify the DLL search path with either:
 * [`SetDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw) before the [`LoadLibrary(dll_name)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call and `SetDllDirectory(0)` afterwards, or
 * [`cookie = AddDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
