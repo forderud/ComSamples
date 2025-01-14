@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServiceWrapper", "ServiceWr
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "MyExeServerPy", "MyExeServerPy\MyExeServerPy.pyproj", "{518B159B-483F-4DAA-8DA4-142CDA634FAC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MySharedLib", "MySharedLib\MySharedLib.vcxproj", "{AB12DC18-29B3-43DE-8A34-A8FC569F3C56}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -95,6 +97,10 @@ Global
 		{CB35FD3C-4727-4434-9EAF-249B9C79BB14}.Release|x64.Build.0 = Release|x64
 		{518B159B-483F-4DAA-8DA4-142CDA634FAC}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{518B159B-483F-4DAA-8DA4-142CDA634FAC}.Release|x64.ActiveCfg = Release|Any CPU
+		{AB12DC18-29B3-43DE-8A34-A8FC569F3C56}.Debug|x64.ActiveCfg = Debug|x64
+		{AB12DC18-29B3-43DE-8A34-A8FC569F3C56}.Debug|x64.Build.0 = Debug|x64
+		{AB12DC18-29B3-43DE-8A34-A8FC569F3C56}.Release|x64.ActiveCfg = Release|x64
+		{AB12DC18-29B3-43DE-8A34-A8FC569F3C56}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
