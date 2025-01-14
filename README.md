@@ -162,9 +162,9 @@ These topics are primary relevant when _authoring_ COM servers. Consumers of a C
 
 ## Programmatic DLL loading
 In-process COM servers that rely on programmatic DLL loading might need to tempoarily modify the DLL search path with either:
-* [`SetDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw) before and after  the [`LoadLibrary`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, or
-* [`AddDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
-[`LoadLibraryExW(.., LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, and [`RemoveDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
+* [`SetDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw) before and after  the [`LoadLibrary(dll_name)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, or
+* [`AddDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
+[`LoadLibraryExW(dll_name, 0, LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, and [`RemoveDllDirectory`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
 
 This limitation does _not_ affect out-of-process COM servers.
 
