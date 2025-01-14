@@ -166,7 +166,7 @@ In-process COM servers that rely on programmatic DLL loading might need to tempo
 * [`cookie = AddDllDirectory(dll_path)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-adddlldirectory) before the 
 [`LoadLibraryExW(dll_name, 0, LOAD_LIBRARY_SEARCH_USER_DIRS)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryw) call, and [`RemoveDllDirectory(cookie)`](https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-removedlldirectory) afterwards.
 
-This limitation does _not_ affect out-of-process COM servers.
+This limitation does _not_ affect out-of-process COM servers. [CurrentModule.hpp](support/CurrentModule.hpp) contains a convenience function for getting the path to the current EXE or DLL.
 
 ### Background service deployment
 The [ServiceWrapper](ServiceWrapper/) project can be used to start a COM server as a Windows background service.
