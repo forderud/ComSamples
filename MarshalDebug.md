@@ -15,6 +15,7 @@ Open `regedit.exe` to check that the required registry entries are present:
 1. Locate the associated TypeLib GUID in `HKCR\Interface\{INTERFACE-GUID}\TypeLib`
 1. Ensure that the TypeLib can be found on `HKCR\TypeLib\{TYPELIB-GUID}`
 1. Ensure that the TypeLib file specified in `HKCR\TypeLib\{TYPELIB-GUID}\<VERSION>\0\win64` is present on the filesystem.
+1. Open the IDL file used to generate the TypeLib and ensure that the problematic interface is mentioned _within_ the `library` block
 
 ### Example
 ![com-interface-reg](https://github.com/user-attachments/assets/dbc4edd0-12b4-4eeb-a046-974f3cb7bf75)  
