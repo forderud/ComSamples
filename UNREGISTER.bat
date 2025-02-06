@@ -8,8 +8,8 @@ echo NOTICE: Script MUST be run as Administrator.
 :: Delete IMyClient and IMyServer and INumberCruncher interfaces
 for %%P in (32 64) do (
   reg delete "HKCR\Interface\{BE3FF6C1-94F5-4974-913C-237C9AB29679}" /f /reg:%%P 2> NUL
-  reg delete "HKCR\Interface\{F586D6F4-AF37-441E-80A6-3D33D977882D}" /f /reg:%%P 2> NUL
   reg delete "HKCR\Interface\{B5506675-17E0-4709-A31A-305E36D0E2FA}" /f /reg:%%P 2> NUL
+  reg delete "HKCR\Interface\{F586D6F4-AF37-441E-80A6-3D33D977882D}" /f /reg:%%P 2> NUL
 )
 
 :: Delete MyInterfaces TypeLib
