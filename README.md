@@ -121,6 +121,8 @@ COM clients and servers can decide their [threading model](https://learn.microso
 
 In the STA case COM pointers can only be called by the associated thread. The COM pointer need to be explicitly marshaled before they can be accessed by a different thread. This is handled automatically in .Net but needs to be performed explicitly with [`RoGetAgileReference`](https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-rogetagilereference) and `IAgileReference::Resolve` in C++ as done by the [ComMarshal](support/ComMarshal.hpp) sample. Marshaling between threads is not required in the MTA case.
 
+See [Tips for debugging of COM marshaling problems](MarshalDebug.md) if facing COM marshaling problems.
+
 ## Intermediate topics
 
 ### Registry entries
