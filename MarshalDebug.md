@@ -21,3 +21,5 @@ Open `regedit.exe` to check that the required registry entries are present:
 ![com-interface-reg](https://github.com/user-attachments/assets/dbc4edd0-12b4-4eeb-a046-974f3cb7bf75)  
 
 ![typelib-reg](https://github.com/user-attachments/assets/8e86665e-92e0-4366-bd97-8cf8b652f5b6)  
+
+![image](https://github.com/user-attachments/assets/786fe02b-7d20-4dda-83d2-7e896b8cd16b)  
