@@ -4,7 +4,7 @@
 * Unable to pass COM pointers across process boundaries
 * Unable to pass COM pointers between programming languages
 
-### Related COM error codes
+### Associated COM error codes
 * `E_NOINTERFACE`
 * `REGDB_E_IIDNOTREG`
 * Probably more...
