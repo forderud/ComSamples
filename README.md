@@ -114,7 +114,7 @@ Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exc
 The COM runtime needs to be initialized with [`CoInitialize`](https://learn.microsoft.com/en-us/windows/win32/api/objbase/nf-objbase-coinitialize) or [`CoInitializeEx`](https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-coinitializeex) on all threads that want to access COM interfaces.
 
 During initialization, COM clients and servers decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls<sup>[1]</sup> by configuring the thread associated with the class(es) receiving callbacks to run in either:
-* **Single-threaded apartment (STA)**<sup>[2]</sup>: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime ensures that only one incoming call is received at a time.
+* **Single-threaded apartment (STA)**<sup>[2]</sup>: Incoming calls are automatically serialized. This means that the client can worry less about thread safety, since the COM runtime ensures that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client needs to use mutexes or similar to protect against race conditions.
 
 <sup>[1]</sup> The threading model only affects _incoming_ calls marshalled by the COM runtime. This typically means COM servers implemented in a different programming language or running in a different process. Direct C++ communication between COM objects in the same process are not affected by the threading model.
