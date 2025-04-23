@@ -111,7 +111,9 @@ Both C++, .Net and Python can automatically map COM `HRESULT` error codes to exc
 * **Python**: `HRESULT` error codes are automatically mapped to `COMError` exceptions.
 
 ### Threading
-COM clients and servers can decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls<sup>[1]</sup> by configuring the thread associated with the class(es) receiving callbacks to run in either:
+The COM runtime needs to be initialized with [`CoInitialize`](https://learn.microsoft.com/en-us/windows/win32/api/objbase/nf-objbase-coinitialize) or [`CoInitializeEx`](https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-coinitializeex) on all threads that want to access COM interfaces.
+
+During initialization, COM clients and servers decide their [threading model](https://learn.microsoft.com/en-us/troubleshoot/windows/win32/descriptions-workings-ole-threading-models) for _incoming_ calls<sup>[1]</sup> by configuring the thread associated with the class(es) receiving callbacks to run in either:
 * **Single-threaded apartment (STA)**<sup>[2]</sup>: Incoming calls are automatically serialized. This means that the client doesn't need to worry about thread safety, since the COM runtime ensures that only one incoming call is received at a time.
 * **Multi-threaded apartment (MTA)**: Incoming calls are _not_ serialized and might arrive concurrently. This means that the client needs to use mutexes or similar to protect against race conditions.
 
