@@ -36,6 +36,7 @@ copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Config
     </PostBuildEvent>
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -47,6 +48,9 @@ TlbImp.exe /machine:$(Platform) "$(Platform)\$(Configuration)\$(ProjectName).tlb
 TlhFilePatch.py "$(Platform)\\$(Configuration)\\MyInterfaces.tlh" "$(SolutionDir)$(Platform)\\$(Configuration)\\MyInterfaces.tlh" || exit /B 1
 copy /y "$(Platform)\$(Configuration)\*.tli" "$(SolutionDir)$(Platform)\$(Configuration)\"</Command>
     </PostBuildEvent>
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Midl Include="MyInterfaces.idl">
