@@ -2,15 +2,15 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="..\MyExeServerCpp\MyServerImpl.cpp" />
+    <ClCompile Include="..\MyExeServerAtl\MyServerImpl.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MyExeServerCpp\MyServerImpl.hpp" />
-    <ClInclude Include="..\MyExeServerCpp\Resource.h" />
+    <ClInclude Include="..\MyExeServerAtl\MyServerImpl.hpp" />
+    <ClInclude Include="..\MyExeServerAtl\Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MyServerImpl.rgs" />
-    <None Include="..\MyExeServerCpp\AppID.rgs" />
+    <None Include="..\MyExeServerAtl\AppID.rgs" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\MyExeServerCpp\MyServerImpl.cpp" />
+    <ClCompile Include="..\MyExeServerAtl\MyServerImpl.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\MyExeServerCpp\MyServerImpl.hpp" />
-    <ClInclude Include="..\MyExeServerCpp\Resource.h" />
+    <ClInclude Include="..\MyExeServerAtl\MyServerImpl.hpp" />
+    <ClInclude Include="..\MyExeServerAtl\Resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AppID.rgs" />

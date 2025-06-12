@@ -2,7 +2,7 @@ HKCR
 {
     NoRemove AppID
     {
-        ForceRemove '%APPID%' = s 'MyDllServerCpp Object'
+        ForceRemove '%APPID%' = s 'MyDllServerAtl Object'
         {
             val DllSurrogate = s ''
         }

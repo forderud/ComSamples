@@ -2,7 +2,7 @@ HKCR
 {
     NoRemove AppID
     {
-        ForceRemove '%APPID%' = s 'MyExeServerCpp Object'
+        ForceRemove '%APPID%' = s 'MyExeServerAtl Object'
         {
         }
     }

@@ -1,6 +1,6 @@
 #include <Windows.h>
 #include <atlbase.h>
-#include "../MyExeServerCpp/Resource.h" // shared between EXE & DLL probjects
+#include "../MyExeServerAtl/Resource.h" // shared between EXE & DLL probjects
 #include "MyInterfaces.tlh"
 #include "../support/ComSupport.hpp"
 
