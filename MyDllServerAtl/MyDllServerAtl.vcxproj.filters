@@ -10,7 +10,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MyServerImpl.rgs" />
-    <None Include="..\MyExeServerAtl\AppID.rgs" />
+    <None Include="AppID.rgs" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
