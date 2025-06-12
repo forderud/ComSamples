@@ -11,7 +11,8 @@
 
 /** Minimal COM class factory implementation. */
 template <class T>
-struct ClassFactory : winrt::implements<ClassFactory<T>, IClassFactory> {
+class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory> {
+public:
     ClassFactory() {
     }
 

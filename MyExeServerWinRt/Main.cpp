@@ -8,7 +8,14 @@ using namespace MyInterfaces;
 
 
 /** Non-creatable COM class that doesn't need any CLSID. */
-struct NumberCruncher : winrt::implements<NumberCruncher, INumberCruncher> {
+class NumberCruncher : public winrt::implements<NumberCruncher, INumberCruncher> {
+public:
+    NumberCruncher() {
+    }
+
+    ~NumberCruncher() {
+    }
+
     HRESULT raw_ComputePi(double* val) override {
         if (!val)
             return E_INVALIDARG;
@@ -20,7 +27,8 @@ struct NumberCruncher : winrt::implements<NumberCruncher, INumberCruncher> {
 
 
 /** Creatable COM class that needs a CLSID. */
-struct MyServerImpl : winrt::implements<MyServerImpl, IMyServer>, public LifetimeTracker {
+class MyServerImpl : public winrt::implements<MyServerImpl, IMyServer>, public LifetimeTracker {
+public:
     MyServerImpl() {
     }
 
