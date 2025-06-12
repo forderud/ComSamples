@@ -2,19 +2,20 @@ Examples of language-neutral [Component Object Model (COM)](https://learn.micros
 
 Project listing:
 
-| Module        | Description                                                           |
-|---------------|-----------------------------------------------------------------------|
-| ComSupport    | .Net support functions for COM EXE registration (not needed for DLLs) |
-| MyInterfaces  | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
-| MyClientCpp   | Sample C++ _client_ |
-| MyClientCs    | Sample C# _client_ |
-| MyClientPy    | Sample Python _client_ |
-| MyDllServerAtl| C++ _server_ DLL implementation using ATL |
-| MyDllServerCs | C# _server_ DLL implementation |
-| MyExeServerAtl| C++ _server_ EXE implementation using ATL |
-| MyExeServerCs | C# _server_ EXE implementation |
-| MyExeServerPy | Python _server_ implementation |
-| ServiceWrapper| Support project for running "regular" COM servers as a Windows service |
+| Module         | Description                                                           |
+|----------------|-----------------------------------------------------------------------|
+| ComSupport     | .Net support functions for COM EXE registration (not needed for DLLs) |
+| MyInterfaces   | COM interface definitions ([MyInterfaces.idl](MyInterfaces/MyInterfaces.idl)) |
+| MyClientCpp    | Sample C++ _client_ |
+| MyClientCs     | Sample C# _client_ |
+| MyClientPy     | Sample Python _client_ |
+| MyDllServerAtl | C++ _server_ DLL implementation using ATL |
+| MyDllServerCs  | C# _server_ DLL implementation |
+| MyExeServerAtl | C++ _server_ EXE implementation using ATL |
+|MyExeServerWinRt| C++ _server_ EXE implementation using [C++/WinRT](https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/author-coclasses) |
+| MyExeServerCs  | C# _server_ EXE implementation |
+| MyExeServerPy  | Python _server_ implementation |
+| ServiceWrapper | Support project for running "regular" COM servers as a Windows service |
 
 The servers are implemented as on-demand loaded COM DLL or EXEs. The processes can also be started manually in advance if desired. The .Net samples are based on [OutOfProcCOM](https://github.com/dotnet/samples/tree/main/core/extensions/OutOfProcCOM).
 
@@ -28,6 +29,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Register the server:
     * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
     * Or run `MyExeServerAtl.exe /regserver` with admin privileges,
+    * Or run `MyExeServerWinRt.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
     * Or run `regsvr32.exe MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
@@ -38,6 +40,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. **Un**register the server to clean up:
     * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
     * Or run `MyExeServerAtl.exe /unregserver`  with admin privileges,
+    * Or run `MyExeServerWinRt.exe /unregserver`  with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
     * Or run `regsvr32.exe /u MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
