@@ -11,7 +11,7 @@ Project listing:
 | MyClientPy    | Sample Python _client_ |
 | MyDllServerAtl| C++ _server_ DLL implementation using ATL |
 | MyDllServerCs | C# _server_ DLL implementation |
-| MyExeServerCpp| C++ _server_ EXE implementation |
+| MyExeServerAtl| C++ _server_ EXE implementation using ATL |
 | MyExeServerCs | C# _server_ EXE implementation |
 | MyExeServerPy | Python _server_ implementation |
 | ServiceWrapper| Support project for running "regular" COM servers as a Windows service |
@@ -27,7 +27,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Build all projects.
 1. Register the server:
     * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
-    * Or run `MyExeServerCpp.exe /regserver` with admin privileges,
+    * Or run `MyExeServerAtl.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
     * Or run `regsvr32.exe MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
@@ -37,7 +37,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
     * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
-    * Or run `MyExeServerCpp.exe /unregserver`  with admin privileges,
+    * Or run `MyExeServerAtl.exe /unregserver`  with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
     * Or run `regsvr32.exe /u MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
