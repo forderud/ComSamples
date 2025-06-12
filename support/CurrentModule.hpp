@@ -1,8 +1,8 @@
 #pragma once
 #include <windows.h>
 
-/** Return the folder path for the current EXE or DLL. */
-inline std::wstring GetModuleFolderPath () {
+/** Return the full path for the current EXE or DLL, including filename. */
+inline std::wstring GetModulePath () {
     HMODULE module = nullptr;
     // Get handle to exe/dll that this static lib is linked against
     auto* module_ptr = (wchar_t const*)GetModuleFolderPath; // pointer to current function
@@ -11,6 +11,14 @@ inline std::wstring GetModuleFolderPath () {
     // retrieve full exe/dll path (incl. filename)
     wchar_t file_path[MAX_PATH] = {};
     GetModuleFileNameW(module, file_path, static_cast<DWORD>(std::size(file_path)));
+    return file_path;
+}
+
+/** Return the folder path for the current EXE or DLL. */
+inline std::wstring GetModuleFolderPath () {
+    // retrieve full exe/dll path (incl. filename)
+    std::wstring file_path = GetModulePath();
+
     // Get path without filename part
     PathRemoveFileSpecW(file_path);
     return file_path;
