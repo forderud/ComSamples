@@ -9,7 +9,7 @@ inline std::wstring GetModuleFolderPath () {
     GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, module_ptr, &module);
 
     // retrieve full exe/dll path (incl. filename)
-    wchar_t file_path[256] = {};
+    wchar_t file_path[MAX_PATH] = {};
     GetModuleFileNameW(module, file_path, static_cast<DWORD>(std::size(file_path)));
     // Get path without filename part
     PathRemoveFileSpecW(file_path);
