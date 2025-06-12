@@ -3,7 +3,6 @@
 # * Change TLI include from absolute to relative path
 # * Replace C-style structs with C++ RAII structs from cpp_quote lines in the IDL files
 # * Insert free functions from cpp_quote lines in the IDL files
-from __future__ import print_function # Python 2.7 compatibilit
 import fileinput
 import os
 import sys
@@ -134,7 +133,7 @@ def AddFunctionsToSource(source, functions):
 
 
 def MakeTliIncludeRelative(source, tli_file):
-    '''Replace #include "<absolute-path>\<filename>.tli" with #include "<filename>.tli"'''
+    '''Replace #include "<absolute-path>\\<filename>.tli" with #include "<filename>.tli"'''
     # remove path prefix
     idx = tli_file.rfind('\\')
     if idx:
@@ -196,7 +195,7 @@ def PatchTlhFile(tlh_file_in, tlh_file_out, tli_file_in, remove_header):
     # add includes at the top of the file
     source = ExtractIncludes(cpp_content) + source
     
-    with open(tlh_file_out, 'w') as f:
+    with open(tlh_file_out, 'w', newline='\r\n') as f:
         for line in source:
             f.write(line)
 
@@ -210,7 +209,7 @@ def PatchTliFile(tli_file_in, tli_file_out, remove_header):
         # done to make the content deterministic and suitable for versioning
         source = source[6:]
         
-    with open(tli_file_out, 'w') as f:
+    with open(tli_file_out, 'w', newline='\r\n') as f:
         for line in source:
             f.write(line)
 
