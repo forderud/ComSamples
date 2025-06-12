@@ -29,7 +29,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
     * Or run `MyExeServerCpp.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
-    * Or run `regsvr32.exe MyDlleServerCpp.dll` with admin privileges,
+    * Or run `regsvr32.exe MyDllServerCpp.dll` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
@@ -39,7 +39,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
     * Or run `MyExeServerCpp.exe /unregserver`  with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
-    * Or run `regsvr32.exe /u MyDlleServerCpp.dll` with admin privileges,
+    * Or run `regsvr32.exe /u MyDllServerCpp.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
