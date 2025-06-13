@@ -10,9 +10,10 @@ Project listing:
 | MyClientCs     | Sample C# _client_ |
 | MyClientPy     | Sample Python _client_ |
 | MyDllServerAtl | C++ _server_ DLL implementation using ATL |
+|MyDllServerWinRt| C++ _server_ DLL implementation using [C++/WinRT](https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/author-coclasses) |
 | MyDllServerCs  | C# _server_ DLL implementation |
 | MyExeServerAtl | C++ _server_ EXE implementation using ATL |
-|MyExeServerWinRt| C++ _server_ EXE implementation using [C++/WinRT](https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/author-coclasses) |
+|MyExeServerWinRt| C++ _server_ EXE implementation using C++/WinRT |
 | MyExeServerCs  | C# _server_ EXE implementation |
 | MyExeServerPy  | Python _server_ implementation |
 | ServiceWrapper | Support project for running "regular" COM servers as a Windows service |
@@ -32,6 +33,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Or run `MyExeServerWinRt.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
     * Or run `regsvr32.exe MyDllServerAtl.dll` with admin privileges,
+    * Or run `regsvr32.exe MyDllServerWinRt.dll` with admin privileges,
     * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
@@ -43,6 +45,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Or run `MyExeServerWinRt.exe /unregserver`  with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
     * Or run `regsvr32.exe /u MyDllServerAtl.dll` with admin privileges,
+    * Or run `regsvr32.exe /u MyDllServerWinRt.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
