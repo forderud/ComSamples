@@ -96,5 +96,6 @@ int wmain(int argc, wchar_t* argv[]) {
     while (MyServerImpl::IsActive())
         Sleep(1000);
 
+    winrt::uninit_apartment();
     return 0;
 }
