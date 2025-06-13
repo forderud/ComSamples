@@ -58,18 +58,19 @@ private:
 };
 
 
-/** COM class (un)registration function. */
-void RegisterComClass(bool do_register, CLSID clsid, std::wstring exe_path) {
+
+/** COM type library (un)registration function. */
+::GUID RegisterTypeLibrary(bool do_register, std::wstring tlb_path) {
     if (!IsUserAnAdmin()) {
         wprintf(L"ERROR: Admin privileges required for registration.\n");
-        return;
+        abort();
     }
 
     ::GUID tlbGuid{};
     if (do_register) {
         // register typelib
         CComPtr<ITypeLib> tlb;
-        HRESULT hr = LoadTypeLibEx(exe_path.c_str(), REGKIND_REGISTER, &tlb);
+        HRESULT hr = LoadTypeLibEx(tlb_path.c_str(), REGKIND_REGISTER, &tlb);
         assert(SUCCEEDED(hr));
 
         TLIBATTR* attrPtr = nullptr;
@@ -82,7 +83,7 @@ void RegisterComClass(bool do_register, CLSID clsid, std::wstring exe_path) {
     } else {
         // unregister typelib
         CComPtr<ITypeLib> tlb;
-        HRESULT hr = LoadTypeLibEx(exe_path.c_str(), REGKIND_NONE, &tlb);
+        HRESULT hr = LoadTypeLibEx(tlb_path.c_str(), REGKIND_NONE, &tlb);
         assert(SUCCEEDED(hr));
 
         TLIBATTR* attrPtr = nullptr;
@@ -94,6 +95,17 @@ void RegisterComClass(bool do_register, CLSID clsid, std::wstring exe_path) {
         UnRegisterTypeLib(attrPtr->guid, attrPtr->wMajorVerNum, attrPtr->wMinorVerNum, attrPtr->lcid, attrPtr->syskind); // will fail if already unregistered
 
         tlb->ReleaseTLibAttr(attrPtr);
+    }
+
+    return tlbGuid;
+}
+
+
+/** COM class (un)registration function. */
+void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wstring exe_path) {
+    if (!IsUserAnAdmin()) {
+        wprintf(L"ERROR: Admin privileges required for registration.\n");
+        abort();
     }
 
     wchar_t clsid_str[39] = {};

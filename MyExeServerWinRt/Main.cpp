@@ -63,11 +63,13 @@ int wmain(int argc, wchar_t* argv[]) {
 
         if (!wcscmp(argv[1], L"/regserver")) {
             // register COM class
-            RegisterComClass(true, __uuidof(MyServer), exe_path);
+            auto tlbGuid = RegisterTypeLibrary(true, exe_path);
+            RegisterComExeClass(true, __uuidof(MyServer), tlbGuid, exe_path);
             return 0;
         } else if (!wcscmp(argv[1], L"/unregserver")) {
             // unregister COM class
-            RegisterComClass(false, __uuidof(MyServer), exe_path);
+            auto tlbGuid = RegisterTypeLibrary(false, exe_path);
+            RegisterComExeClass(false, __uuidof(MyServer), tlbGuid, exe_path);
             return 0;
         }
     }
