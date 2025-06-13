@@ -28,9 +28,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
 1. Register the server:
-    * Either run `MyExeServerCs.exe /regserver`  with admin privileges,
-    * Or run `MyExeServerAtl.exe /regserver` with admin privileges,
-    * Or run `MyExeServerWinRt.exe /regserver` with admin privileges,
+    * For EXE-based servers, run `<ServerName>.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
     * Or run `regsvr32.exe MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe MyDllServerWinRt.dll` with admin privileges,
@@ -40,9 +38,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * C#: run `MyClientCs.exe`
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
-    * Either run `MyExeServerCs.exe /unregserver` with admin privileges,
-    * Or run `MyExeServerAtl.exe /unregserver`  with admin privileges,
-    * Or run `MyExeServerWinRt.exe /unregserver`  with admin privileges,
+    * For EXE-based servers, run `<ServerName>.exe /unregserver` with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
     * Or run `regsvr32.exe /u MyDllServerAtl.dll` with admin privileges,
     * Or run `regsvr32.exe /u MyDllServerWinRt.dll` with admin privileges,
