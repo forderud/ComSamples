@@ -8,7 +8,7 @@ using namespace MyInterfaces;
 
 
 /** Non-creatable COM class that doesn't need any CLSID. */
-class NumberCruncher : public winrt::implements<NumberCruncher, INumberCruncher> {
+class NumberCruncher : public winrt::implements<NumberCruncher, INumberCruncher, winrt::no_weak_ref> {
 public:
     NumberCruncher() {
     }
@@ -27,7 +27,7 @@ public:
 
 
 /** Creatable COM class that needs a CLSID. */
-class MyServerImpl : public winrt::implements<MyServerImpl, IMyServer>, public LifetimeTracker {
+class MyServerImpl : public winrt::implements<MyServerImpl, IMyServer, winrt::no_weak_ref>, public LifetimeTracker {
 public:
     MyServerImpl() {
     }
