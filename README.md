@@ -27,7 +27,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Ensure that you have a [Python](https://www.python.org/) interpreter associated with `.py` files.
 1. Open the solution in [Visual Studio](https://visualstudio.microsoft.com/).
 1. Build all projects.
-1. Register the server:
+1. Register one of the COM servers:
     * For EXE-based servers, run `<ServerName>.exe /regserver` with admin privileges,
     * For Python-based servers, run `<ServerName>.py /regserver` with admin privileges,
     * For DLL-based servers, run `regsvr32.exe <ServerName>.dll` with admin privileges,
