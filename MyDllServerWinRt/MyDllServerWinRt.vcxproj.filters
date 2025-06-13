@@ -9,4 +9,8 @@
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\support\WinRtUtils.hpp" />
+    <ClInclude Include="..\MyExeServerWinRt\MyServerImpl.hpp" />
+  </ItemGroup>
 </Project>
