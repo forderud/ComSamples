@@ -108,13 +108,14 @@ void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wst
         abort();
     }
 
-    wchar_t clsid_str[39] = {};
-    StringFromGUID2(clsid, clsid_str, static_cast<int>(std::size(clsid_str)));
+    std::wstring clsid_str(38, L'\0');
+    int ret = StringFromGUID2(clsid, clsid_str.data(), static_cast<int>(clsid_str.size() + 1));
+    assert(ret == 39); // includes zero-termination
 
     if (do_register) {
         // register COM class
         {
-            std::wstring key_path = L"CLSID\\" + std::wstring(clsid_str) + L"\\LocalServer32";
+            std::wstring key_path = L"CLSID\\" + clsid_str + L"\\LocalServer32";
             CRegKey key;
             LSTATUS res = key.Create(HKEY_CLASSES_ROOT, key_path.c_str());
             assert(res == ERROR_SUCCESS);
@@ -122,7 +123,7 @@ void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wst
             key.SetStringValue(nullptr, exe_path.c_str());
         }
         {
-            std::wstring key_path = L"CLSID\\" + std::wstring(clsid_str) + L"\\TypeLib";
+            std::wstring key_path = L"CLSID\\" + clsid_str + L"\\TypeLib";
             CRegKey key;
             LSTATUS res = key.Create(HKEY_CLASSES_ROOT, key_path.c_str());
             assert(res == ERROR_SUCCESS);
@@ -137,6 +138,6 @@ void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wst
         LSTATUS res = parent.Open(HKEY_CLASSES_ROOT, L"CLSID", KEY_READ | KEY_WRITE);
         assert(res == ERROR_SUCCESS);
 
-        parent.RecurseDeleteKey(clsid_str); // will fail if already unregistered
+        parent.RecurseDeleteKey(clsid_str.c_str()); // will fail if already unregistered
     }
 }
