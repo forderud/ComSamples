@@ -15,9 +15,15 @@ template <class T>
 class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory> {
 public:
     ClassFactory() {
+#ifndef NDEBUG
+        wprintf(L"ClassFactory ctor\n");
+#endif
     }
 
     ~ClassFactory() {
+#ifndef NDEBUG
+        wprintf(L"ClassFactory dtor\n");
+#endif
     }
 
     HRESULT CreateInstance(IUnknown* outer, const IID& iid, void** result) noexcept override {

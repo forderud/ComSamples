@@ -11,9 +11,15 @@ using namespace MyInterfaces;
 class NumberCruncher : public winrt::implements<NumberCruncher, INumberCruncher, winrt::no_weak_ref> {
 public:
     NumberCruncher() {
+#ifndef NDEBUG
+        wprintf(L"NumberCruncher ctor\n");
+#endif
     }
 
     ~NumberCruncher() {
+#ifndef NDEBUG
+        wprintf(L"NumberCruncher dtor\n");
+#endif
     }
 
     HRESULT raw_ComputePi(double* val) override {
@@ -30,9 +36,15 @@ public:
 class MyServerImpl : public winrt::implements<MyServerImpl, IMyServer, winrt::no_weak_ref>, public LifetimeTracker {
 public:
     MyServerImpl() {
+#ifndef NDEBUG
+        wprintf(L"MyServerImpl ctor\n");
+#endif
     }
 
     ~MyServerImpl() {
+#ifndef NDEBUG
+        wprintf(L"MyServerImpl dtor\n");
+#endif
     }
 
     HRESULT raw_GetNumberCruncher(INumberCruncher** nc) override {
