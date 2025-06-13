@@ -10,12 +10,12 @@ int wmain(int argc, wchar_t* argv[]) {
     if (argc == 2) {
         std::wstring exe_path = GetModulePath(); // includes type library
 
-        if (!wcscmp(argv[1], L"/regserver")) {
+        if (!_wcsicmp(argv[1] + 1, L"regserver")) {
             // register COM class
             auto tlbGuid = RegisterTypeLibrary(true, exe_path);
             RegisterComExeClass(true, __uuidof(MyServer), tlbGuid, exe_path);
             return 0;
-        } else if (!wcscmp(argv[1], L"/unregserver")) {
+        } else if (!_wcsicmp(argv[1] + 1, L"unregserver")) {
             // unregister COM class
             auto tlbGuid = RegisterTypeLibrary(false, exe_path);
             RegisterComExeClass(false, __uuidof(MyServer), tlbGuid, exe_path);
