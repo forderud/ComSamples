@@ -1,6 +1,7 @@
 #pragma once
 /* Utility code for COM class factory and COM class registration that seem to be missing from C++/WinRT.
    Please delete this header if a better alternative becomes available. */
+#include <atomic>
 #include <windows.h>
 #include <atlbase.h> // for CRegKey
 #include <Shlobj.h> // for IsUserAnAdmin
@@ -53,8 +54,8 @@ public:
     }
 
 private:
-    static inline bool s_active = true; ///< keep process alive
-    static inline int  s_obj_cnt = 0;    ///< live object count
+    static inline std::atomic<bool>         s_active = true; ///< keep process alive
+    static inline std::atomic<unsigned int> s_obj_cnt = 0;   ///< live object count
 };
 
 
