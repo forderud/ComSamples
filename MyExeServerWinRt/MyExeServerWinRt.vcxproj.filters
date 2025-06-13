@@ -10,6 +10,6 @@
     <ResourceCompile Include="Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WinRtUtils.hpp" />
+    <ClInclude Include="..\support\WinRtUtils.hpp" />
   </ItemGroup>
 </Project>
