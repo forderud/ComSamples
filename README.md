@@ -29,7 +29,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Build all projects.
 1. Register the server:
     * For EXE-based servers, run `<ServerName>.exe /regserver` with admin privileges,
-    * Or run `MyExeServerPy.py /regserver` with admin privileges,
+    * For Python-based servers, run `<ServerName>.py /regserver` with admin privileges,
     * For DLL-based servers, run `regsvr32.exe <ServerName>.dll` with admin privileges,
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
@@ -37,7 +37,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
     * Python: run `MyClientPy.py`
 1. **Un**register the server to clean up:
     * For EXE-based servers, run `<ServerName>.exe /unregserver` with admin privileges,
-    * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
+    * For Python-based servers, run `<ServerName>.py /unregserver`  with admin privileges,
     * For DLL-based servers, run `regsvr32.exe /u <ServerName>.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
