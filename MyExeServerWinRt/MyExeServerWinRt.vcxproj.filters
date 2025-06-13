@@ -11,5 +11,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\support\WinRtUtils.hpp" />
+    <ClInclude Include="MyServerImpl.hpp" />
   </ItemGroup>
 </Project>
