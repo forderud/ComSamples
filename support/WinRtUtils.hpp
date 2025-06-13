@@ -110,7 +110,7 @@ private:
 
 
 /** COM class (un)registration function. */
-void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wstring exe_path) {
+void RegisterComClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wstring dll_exe_path) {
     if (!IsUserAnAdmin()) {
         wprintf(L"ERROR: Admin privileges required for registration.\n");
         abort();
@@ -122,14 +122,27 @@ void RegisterComExeClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wst
 
     if (do_register) {
         // register COM class
-        {
+        std::wstring file_ext = dll_exe_path.substr(dll_exe_path.find_last_of(L'.'));
+
+        if (!_wcsicmp(file_ext.c_str(), L".exe")) {
             std::wstring key_path = L"CLSID\\" + clsid_str + L"\\LocalServer32";
             CRegKey key;
             LSTATUS res = key.Create(HKEY_CLASSES_ROOT, key_path.c_str());
             assert(res == ERROR_SUCCESS); res;
 
-            key.SetStringValue(nullptr, exe_path.c_str());
+            key.SetStringValue(nullptr, dll_exe_path.c_str());
+        } else if (!_wcsicmp(file_ext.c_str(), L".dll")) {
+            std::wstring key_path = L"CLSID\\" + clsid_str + L"\\InprocServer32";
+            CRegKey key;
+            LSTATUS res = key.Create(HKEY_CLASSES_ROOT, key_path.c_str());
+            assert(res == ERROR_SUCCESS); res;
+
+            key.SetStringValue(nullptr, dll_exe_path.c_str());
+        } else {
+            wprintf(L"ERROR: Unsupported file extension.\n");
+            abort();
         }
+
         {
             std::wstring key_path = L"CLSID\\" + clsid_str + L"\\TypeLib";
             CRegKey key;
