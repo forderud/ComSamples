@@ -30,9 +30,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Register the server:
     * For EXE-based servers, run `<ServerName>.exe /regserver` with admin privileges,
     * Or run `MyExeServerPy.py /regserver` with admin privileges,
-    * Or run `regsvr32.exe MyDllServerAtl.dll` with admin privileges,
-    * Or run `regsvr32.exe MyDllServerWinRt.dll` with admin privileges,
-    * Or run `regsvr32.exe MyDlleServerCs.dll` with admin privileges,
+    * For DLL-based servers, run `regsvr32.exe <ServerName>.dll` with admin privileges,
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
@@ -40,9 +38,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. **Un**register the server to clean up:
     * For EXE-based servers, run `<ServerName>.exe /unregserver` with admin privileges,
     * Or run `MyExeServerPy.py /unregserver`  with admin privileges,
-    * Or run `regsvr32.exe /u MyDllServerAtl.dll` with admin privileges,
-    * Or run `regsvr32.exe /u MyDllServerWinRt.dll` with admin privileges,
-    * Or run `regsvr32.exe /u MyDlleServerCs.dll` with admin privileges,
+    * For DLL-based servers, run `regsvr32.exe /u <ServerName>.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
 Server registration is primarily needed for on-demand loaded COM servers.
