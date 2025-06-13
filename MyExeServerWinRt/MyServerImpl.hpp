@@ -1,4 +1,7 @@
 #pragma once
+#define _USE_MATH_DEFINES // M_PI
+#include <math.h>
+
 #include "MyInterfaces.tlh"
 using namespace MyInterfaces;
 
