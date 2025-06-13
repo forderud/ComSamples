@@ -41,7 +41,8 @@ public:
 };
 
 
-/** Support class for keeping track of the object count. */
+/** Support class for keeping track of the object count.
+    Can _almost_ replace this class with winrt::get_module_lock(), but it doesn't distinguish between before and after object creation & deletion. */
 class LifetimeTracker {
 public:
     LifetimeTracker() {
