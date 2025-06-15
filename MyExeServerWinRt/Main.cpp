@@ -23,15 +23,16 @@ int wmain(int argc, wchar_t* argv[]) {
         }
     }
 
+    LifetimeTracker::Initialize();
+
     // register class factory in current process
     DWORD registration = 0;
     winrt::check_hresult(::CoRegisterClassObject(__uuidof(MyServer), winrt::make<ClassFactory<MyServerImpl>>().get(), CLSCTX_LOCAL_SERVER, REGCLS_MULTIPLEUSE, &registration));
 
     wprintf(L"Waiting for COM class creation requests...\n");
 
-    // sleep until an object has been created and the object count (except class factory) drops back to zero
-    while (!MyServerImpl::IsCreated() || (winrt::get_module_lock() > 1))
-        Sleep(1000);
+    // wait until object count drops to zero
+    LifetimeTracker::WaitForShutdown();
 
     winrt::uninit_apartment(); // will decrement get_module_lock()
     return 0;
