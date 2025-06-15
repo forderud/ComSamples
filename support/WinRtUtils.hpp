@@ -42,30 +42,24 @@ public:
 };
 
 
-/** Support class for keeping track of the object count.
-    Can _almost_ replace this class with winrt::get_module_lock(), but it doesn't distinguish between before and after object creation & deletion. */
+/** Support class for controlling EXE process lifetime together with winrt::get_module_lock(). */
 class LifetimeTracker {
 public:
     LifetimeTracker() {
-        s_obj_cnt++;
+        s_created = true;
     }
 
     ~LifetimeTracker() {
-        s_obj_cnt--;
-        if (s_obj_cnt == 0)
-            s_active = false; // ready to terminate process
     }
 
-    /** The class is active until the object count is first incremeted, then decremented back to zero. */
-    static bool IsActive() {
-        return s_active;
+    /** Returns true if an object have been created. */
+    static bool IsCreated() {
+        return s_created;
     }
 
 private:
-    static inline std::atomic<bool>         s_active = true; ///< keep process alive
-    static inline std::atomic<unsigned int> s_obj_cnt = 0;   ///< live object count
+    static inline std::atomic<bool> s_created = false;
 };
-
 
 
 /** COM type library (un)registration function. */
