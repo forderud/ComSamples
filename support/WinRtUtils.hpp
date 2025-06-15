@@ -42,25 +42,42 @@ public:
 };
 
 
-/** Support class for controlling EXE process lifetime together with winrt::get_module_lock(). */
+/** Support class for controlling EXE process lifetime.
+    winrt::get_module_lock() does unfortunately not suffice due to https://github.com/microsoft/cppwinrt/issues/1493 */
 class LifetimeTracker {
 public:
     LifetimeTracker() {
-        s_created = true;
+        s_obj_count++;
     }
 
     ~LifetimeTracker() {
+        uint32_t new_count = --s_obj_count;
+        if (!new_count && s_shutdown)
+            SetEvent(s_shutdown); // signal shutdown
     }
 
-    /** Returns true if an object have been created. */
-    static bool IsCreated() {
-        return s_created;
+    /** Must be called before CoRegisterClassObject. */
+    static void Initialize() {
+        s_shutdown = CreateEventW(NULL, false, false, NULL);
+    }
+
+    /** Wait until the COM object count drops to zero. */
+    static void WaitForShutdown() {
+        // wait until object count drops to zero
+        WaitForSingleObject(s_shutdown, INFINITE);
+
+        // clean up
+        CloseHandle(s_shutdown);
+        s_shutdown = 0;
     }
 
 private:
-    static inline std::atomic<bool> s_created = false;
+    static std::atomic<uint32_t> s_obj_count;
+    static HANDLE                s_shutdown;
 };
 
+std::atomic<uint32_t> LifetimeTracker::s_obj_count = 0;
+HANDLE                LifetimeTracker::s_shutdown = 0;
 
 /** COM type library (un)registration function. */
 ::GUID RegisterTypeLibrary(bool do_register, std::wstring tlb_path) {
