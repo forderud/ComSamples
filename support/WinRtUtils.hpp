@@ -79,6 +79,7 @@ private:
 std::atomic<uint32_t> LifetimeTracker::s_obj_count = 0;
 HANDLE                LifetimeTracker::s_shutdown = 0;
 
+
 /** COM type library (un)registration function. */
 ::GUID RegisterTypeLibrary(bool do_register, std::wstring tlb_path) {
     if (!IsUserAnAdmin()) {
