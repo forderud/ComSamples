@@ -5,6 +5,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="module.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

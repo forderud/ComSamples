@@ -88,6 +88,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="module.def" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
