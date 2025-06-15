@@ -30,7 +30,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. Register one of the COM servers:
     * For EXE-based servers, run `<ServerName>.exe /regserver` with admin privileges,
     * For Python-based servers, run `<ServerName>.py /regserver` with admin privileges,
-    * For DLL-based servers, run `regsvr32.exe <ServerName>.dll` with admin privileges,
+    * For DLL-based servers, run `regsvr32.exe /s <ServerName>.dll` with admin privileges,
 1. Run the test clients:
     * C++: run `MyClientCpp.exe`
     * C#: run `MyClientCs.exe`
@@ -38,7 +38,7 @@ The server projects implement the `IMyServer` interface whereas the client proje
 1. **Un**register the server to clean up:
     * For EXE-based servers, run `<ServerName>.exe /unregserver` with admin privileges,
     * For Python-based servers, run `<ServerName>.py /unregserver`  with admin privileges,
-    * For DLL-based servers, run `regsvr32.exe /u <ServerName>.dll` with admin privileges,
+    * For DLL-based servers, run `regsvr32.exe /u /s <ServerName>.dll` with admin privileges,
     * Or run `UNREGISTER.bat` with admin privileges,
 
 Server registration is primarily needed for on-demand loaded COM servers.
@@ -138,7 +138,7 @@ Additional registry folders:
 * Per-user registrations are stored beneath `HKCU\SOFTWARE\Classes`.
 
 COM servers are responsible for registering and unregistering themselves. This is typically done through the following commands from an admin command prompt:
-* DLL-based server: `regsvr32.exe <server-name>.dll` and `regsvr32.exe /u <server-name>.dll`
+* DLL-based server: `regsvr32.exe /s <server-name>.dll` and `regsvr32.exe /u /s <server-name>.dll`
 * EXE-based server: `<server-name>.exe /regserver` and `<server-name>.exe /unregserver`
 
 ### Memory management rules (for C++)
