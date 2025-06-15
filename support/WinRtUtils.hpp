@@ -10,7 +10,8 @@
 #include "../support/CurrentModule.hpp"
 
 
-/** Minimal COM class factory implementation. */
+/** Minimal COM class factory implementation.
+    TODO: Investigate if winrt::static_lifetime should be used here. */
 template <class T>
 class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory> {
 public:
