@@ -11,9 +11,9 @@
 
 
 /** Minimal COM class factory implementation.
-    TODO: Investigate if winrt::static_lifetime should be used here. */
+    TODO: Investigate replacement with wil::detail::CppWinRTClassFactory. */
 template <class T>
-class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory> {
+class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory, winrt::no_module_lock> {
 public:
     ClassFactory() {
 #ifndef NDEBUG
