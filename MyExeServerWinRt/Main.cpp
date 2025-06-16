@@ -1,4 +1,10 @@
 #include <stdio.h>
+#include <functional>
+
+#define WINRT_CUSTOM_MODULE_LOCK
+#include <wil/resource.h>
+#include <wil/cppwinrt_notifiable_module_lock.h>
+
 #include "../support/WinRtUtils.hpp"
 #include "MyServerImpl.hpp"
 
@@ -23,7 +29,15 @@ int wmain(int argc, wchar_t* argv[]) {
         }
     }
 
-    LifetimeTracker::Initialize();
+    wil::unique_event _comExit;
+    _comExit.create();
+
+    wil::notifiable_module_lock::instance().set_notifier([&]() {
+        _comExit.SetEvent();
+        });
+    auto resetOnExit = wil::scope_exit([&] {
+        wil::notifiable_module_lock::instance().set_notifier(nullptr);
+        });
 
     // register class factory in current process
     DWORD registration = 0;
@@ -32,7 +46,7 @@ int wmain(int argc, wchar_t* argv[]) {
     wprintf(L"Waiting for COM class creation requests...\n");
 
     // wait until object count drops to zero
-    LifetimeTracker::WaitForShutdown();
+    _comExit.wait();
 
     winrt::uninit_apartment(); // will decrement get_module_lock()
     return 0;
