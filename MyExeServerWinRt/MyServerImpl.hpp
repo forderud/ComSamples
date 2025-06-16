@@ -32,7 +32,8 @@ public:
 
 
 /** Creatable COM class that needs a CLSID. */
-class MyServerImpl : public winrt::implements<MyServerImpl, IMyServer, winrt::no_weak_ref> {
+class __declspec(uuid("AF080472-F173-4D9D-8BE7-435776617347")) // __uuidof(MyServer)
+MyServerImpl : public winrt::implements<MyServerImpl, IMyServer, winrt::no_weak_ref> {
 public:
     MyServerImpl() {
 #ifndef NDEBUG
