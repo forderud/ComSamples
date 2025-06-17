@@ -40,6 +40,7 @@ int wmain(int argc, wchar_t* argv[]) {
         });
 
     // register class factory in current process
+    // TODO: Replace with wil::register_com_server after https://github.com/microsoft/wil/pull/533 is fixed.
     DWORD registration = 0;
     winrt::check_hresult(::CoRegisterClassObject(__uuidof(MyServer), winrt::make<ClassFactory<MyServerImpl>>().get(), CLSCTX_LOCAL_SERVER, REGCLS_MULTIPLEUSE, &registration));
 
