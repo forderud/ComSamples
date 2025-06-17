@@ -33,7 +33,7 @@ public:
             return CLASS_E_NOAGGREGATION; // aggregation not supported yet
 
         // create object
-        return winrt::make<T>()->QueryInterface(iid, result);
+        return winrt::make<T>().as(iid, result);
     }
 
     HRESULT LockServer(BOOL) noexcept override {

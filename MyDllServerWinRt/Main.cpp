@@ -33,7 +33,7 @@ STDAPI DllGetClassObject(::GUID const& clsid, ::GUID const& iid, void** result) 
 
     if (clsid == __uuidof(MyServer)) {
         // TODO: Replace with wil::details::CppWinRTClassFactory after https://github.com/microsoft/wil/issues/534 is resolved
-        return winrt::make<ClassFactory<MyServerImpl>>()->QueryInterface(iid, result);
+        return winrt::make<ClassFactory<MyServerImpl>>().as(iid, result);
     }
 
     return winrt::hresult_class_not_available().to_abi();
