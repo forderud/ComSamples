@@ -42,7 +42,8 @@ public:
 };
 
 
-/** COM type library (un)registration function. */
+/** COM type library (un)registration function.
+    TODO: Replace this function with WIL alternative if https://github.com/microsoft/wil/issues/531 is resolved. */
 ::GUID RegisterTypeLibrary(bool do_register, std::wstring tlb_path) {
     if (!IsUserAnAdmin()) {
         wprintf(L"ERROR: Admin privileges required for registration.\n");
@@ -84,7 +85,8 @@ public:
 }
 
 
-/** COM class (un)registration function. */
+/** COM class (un)registration function.
+    TODO: Replace this function with WIL alternative if https://github.com/microsoft/wil/issues/531 is resolved. */
 void RegisterComClass(bool do_register, CLSID clsid, ::GUID tlbGuid, std::wstring dll_exe_path) {
     if (!IsUserAnAdmin()) {
         wprintf(L"ERROR: Admin privileges required for registration.\n");
