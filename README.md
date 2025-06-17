@@ -9,7 +9,7 @@ Project listing:
 | MyClientCpp    | Sample C++ _client_ |
 | MyClientCs     | Sample C# _client_ |
 | MyClientPy     | Sample Python _client_ |
-| MyDllServerAtl | C++ _server_ DLL implementation using ATL |
+| MyDllServerAtl | C++ _server_ DLL implementation using [ATL](https://learn.microsoft.com/en-us/cpp/atl/atl-com-desktop-components) |
 |MyDllServerWinRt| C++ _server_ DLL implementation using [C++/WinRT](https://learn.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/author-coclasses) |
 | MyDllServerCs  | C# _server_ DLL implementation |
 | MyExeServerAtl | C++ _server_ EXE implementation using ATL |
