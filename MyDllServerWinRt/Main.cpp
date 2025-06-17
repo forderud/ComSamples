@@ -36,7 +36,7 @@ STDAPI DllGetClassObject(::GUID const& clsid, ::GUID const& iid, void** result) 
         return winrt::make<ClassFactory<MyServerImpl>>().as(iid, result);
     }
 
-    return winrt::hresult_class_not_available().to_abi();
+    return CLASS_E_CLASSNOTAVAILABLE;
 }
 
 // DllRegisterServer - Adds entries to the system registry.
