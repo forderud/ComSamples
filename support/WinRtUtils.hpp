@@ -11,7 +11,7 @@
 
 
 /** Minimal COM class factory implementation.
-    TODO: Investigate replacement with wil::detail::CppWinRTClassFactory. */
+    TODO: Replace with wil::detail::CppWinRTClassFactory after https://github.com/microsoft/wil/pull/533 and https://github.com/microsoft/wil/issues/534 are resolved. */
 template <class T>
 class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory, winrt::no_module_lock> {
 public:
