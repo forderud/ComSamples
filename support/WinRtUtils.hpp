@@ -10,38 +10,6 @@
 #include "../support/CurrentModule.hpp"
 
 
-/** Minimal COM class factory implementation.
-    TODO: Replace with wil::detail::CppWinRTClassFactory after https://github.com/microsoft/wil/pull/533 and https://github.com/microsoft/wil/issues/534 are resolved. */
-template <class T>
-class ClassFactory : public winrt::implements<ClassFactory<T>, IClassFactory, winrt::no_module_lock> {
-public:
-    ClassFactory() {
-#ifndef NDEBUG
-        wprintf(L"ClassFactory ctor\n");
-#endif
-    }
-
-    ~ClassFactory() {
-#ifndef NDEBUG
-        wprintf(L"ClassFactory dtor\n");
-#endif
-    }
-
-    HRESULT CreateInstance(IUnknown* outer, const IID& iid, void** result) noexcept override {
-        *result = nullptr;
-        if (outer)
-            return CLASS_E_NOAGGREGATION; // aggregation not supported yet
-
-        // create object
-        return winrt::make<T>().as(iid, result);
-    }
-
-    HRESULT LockServer(BOOL) noexcept override {
-        return S_OK;
-    }
-};
-
-
 /** COM type library (un)registration function.
     TODO: Replace this function with WIL alternative if https://github.com/microsoft/wil/issues/531 is resolved. */
 ::GUID RegisterTypeLibrary(bool do_register, std::wstring tlb_path) {
