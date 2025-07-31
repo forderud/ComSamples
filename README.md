@@ -141,12 +141,15 @@ COM servers are responsible for registering and unregistering themselves. This i
 * DLL-based server: `regsvr32.exe /s <server-name>.dll` and `regsvr32.exe /u /s <server-name>.dll`
 * EXE-based server: `<server-name>.exe /regserver` and `<server-name>.exe /unregserver`
 
-### Memory management rules (for C++)
-Rules:
+### Memory management rules
+Guidelines for C++ code:
 * [Rules for Managing Reference Counts](https://learn.microsoft.com/en-us/windows/win32/com/rules-for-managing-reference-counts). Use smart-pointers like [`CComPtr<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomptr-class) or [`_com_ptr_t<T>`](https://learn.microsoft.com/en-us/cpp/cpp/com-ptr-t-class) to ease access.
 * Strings (`BSTR`): Allocated with [`SysAllocString`/`SysFreeString`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms221105.aspx). Use [`CComBSTR`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccombstr-class) wrapper to ease access.
 * Dynamic arrays (`SAFEARRAY`): Allocated with [`SafeArrayCreate`](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-safearraycreate)/[`SafeArrayDestroy`](https://learn.microsoft.com/en-us/windows/win32/api/oleauto/nf-oleauto-safearraydestroy). Use [`CComSafeArray<T>`](https://learn.microsoft.com/en-us/cpp/atl/reference/ccomsafearray-class) to ease access. Can hold [OLE automation compatible](https://learn.microsoft.com/en-us/windows/win32/midl/oleautomation) types.
 * Dynamic memory: Allocated with [`CoTaskMemAlloc`/`CoTaskMemFree`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms678418.aspx).
+
+
+Generic rules:
 * [Memory Management Rules](https://learn.microsoft.com/nb-no/windows/win32/com/memory-management-rules) for argument passing:
   - `[in]` arguments are allocated and freed by the caller (automatic for function being called).
   - `[out]` arguments are allocated by the function called and later freed by the caller.
