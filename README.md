@@ -151,13 +151,15 @@ Rules:
   - `[in]` arguments are allocated and freed by the caller (automatic for function being called).
   - `[out]` arguments are allocated by the function called and later freed by the caller.
   - `[in,out]` identical to `[in]`, but the function being called might also free & reallocate.
-* Pointer semantics:
-  - Method arguments are [`ref` by default](https://learn.microsoft.com/nb-no/windows/win32/rpc/default-pointer-types)
-  - [`[ref]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ref): Never NULL or aliased.
-  - [`[unique]`](https://learn.microsoft.com/nb-no/windows/win32/midl/unique): Can be NULL, change to/from NULL but not aliased.
-  - [`[ptr]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ptr): Can be NULL, change to/from NULL and be aliased.
-  - `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-file) unless specified.
 * [`QueryInterface`](https://learn.microsoft.com/en-us/windows/win32/api/unknwn/nf-unknwn-iunknown-queryinterface(refiid_void)) reflexive, symmetric and transitive rules.
+
+
+Method argument pointer semantics:
+* Method arguments are [`ref` by default](https://learn.microsoft.com/nb-no/windows/win32/rpc/default-pointer-types)
+* [`[ref]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ref): Never NULL or aliased.
+* [`[unique]`](https://learn.microsoft.com/nb-no/windows/win32/midl/unique): Can be NULL, change to/from NULL but not aliased.
+* [`[ptr]`](https://learn.microsoft.com/nb-no/windows/win32/midl/ptr): Can be NULL, change to/from NULL and be aliased.
+* `[pointer_default()]`]: Set semantics for nested pointers. [Defaults to `unique`](https://learn.microsoft.com/nb-no/windows/win32/com/anatomy-of-an-idl-file) unless specified.
 
 ## Advanced topics
 These topics are primary relevant when _authoring_ COM servers. Consumers of a COM server can usually disregard these topics.
