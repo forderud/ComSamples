@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <unknwn.h>
 #include <winrt/Windows.Foundation.h>
+#include <wil/cppwinrt_register_com_server.h>
 #include "../support/WinRtUtils.hpp"
 #include "../MyExeServerWinRt/MyServerImpl.hpp"
 
@@ -32,8 +33,8 @@ STDAPI DllGetClassObject(::GUID const& clsid, ::GUID const& iid, void** result) 
     *result = nullptr;
 
     if (clsid == __uuidof(MyServer)) {
-        // TODO: Replace with wil::details::CppWinRTClassFactory after https://github.com/microsoft/wil/issues/534 is resolved
-        return winrt::make<ClassFactory<MyServerImpl>>().as(iid, result);
+        // TODO: Avoid relying on an "internal" WIL class here (see https://github.com/microsoft/wil/issues/534)
+        return winrt::make<wil::details::CppWinRTClassFactory<MyServerImpl>>().as(iid, result);
     }
 
     return CLASS_E_CLASSNOTAVAILABLE;
