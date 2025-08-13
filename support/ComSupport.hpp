@@ -60,7 +60,8 @@ static size_t GetRemoteProcessID() {
     RPC_CALL_ATTRIBUTES attribs{};
     attribs.Version = RPC_CALL_ATTRIBUTES_VERSION; // 3
     attribs.Flags = RPC_QUERY_CLIENT_PID;
-    RPC_STATUS status = RpcServerInqCallAttributesW(0, &attribs);
+    RPC_BINDING_HANDLE binding = nullptr;
+    RPC_STATUS status = RpcServerInqCallAttributesW(binding, &attribs);
     if (status != RPC_S_OK)
         throw std::runtime_error("RPC_QUERY_CLIENT_PID failed");
 
