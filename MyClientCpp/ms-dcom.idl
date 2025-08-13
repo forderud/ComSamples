@@ -1,0 +1,84 @@
+// extract from https://github.com/EddieIvan01/win32api-practice/tree/master/oxid-nic-resolver
+import "oaidl.idl";
+
+typedef unsigned hyper OXID;
+typedef unsigned hyper OID;
+typedef unsigned hyper SETID;
+typedef GUID           IPID;
+
+typedef struct tagCOMVERSION
+{
+    unsigned short MajorVersion;
+    unsigned short MinorVersion;
+} COMVERSION;
+
+typedef struct tagDUALSTRINGARRAY
+{
+    unsigned short wNumEntries;
+    unsigned short wSecurityOffset;
+    [size_is(wNumEntries)] unsigned short aStringArray[];
+} DUALSTRINGARRAY;
+
+[
+    uuid(99fcfec4-5260-101b-bbcb-00aa0021347a),
+    pointer_default(unique)
+]
+interface IObjectExporter
+{
+    [idempotent] error_status_t ResolveOxid
+    (
+        [in]       handle_t        hRpc,
+        [in]       OXID* pOxid,
+        [in]       unsigned short  cRequestedProtseqs,
+        [in, ref, size_is(cRequestedProtseqs)]
+    unsigned short  arRequestedProtseqs[],
+        [out, ref] DUALSTRINGARRAY** ppdsaOxidBindings,
+        [out, ref] IPID* pipidRemUnknown,
+        [out, ref] DWORD* pAuthnHint
+        );
+
+    [idempotent] error_status_t SimplePing
+    (
+        [in]  handle_t  hRpc,
+        [in]  SETID* pSetId
+    );
+
+    [idempotent] error_status_t ComplexPing
+    (
+        [in]       handle_t        hRpc,
+        [in, out]  SETID* pSetId,
+        [in]       unsigned short  SequenceNum,
+        [in]       unsigned short  cAddToSet,
+        [in]       unsigned short  cDelFromSet,
+        [in, unique, size_is(cAddToSet)]   OID AddToSet[],
+        [in, unique, size_is(cDelFromSet)] OID DelFromSet[],
+        [out]      unsigned short* pPingBackoffFactor
+    );
+
+    [idempotent] error_status_t ServerAlive
+    (
+        [in]       handle_t        hRpc
+    );
+
+
+    [idempotent] error_status_t ResolveOxid2
+    (
+        [in]       handle_t        hRpc,
+        [in]       OXID* pOxid,
+        [in]       unsigned short  cRequestedProtseqs,
+        [in, ref, size_is(cRequestedProtseqs)]
+    unsigned short  arRequestedProtseqs[],
+        [out, ref] DUALSTRINGARRAY** ppdsaOxidBindings,
+        [out, ref] IPID* pipidRemUnknown,
+        [out, ref] DWORD* pAuthnHint,
+        [out, ref] COMVERSION* pComVersion
+        );
+
+    [idempotent] error_status_t ServerAlive2
+    (
+        [in]       handle_t        hRpc,
+        [out, ref] COMVERSION* pComVersion,
+        [out, ref] DUALSTRINGARRAY** ppdsaOrBindings,
+        [out, ref] DWORD* pReserved
+    );
+}
