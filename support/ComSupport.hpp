@@ -1,7 +1,8 @@
 #pragma once
-
+#include <stdexcept>
 #include <atlcom.h>  // for CComObject
 
+#pragma comment(lib, "Rpcrt4.lib") // for RpcServerInqCallAttributesW
 
 /* Disable BSTR caching to ease memory management debugging.
    REF: https://docs.microsoft.com/en-us/previous-versions/windows/desktop/automat/setoanocache */
@@ -51,4 +52,17 @@ CComPtr<T> CreateLocalInstance () {
 
     // move into smart-ptr (will incr. ref. count to one)
     return CComPtr<T>(static_cast<T*>(tmp));
+}
+
+
+/** Get remote process ID (PID) during handling of incoming COM calls. */
+static size_t GetRemoteProcessID() {
+    RPC_CALL_ATTRIBUTES attribs{};
+    attribs.Version = RPC_CALL_ATTRIBUTES_VERSION; // 3
+    attribs.Flags = RPC_QUERY_CLIENT_PID;
+    RPC_STATUS status = RpcServerInqCallAttributesW(0, &attribs);
+    if (status != RPC_S_OK)
+        throw std::runtime_error("RPC_QUERY_CLIENT_PID failed");
+
+    return (size_t)attribs.ClientPID;
 }
