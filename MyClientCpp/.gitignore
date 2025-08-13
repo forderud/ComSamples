@@ -1,2 +1,4 @@
 /x64
 /*.vcxproj.user
+/IObjectExporter_?.*
+/dlldata.c

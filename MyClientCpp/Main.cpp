@@ -6,6 +6,7 @@
 #include <MyInterfaces.tlh>
 #include "../support/ComSupport.hpp"
 #include "../support/CoGetServerPID.hpp"
+#include "IObjectExporter_h.h"
 
 
 /** Convert SAFEARRAY to a std::vector> */
@@ -121,3 +122,12 @@ int main() {
 // instantiate ATL
 class MyClientModule : public CAtlExeModuleT<MyClientModule> {};
 MyClientModule _Module;
+
+
+void* midl_user_allocate(size_t cBytes) {
+    return malloc(cBytes);
+}
+
+void midl_user_free(void* p) {
+    free(p);
+}
