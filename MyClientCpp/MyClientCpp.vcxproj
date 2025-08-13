@@ -63,6 +63,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ms-dcom_c.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="ms-dcom.idl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
