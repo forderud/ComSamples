@@ -95,6 +95,14 @@ int main() {
             return 1;
         }
 
+        {
+            COGETSERVERPID_STDOBJREF objref{};
+            GetServerSTDOBJREF(server, /*out*/objref);
+            uint16_t port = 0;
+            GetTcpPortFromOXID(objref.oxid, port);
+            std::wcout << L"Server TCP port: " << port << L"\n";
+        }
+
         try {
             auto cruncher = server->GetNumberCruncher();
             double pi = cruncher->ComputePi();
