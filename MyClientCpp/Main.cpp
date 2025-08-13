@@ -5,6 +5,7 @@
 #include <vector>
 #include <MyInterfaces.tlh>
 #include "../support/ComSupport.hpp"
+#include "../support/CoGetServerPID.hpp"
 
 
 /** Convert SAFEARRAY to a std::vector> */
@@ -42,6 +43,8 @@ public:
             return E_INVALIDARG;
 
         using namespace std;
+        auto pid = GetClientProcessID();
+        wcout << L"ClientPID: " << pid << L"\n";
 
         wcout << L"Received message:\n";
         wcout << L"  sev=" << msg->sev << L"\n";
