@@ -57,11 +57,10 @@ CComPtr<T> CreateLocalInstance () {
 
 /** Get remote process ID (PID) during handling of incoming COM calls.
     Only supported for the "ncalrpc" local RPC protocol. */
-static size_t GetRemoteProcessID() {
+static size_t GetRemoteProcessID(RPC_BINDING_HANDLE binding = nullptr) {
     RPC_CALL_ATTRIBUTES attribs{};
     attribs.Version = RPC_CALL_ATTRIBUTES_VERSION; // 3
     attribs.Flags = RPC_QUERY_CLIENT_PID;
-    RPC_BINDING_HANDLE binding = nullptr;
     RPC_STATUS status = RpcServerInqCallAttributesW(binding, &attribs);
     if (status != RPC_S_OK)
         throw std::runtime_error("RPC_QUERY_CLIENT_PID failed");
