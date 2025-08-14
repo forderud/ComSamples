@@ -2,11 +2,10 @@
 #include <atlcom.h> // for CComObject
 #include <atlsafe.h> // for CComSafeArray
 #include <iostream>
-#include <vector>
 #include <MyInterfaces.tlh>
 #include "../support/ComSupport.hpp"
 #include "../support/CoGetServerPID.hpp"
-#include "IObjectExporter_h.h"
+#include "../support/PIDFromOXID.hpp"
 
 
 /** Convert SAFEARRAY to a std::vector> */
@@ -101,6 +100,12 @@ int main() {
             uint16_t port = 0;
             GetTcpPortFromOXID(objref.oxid, port);
             std::wcout << L"Server TCP port: " << port << L"\n";
+
+            DWORD pid = 0;
+            GetProcessIDFromLocalIPv4Port(port, pid/*out*/);
+            std::wcout << L"Server process PID: " << pid << L" (IPv4)\n";
+            GetProcessIDFromLocalIPv6Port(port, pid/*out*/);
+            std::wcout << L"Server process PID: " << pid << L" (IPv6)\n";
         }
 
         try {
