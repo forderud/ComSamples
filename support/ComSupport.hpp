@@ -54,8 +54,7 @@ CComPtr<T> CreateLocalInstance () {
     return CComPtr<T>(static_cast<T*>(tmp));
 }
 
-
-/** Get remote process ID (PID) during handling of incoming COM calls.
+/** Get client process ID (PID) during handling of incoming RPC call.
     Only supported for the "ncalrpc" local RPC protocol. */
 static size_t GetRemoteProcessID(RPC_BINDING_HANDLE binding = nullptr) {
     RPC_CALL_ATTRIBUTES attribs{};
