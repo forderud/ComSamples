@@ -2,11 +2,17 @@
 #include <atlcom.h> // for CComObject
 #include <atlsafe.h> // for CComSafeArray
 #include <iostream>
+#include <string>
 #include <vector>
+#include <ws2ipdef.h>
+#include <iphlpapi.h>
 #include <MyInterfaces.tlh>
 #include "../support/ComSupport.hpp"
 #include "../support/CoGetServerPID.hpp"
 #include "ms-dcom_h.h"
+
+#pragma comment(lib, "Iphlpapi.lib")
+#pragma comment(lib, "Ws2_32.lib") // for ntohs
 
 
 /** Convert SAFEARRAY to a std::vector> */
@@ -22,6 +28,79 @@ std::vector<T> ToStdVector(const SAFEARRAY * sa) {
     
     arr.Detach();
     return result;
+}
+
+
+/** Query the IPv4 TCP connection table and look for the process-ID of a process that listens on the given TCP port. */
+inline HRESULT GetProcessIDFromLocalIPv4Port(unsigned short tcp_port, DWORD& pid) {
+    std::vector<BYTE> tcpTableBuf;
+    MIB_TCPTABLE2* tcpTable = nullptr;
+    {
+        ULONG tcpTableSize = 0;
+        ULONG result = GetTcpTable2(tcpTable, &tcpTableSize, false/*sort*/);
+        if (result != ERROR_INSUFFICIENT_BUFFER)
+            return E_FAIL;
+
+        tcpTableBuf.resize(tcpTableSize);
+        tcpTable = (MIB_TCPTABLE2*)tcpTableBuf.data();
+
+        result = GetTcpTable2(tcpTable, &tcpTableSize, false/*sort*/);
+        if (result != NO_ERROR)
+            return E_FAIL;
+    }
+
+    for (DWORD i = 0; i < tcpTable->dwNumEntries; i++) {
+        const MIB_TCPROW2& row = tcpTable->table[i];
+
+        if ((row.dwState == MIB_TCP_STATE_LISTEN) &&
+            (row.dwLocalAddr == 0) &&
+            (ntohs(row.dwLocalPort & 0xFFFF) == tcp_port) && // In big-endian format. The upper 16 bits may contain uninitialized data.
+            (row.dwRemoteAddr == 0) &&
+            (ntohs(row.dwRemotePort & 0xFFFF) == 0) // In big-endian format. The upper 16 bits may contain uninitialized data.
+            ) {
+            pid = row.dwOwningPid;
+            return S_OK;
+        }
+    }
+
+    return E_FAIL;
+}
+
+
+/** Query the IPv6 TCP connection table and look for the process-ID of a process that listens on the given TCP port. */
+inline HRESULT GetProcessIDFromLocalIPv6Port(unsigned short tcp_port, DWORD& pid) {
+    std::vector<BYTE> tcpTableBuf;
+    MIB_TCP6TABLE2* tcpTable = nullptr;
+    {
+        ULONG tcpTableSize = 0;
+        ULONG result = GetTcp6Table2(tcpTable, &tcpTableSize, false/*sort*/);
+        if (result != ERROR_INSUFFICIENT_BUFFER)
+            return E_FAIL;
+
+        tcpTableBuf.resize(tcpTableSize);
+        tcpTable = (MIB_TCP6TABLE2*)tcpTableBuf.data();
+
+        result = GetTcp6Table2(tcpTable, &tcpTableSize, false/*sort*/);
+        if (result != NO_ERROR)
+            return E_FAIL;
+    }
+
+    const IN6_ADDR ZERO_ADDR{};
+    for (DWORD i = 0; i < tcpTable->dwNumEntries; i++) {
+        const MIB_TCP6ROW2& row = tcpTable->table[i];
+
+        if ((row.State == MIB_TCP_STATE_LISTEN) &&
+            IN6_ADDR_EQUAL(&row.LocalAddr, &ZERO_ADDR) &&
+            (ntohs(row.dwLocalPort & 0xFFFF) == tcp_port) && // In big-endian format. The upper 16 bits may contain uninitialized data.
+            IN6_ADDR_EQUAL(&row.RemoteAddr, &ZERO_ADDR) &&
+            (ntohs(row.dwRemotePort & 0xFFFF) == 0) // In big-endian format. The upper 16 bits may contain uninitialized data.
+            ) {
+            pid = row.dwOwningPid;
+            return S_OK;
+        }
+    }
+
+    return E_FAIL;
 }
 
 
@@ -157,6 +236,12 @@ int main() {
             uint16_t port = 0;
             GetTcpPortFromOXID(objref.oxid, port);
             std::wcout << L"Server TCP port: " << port << L"\n";
+
+            DWORD pid = 0;
+            GetProcessIDFromLocalIPv4Port(port, pid/*out*/);
+            std::wcout << L"Server process PID: " << pid << L" (IPv4)\n";
+            GetProcessIDFromLocalIPv6Port(port, pid/*out*/);
+            std::wcout << L"Server process PID: " << pid << L" (IPv6)\n";
         }
 
         try {
