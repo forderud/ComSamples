@@ -56,7 +56,7 @@ CComPtr<T> CreateLocalInstance () {
 
 /** Get client process ID (PID) during handling of incoming RPC call.
     Only supported for the "ncalrpc" local RPC protocol. */
-static size_t GetRemoteProcessID(RPC_BINDING_HANDLE binding = nullptr) {
+static size_t GetClientProcessID(RPC_BINDING_HANDLE binding = nullptr) {
     RPC_CALL_ATTRIBUTES attribs{};
     attribs.Version = RPC_CALL_ATTRIBUTES_VERSION; // 3
     attribs.Flags = RPC_QUERY_CLIENT_PID;
