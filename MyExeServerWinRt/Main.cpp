@@ -3,7 +3,7 @@
 
 #define WINRT_CUSTOM_MODULE_LOCK
 #include <wil/resource.h>
-#include <wil/cppwinrt_notifiable_module_lock.h>
+#include <wil/cppwinrt_notifiable_server_lock.h>
 
 #include "../support/WinRtUtils.hpp"
 #include "MyServerImpl.hpp"
@@ -32,11 +32,11 @@ int wmain(int argc, wchar_t* argv[]) {
     wil::unique_event _comExit;
     _comExit.create();
 
-    wil::notifiable_module_lock::instance().set_notifier([&]() {
+    wil::notifiable_server_lock::instance().set_notifier([&]() {
         _comExit.SetEvent();
         });
     auto resetOnExit = wil::scope_exit([&] {
-        wil::notifiable_module_lock::instance().set_notifier(nullptr);
+        wil::notifiable_server_lock::instance().set_notifier(nullptr);
         });
 
     // register class factory in current process
