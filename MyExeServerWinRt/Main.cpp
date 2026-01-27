@@ -6,6 +6,7 @@
 #include <wil/cppwinrt_notifiable_server_lock.h>
 
 #include "../support/WinRtUtils.hpp"
+#include <wil/cppwinrt_authoring.h>
 #include "MyServerImpl.hpp"
 
 
@@ -40,9 +41,7 @@ int wmain(int argc, wchar_t* argv[]) {
         });
 
     // register class factory in current process
-    // TODO: Replace with wil::register_com_server after https://github.com/microsoft/wil/pull/537 is fixed (version > v1.0.250325.1)
-    DWORD registration = 0;
-    winrt::check_hresult(::CoRegisterClassObject(__uuidof(MyServer), winrt::make<ClassFactory<MyServerImpl>>().get(), CLSCTX_LOCAL_SERVER, REGCLS_MULTIPLEUSE, &registration));
+    auto revoker = wil::register_com_server<MyServerImpl>(__uuidof(MyServer));
 
     wprintf(L"Waiting for COM class creation requests...\n");
 
