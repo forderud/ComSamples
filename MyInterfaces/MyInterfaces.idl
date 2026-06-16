@@ -72,6 +72,33 @@ cpp_quote("extern \"C\"{")
 cpp_quote("#endif")
 
 
+/** Copied as-is from "winrt\hstring.idl" */
+typedef struct HSTRING__ {
+    int unused;
+} HSTRING__;
+typedef [wire_marshal(wireBSTR), unique] HSTRING__* HSTRING;
+
+/** Copied as-is from "winrt\inspectable.idl" */
+typedef [v1_enum] enum TrustLevel {
+    BaseTrust,
+    PartialTrust,
+    FullTrust
+} TrustLevel;
+
+/** Copied as-is from "winrt\inspectable.h" */
+[object, uuid(AF86E2E0-B12D-4c6a-9C5A-D7AA65101E90), pointer_default(unique)]
+interface IInspectable : IUnknown {
+    HRESULT GetIids([out] ULONG* iidCount, [out, size_is(, *iidCount)] IID** iids);
+    HRESULT GetRuntimeClassName([out] HSTRING* className);
+    HRESULT GetTrustLevel([out] TrustLevel* trustLevel);
+};
+
+/** Copied with simplifications from "winrt\windows.foundation.idl" */
+[uuid(30D5A829-7FA4-4026-83BB-D75BAE4EA99E)]
+interface IClosable : IInspectable {
+    HRESULT Close();
+};
+
 [object,
  oleautomation,
  uuid(BE3FF6C1-94F5-4974-913C-237C9AB29679),
@@ -110,5 +137,6 @@ library MyInterfaces {
     [uuid(AF080472-F173-4D9D-8BE7-435776617347)]
     coclass MyServer {
         [default] interface IMyServer;
+        interface IClosable;
     }
 }
