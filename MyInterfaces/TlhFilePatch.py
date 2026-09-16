@@ -144,7 +144,7 @@ def MakeTliIncludeRelative(source, tli_file):
         if source[i][:10] != '#include "':
             continue
         
-        if '\\'+tli_file.lower()+'"\n' not in source[i]:
+        if '\\'+tli_file.lower()+'"\n' not in source[i].lower():
             continue
         
         source[i] = '#include "'+tli_file+'"\n'
