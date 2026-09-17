@@ -117,7 +117,7 @@ During initialization, COM clients and servers decide their [threading model](ht
 
 <sup>[1]</sup> The threading model only affects _incoming_ calls marshalled by the COM runtime. This typically means COM servers implemented in a different programming language or running in a different process. Direct C++ communication between COM objects in the same process are not affected by the threading model.
 
-<sup>[2]</sup> STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ pumping messages while processing an incoming call.
+<sup>[2]</sup> STA threads need to [pump messages](https://learn.microsoft.com/en-us/windows/win32/winmsg/using-messages-and-message-queues) to process incoming calls - just like all GUI applications does to process mouse & keyboard events. The implementation then needs to consider that _reentrancy can occur_ as part of the message pumping _if_ implicitly or explicitly pumping messages while processing an incoming call.
 
 In the STA case COM pointers can only be called by the associated thread. The COM pointer need to be explicitly marshaled before they can be accessed by a different thread. This is handled automatically in .Net but needs to be performed explicitly with [`RoGetAgileReference`](https://learn.microsoft.com/en-us/windows/win32/api/combaseapi/nf-combaseapi-rogetagilereference) and `IAgileReference::Resolve` in C++ as done by the [ComMarshal](support/ComMarshal.hpp) sample. Marshaling between threads is not required in the MTA case.
 
