@@ -15,7 +15,7 @@
 using namespace MyInterfaces;
 
 /** Non-creatable COM class that doesn't need any CLSID. */
-class ATL_NO_VTABLE NumberCruncher :
+class NumberCruncher :
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<NumberCruncher>, // no CLSID needed
     public INumberCruncher
@@ -44,7 +44,7 @@ public:
 
 
 /** Creatable COM class that needs a CLSID. */
-class ATL_NO_VTABLE MyServerImpl :
+class MyServerImpl :
     public CComObjectRootEx<CComMultiThreadModel>, // also compatible with STA
     public CComCoClass<MyServerImpl, &__uuidof(MyServer)>, // CLSID
     public IMyServer
