@@ -5,6 +5,13 @@
 #include "../MyExeServerWinRt/MyServerImpl.hpp"
 
 
+// exported symbols (in addition to DllMain)
+#pragma comment(linker, "/export:DllCanUnloadNow,PRIVATE")
+#pragma comment(linker, "/export:DllGetClassObject,PRIVATE")
+#pragma comment(linker, "/export:DllRegisterServer,PRIVATE")
+#pragma comment(linker, "/export:DllUnregisterServer,PRIVATE")
+
+
 /** DLL entry point */
 BOOL APIENTRY DllMain (HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
     switch (ul_reason_for_call) {

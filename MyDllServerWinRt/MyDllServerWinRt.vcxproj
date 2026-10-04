@@ -55,7 +55,6 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>module.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
@@ -78,7 +77,6 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <ModuleDefinitionFile>module.def</ModuleDefinitionFile>
     </Link>
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)$(Platform)\$(Configuration)</AdditionalIncludeDirectories>
@@ -88,7 +86,6 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="module.def" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
