@@ -5,6 +5,13 @@
 #include "../support/ComSupport.hpp"
 
 
+// exported symbols (in addition to DllMain)
+#pragma comment(linker, "/export:DllCanUnloadNow,PRIVATE")
+#pragma comment(linker, "/export:DllGetClassObject,PRIVATE")
+#pragma comment(linker, "/export:DllRegisterServer,PRIVATE")
+#pragma comment(linker, "/export:DllUnregisterServer,PRIVATE")
+
+
 class MyserverModule : public ATL::CAtlDllModuleT<MyserverModule> {
 public:
     MyserverModule() {
@@ -43,26 +50,4 @@ STDAPI DllRegisterServer() {
 // DllUnregisterServer - Removes entries from the system registry.
 STDAPI DllUnregisterServer() {
     return _AtlModule.DllUnregisterServer();
-}
-
-// DllInstall - Adds/Removes entries to the system registry per user per machine.
-STDAPI DllInstall(BOOL bInstall, _In_opt_  LPCWSTR pszCmdLine) {
-    static const wchar_t szUserSwitch[] = L"user";
-
-    if (pszCmdLine != NULL) {
-        if (_wcsnicmp(pszCmdLine, szUserSwitch, _countof(szUserSwitch)) == 0)
-            ATL::AtlSetPerUserRegistration(true);
-    }
-
-    HRESULT hr = E_FAIL;
-    if (bInstall) {
-        hr = DllRegisterServer();
-        if (FAILED(hr))
-            DllUnregisterServer();
-    }
-    else {
-        hr = DllUnregisterServer();
-    }
-
-    return hr;
 }
